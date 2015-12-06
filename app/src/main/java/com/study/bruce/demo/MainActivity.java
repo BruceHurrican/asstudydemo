@@ -22,7 +22,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.study.bruce.MainActivityDemo;
 import com.study.bruce.demo.base.BaseActivity;
 import com.study.bruce.demo.studydata.fragments.FragmentsActivity;
 
@@ -71,7 +70,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         it = new Intent();
 
         addDemoContainer(FragmentsActivity.class, "fragment 入口");
-        addDemoContainer(MainActivityDemo.class, "谷歌AS模板");
+        addDemoContainer(FragmentsActivity.class, "fragment 入口");
 
         lv_demo_list.setOnItemClickListener(this);
         logI("加载列表完成");
