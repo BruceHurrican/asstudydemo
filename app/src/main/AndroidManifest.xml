@@ -5,7 +5,7 @@
     <application
         android:name=".DemoApplication"
         android:allowBackup="true"
-        android:icon="@drawable/icon_demo"
+        android:icon="@mipmap/icon_demo"
         android:installLocation="preferExternal"
         android:label="@string/app_name"
         android:supportsRtl="true"

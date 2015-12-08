@@ -108,7 +108,7 @@ public abstract class BaseFragment extends Fragment {
         pd_waiting.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd_waiting.setTitle("提示");
         pd_waiting.setMessage(msg);
-        pd_waiting.setIcon(R.drawable.icon_workdemo);
+        pd_waiting.setIcon(R.mipmap.icon_workdemo);
         pd_waiting.setIndeterminate(false);
         pd_waiting.setCancelable(false);
         pd_waiting.setCanceledOnTouchOutside(false);
