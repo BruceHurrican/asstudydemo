@@ -70,7 +70,6 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         it = new Intent();
 
         addDemoContainer(FragmentsActivity.class, "fragment 入口");
-        addDemoContainer(FragmentsActivity.class, "fragment 入口");
 
         lv_demo_list.setOnItemClickListener(this);
         logI("加载列表完成");

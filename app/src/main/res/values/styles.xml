@@ -64,5 +64,4 @@
         <!-- activity finish 时退出效果 -->
         <item name="android:activityCloseExitAnimation">@android:anim/slide_out_right</item>
     </style>
-
 </resources>
