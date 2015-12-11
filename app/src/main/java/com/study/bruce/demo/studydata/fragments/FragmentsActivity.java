@@ -67,7 +67,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         addFragment2Container(new CrashFragment(), "测试 日志生成删除应用缓存本地文件");
 
         lv_demo_list.setOnItemClickListener(this);
-        logI("加载 fragment 列表完成");
+        LogUtils.i("加载 fragment 列表完成");
     }
 
     /**
@@ -82,8 +82,6 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        logI(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
-        logI("当前线程为 -->" + Thread.currentThread());
         LogUtils.d(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
         LogUtils.i("当前线程为 -->" + Thread.currentThread());
         fragmentTransaction.replace(R.id.rl_container, fragments.get(position));
@@ -101,7 +99,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
     public void onBackPressed() {
         // 将入栈的 fragment 按 FILO 规则依次出栈
         if (fragmentManager.getBackStackEntryCount() > 0 && fragmentManager.popBackStackImmediate(null, 0)){
-            logD("fragment栈中最上层的 fragment 出栈");
+            LogUtils.d("fragment栈中最上层的 fragment 出栈");
             if (fragmentManager.getBackStackEntryCount() == 0){
                 if (rl_container.isShown()) {
                     rl_container.setVisibility(View.GONE);

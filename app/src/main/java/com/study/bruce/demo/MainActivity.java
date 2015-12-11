@@ -24,6 +24,7 @@ import android.widget.ListView;
 
 import com.study.bruce.demo.base.BaseActivity;
 import com.study.bruce.demo.studydata.fragments.FragmentsActivity;
+import com.study.bruce.demo.utils.LogUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         addDemoContainer(FragmentsActivity.class, "fragment 入口");
 
         lv_demo_list.setOnItemClickListener(this);
-        logI("加载列表完成");
+        LogUtils.i("加载列表完成");
     }
 
     /**
@@ -93,8 +94,8 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         showToastShort(String.format("你点击了第 %s 条Demo %s", position + 1, demoNamesList.get(position)));
         it.setClass(MainActivity.this, demos.get(position));
 //        Logs.i(TAG, "你点击了第" + (position + 1) + "条Demo--"+demoNamesList.get(position));
-        logI(String.format("你点击了第 %s 条Demo %s", position + 1, demoNamesList.get(position)));
-        logI("当前线程为 -->" + Thread.currentThread());
+        LogUtils.i(String.format("你点击了第 %s 条Demo %s", position + 1, demoNamesList.get(position)));
+        LogUtils.i("当前线程为 -->" + Thread.currentThread());
         startActivity(it);
     }
 }

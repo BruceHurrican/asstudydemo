@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import com.study.bruce.demo.DemoApplication;
 import com.study.bruce.demo.R;
-import com.study.bruce.demo.log.Logs;
+import com.study.bruce.demo.utils.LogUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -37,7 +37,6 @@ import java.lang.ref.WeakReference;
 public abstract class BaseActivity extends Activity {
     private Context context;
     private final String TAG = getTAG();
-    private String logsTag;
     private DemoApplication application;
     /**
      * 加载进度等待对话框
@@ -49,8 +48,7 @@ public abstract class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
         context = BaseActivity.this;
 //        TAG = getTAG();
-        logsTag = getLocalClassName() + "-->";
-        application = (DemoApplication)getApplication();
+        application = (DemoApplication) getApplication();
         application.addActivity(this);
     }
 
@@ -62,26 +60,6 @@ public abstract class BaseActivity extends Activity {
 
     public abstract String getTAG();
 
-    public final void logV(String text) {
-        Logs.v(logsTag, text);
-    }
-
-    public final void logD(String text) {
-        Logs.d(logsTag, text);
-    }
-
-    public final void logI(String text) {
-        Logs.i(logsTag, text);
-    }
-
-    public final void logW(String text) {
-        Logs.w(logsTag, text);
-    }
-
-    public final void logE(String text) {
-        Logs.e(logsTag, text);
-    }
-
     public void showToastShort(final String text) {
         runOnUiThread(new Runnable() {
             @Override
@@ -89,7 +67,7 @@ public abstract class BaseActivity extends Activity {
                 if (null != context) {
                     Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
                 } else {
-                    Logs.e(TAG, "打印日志出错");
+                    LogUtils.e("打印日志出错");
                 }
             }
         });
@@ -102,7 +80,7 @@ public abstract class BaseActivity extends Activity {
                 if (null != context) {
                     Toast.makeText(context, text, Toast.LENGTH_LONG).show();
                 } else {
-                    Logs.e(TAG, "print log error");
+                    LogUtils.e("print log error");
                 }
             }
         });
@@ -128,7 +106,7 @@ public abstract class BaseActivity extends Activity {
         if (null != pd_waiting) {
             pd_waiting.show();
         } else {
-            logE("显示进度框失败--pd_waiting->" + pd_waiting);
+            LogUtils.e("显示进度框失败--pd_waiting->" + pd_waiting);
         }
     }
 
@@ -141,7 +119,7 @@ public abstract class BaseActivity extends Activity {
                 }
             }, 2000);
         } else {
-            logE("显示进度框失败--pd_waiting->" + pd_waiting);
+            LogUtils.e("显示进度框失败--pd_waiting->" + pd_waiting);
         }
     }
 
@@ -161,7 +139,7 @@ public abstract class BaseActivity extends Activity {
      */
     public UIHandler getUIHandler() {
         if (null == mUIHandler) {
-            logE("UIHandler 为空");
+            LogUtils.e("UIHandler 为空");
         }
         return mUIHandler;
     }
@@ -216,7 +194,7 @@ public abstract class BaseActivity extends Activity {
             mHandlerThread.start();
             mWorkerHandler = new WorkerHandler(mHandlerThread.getLooper(), this);
         } else {
-            logE("initWorkerHandler is called ,don't called again!");
+            LogUtils.e("initWorkerHandler is called ,don't called again!");
         }
     }
 
@@ -229,7 +207,7 @@ public abstract class BaseActivity extends Activity {
      */
     public void uiHandlerNotInit() {
         showToastShort("UIHandler 未初始化");
-        logE("UIHandler 未初始化");
+        LogUtils.e("UIHandler 未初始化");
     }
 
     /**
@@ -239,7 +217,7 @@ public abstract class BaseActivity extends Activity {
      */
     public WorkerHandler getWorkerHandler() {
         if (null == mWorkerHandler) {
-            logE("获取WorkerHandler实例为空");
+            LogUtils.e("获取WorkerHandler实例为空");
         }
         return mWorkerHandler;
     }
@@ -275,7 +253,7 @@ public abstract class BaseActivity extends Activity {
      */
     private void workerHandlerNotInit() {
         showToastShort("WorkerHandler 未初始化");
-        logE("WorkerHandler 未初始化");
+        LogUtils.e("WorkerHandler 未初始化");
     }
 
     public void recycleWorkerHandler() {
