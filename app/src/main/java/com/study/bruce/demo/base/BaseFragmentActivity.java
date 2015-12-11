@@ -24,6 +24,7 @@ import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
+import com.study.bruce.demo.DemoApplication;
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.log.Logs;
 
@@ -37,6 +38,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     private Context context;
     private final String TAG = getTAG();
     private String logsTag;
+    private DemoApplication application;
     /**
      * 加载进度等待对话框
      */
@@ -48,6 +50,14 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
         context = BaseFragmentActivity.this;
 //        TAG = getTAG();
         logsTag = getLocalClassName() + "-->";
+        application = (DemoApplication) getApplication();
+        application.addActivity(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        application.delActivity(this);
+        super.onDestroy();
     }
 
     public abstract String getTAG();

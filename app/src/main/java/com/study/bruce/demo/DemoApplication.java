@@ -15,10 +15,16 @@
 
 package com.study.bruce.demo;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.study.bruce.demo.utils.CrashHandler;
+import com.study.bruce.demo.utils.LogUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 全局 application
@@ -27,14 +33,53 @@ import com.android.volley.toolbox.Volley;
 public class DemoApplication extends Application{
     // used in volley_demo
     private static RequestQueue queues;
+    private List<Activity> container;
 
     @Override
     public void onCreate() {
         super.onCreate();
         queues = Volley.newRequestQueue(getApplicationContext());
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
+        container = new ArrayList<>(5);
+        crashHandler.initActivityContainer(container);
     }
 
-    public static RequestQueue getHttpQueues(){
+    public void addActivity(Activity activity) {
+        if (null != activity) {
+            container.add(activity);
+            LogUtils.i("加入的activity：" + activity.getLocalClassName());
+        } else {
+            LogUtils.e("加入的activity为空");
+        }
+    }
+
+    public void delActivity(Activity activity) {
+        if (null != activity) {
+            LogUtils.i("销毁的activity：" + activity.getLocalClassName());
+            container.remove(activity);
+        } else {
+            LogUtils.e("待删除的activity为空");
+        }
+        if (null != container && container.size() == 0) {
+            exitApp();
+        }
+    }
+
+    public void exitApp() {
+        if (container == null || container.size() == 0) {
+            LogUtils.i("activity容器已经清空");
+            android.os.Process.killProcess(android.os.Process.myPid());
+            return;
+        }
+        for (Activity activity : container) {
+            LogUtils.i("程序有序退出中，当前activity：" + activity.getLocalClassName());
+            activity.finish();
+        }
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    public static RequestQueue getHttpQueues() {
         return queues;
     }
 }

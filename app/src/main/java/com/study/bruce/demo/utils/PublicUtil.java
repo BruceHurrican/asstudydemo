@@ -205,4 +205,56 @@ public final class PublicUtil {
         Intent it = new Intent("android.intent.action.VIEW", Uri.parse(uri));
         context.startActivity(it);
     }
+
+    /**
+     * 递归删除目录及目录下的文件
+     *
+     * @param file 待删除的 file
+     */
+    public static void recursionDelFile(File file) {
+        if (file == null) {
+            return;
+        }
+        if (file.isFile()) {
+            file.delete();
+            return;
+        }
+        if (file.isDirectory()) {
+            File[] childFile = file.listFiles();
+            if (null == childFile || childFile.length == 0) {
+                file.delete();
+                return;
+            }
+            for (File f : childFile) {
+                recursionDelFile(f);
+            }
+            file.delete();
+        }
+    }
+
+    /**
+     * 获取文件夹大小
+     *
+     * @param file
+     * @return
+     */
+    public static long getFolderSize(File file) {
+        if (null == file) {
+            LogUtils.e("file is null");
+            return 0;
+        }
+        long size = 0;
+        File[] files = file.listFiles();
+        if (null == files || files.length == 0) {
+            return 0;
+        }
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isDirectory()) {
+                size += getFolderSize(files[i]);
+            } else {
+                size += files[i].length();
+            }
+        }
+        return size;
+    }
 }
