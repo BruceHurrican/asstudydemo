@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2015.
+  ~   This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
+  ~   And where any person can download and use, but not for commercial purposes.
+  ~   Author does not assume the resulting corresponding disputes.
+  ~   If you have good suggestions for the code, you can contact BurrceHurrican@foxmail.com
+  ~   本文件为Bruce's个人学习android的demo, 其中所用到的代码来源于互联网，仅作为学习交流使用。
+  ~   任和何人可以下载并使用, 但是不能用于商业用途。
+  ~   作者不承担由此带来的相应纠纷。
+  ~   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_accountIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="6dp" />
+
+    <TextView
+        android:id="@+id/tv_secondAccountLine"
+        style="@style/BaseTextView"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/iv_accountIcon"
+        android:ellipsize="marquee"
+        android:textColor="@android:color/secondary_text_light" />
+
+    <TextView
+        android:id="@+id/tv_firstAccountLine"
+        style="@style/BaseTextView"
+        android:layout_width="match_parent"
+        android:layout_above="@id/tv_secondAccountLine"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/iv_accountIcon"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/primary_text_light" />
+</RelativeLayout>

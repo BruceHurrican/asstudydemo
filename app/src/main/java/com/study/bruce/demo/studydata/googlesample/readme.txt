@@ -1,0 +1,1 @@
+本目录下的文件为google sample 来自 google sample 文件目录，并将部分activity 改为 fragment

@@ -17,7 +17,6 @@ import android.app.Application;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.study.bruce.demo.utils.CrashHandler;
 import com.study.bruce.demo.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -36,10 +35,10 @@ public class DemoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         queues = Volley.newRequestQueue(getApplicationContext());
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.init(getApplicationContext());
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        crashHandler.init(getApplicationContext());
         container = new ArrayList<>(5);
-        crashHandler.initActivityContainer(container);
+//        crashHandler.initActivityContainer(container);
     }
 
     public void addActivity(Activity activity) {
