@@ -37,8 +37,8 @@ public class DemoApplication extends Application {
         queues = Volley.newRequestQueue(getApplicationContext());
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(getApplicationContext());
-        container = new ArrayList<>(5);
 //        crashHandler.initActivityContainer(container);
+        container = new ArrayList<>(5);
     }
 
     public void addActivity(Activity activity) {
