@@ -10,7 +10,7 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com.study.bruce.demo.studydata.googlesample.api10.contact_manager;
+package com.study.bruce.demo.studydata.fragments.googlesample.api10.contact_manager;
 
 import android.database.Cursor;
 import android.net.Uri;

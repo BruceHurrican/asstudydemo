@@ -26,7 +26,7 @@ import android.widget.RelativeLayout;
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.base.BaseFragmentActivity;
 import com.study.bruce.demo.studydata.fragments.crash.CrashFragment;
-import com.study.bruce.demo.studydata.googlesample.api10.contact_manager.ContactManagerFragment;
+import com.study.bruce.demo.studydata.fragments.googlesample.api10.contact_manager.ContactManagerFragment;
 import com.study.bruce.demo.utils.LogUtils;
 
 import java.util.ArrayList;
