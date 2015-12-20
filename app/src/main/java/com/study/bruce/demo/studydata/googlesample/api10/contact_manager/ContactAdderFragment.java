@@ -17,10 +17,16 @@ import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
 import android.accounts.OnAccountsUpdateListener;
 import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.OperationApplicationException;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -150,7 +156,71 @@ public class ContactAdderFragment extends BaseFragment implements OnAccountsUpda
     public void onClick(View view) {
         LogUtils.d("保存按钮被点击");
         createContactEntry();
+//        testAddContacts1();
+//        testAddContacts2();
         getActivity().onBackPressed();
+    }
+
+    /**
+     * 一条一条按序添加联系人数据
+     */
+    public void testAddContacts1() {
+        //插入raw_contacts表，并获取_id属性
+        Uri uri = Uri.parse("content://com.android.contacts/raw_contacts");
+        ContentResolver resolver = this.getContext().getContentResolver();
+        ContentValues values = new ContentValues();
+        long contact_id = ContentUris.parseId(resolver.insert(uri, values));
+        //插入data表
+        uri = Uri.parse("content://com.android.contacts/data");
+        //add Name
+        values.put("raw_contact_id", contact_id);
+        values.put(ContactsContract.Data.MIMETYPE, "vnd.android.cursor.item/name");
+        values.put("data2", "lala");
+        values.put("data1", "hehe");
+        resolver.insert(uri, values);
+        values.clear();
+        //add Phone
+        values.put("raw_contact_id", contact_id);
+        values.put(ContactsContract.Data.MIMETYPE, "vnd.android.cursor.item/phone_v2");
+        values.put("data2", "2");   //手机
+        values.put("data1", "13232321212");
+        resolver.insert(uri, values);
+        values.clear();
+        //add email
+        values.put("raw_contact_id", contact_id);
+        values.put(ContactsContract.Data.MIMETYPE, "vnd.android.cursor.item/email_v2");
+        values.put("data2", "2");   //单位
+        values.put("data1", "aa@qq.com");
+        resolver.insert(uri, values);
+    }
+
+    /**
+     * 用批量添加数据方式向联系人列表中插入数据
+     */
+    public void testAddContacts2() {
+        Uri uri = Uri.parse("content://com.android.contacts/raw_contacts");
+        ContentResolver resolver = getContext().getContentResolver();
+        ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>();
+        ContentProviderOperation op1 = ContentProviderOperation.newInsert(uri).withValue("account_name", null).build();
+        operations.add(op1);
+
+        uri = Uri.parse("content://com.android.contacts/data");
+        ContentProviderOperation op2 = ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", 0).withValue("mimetype", "vnd.android.cursor.item/name").withValue("data2", "bruce").build();
+        operations.add(op2);
+
+        ContentProviderOperation op3 = ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", 0).withValue("mimetype", "vnd.android.cursor.item/phone_v2").withValue("data1", "13112341234").withValue("data2", "2").build();
+        operations.add(op3);
+
+        ContentProviderOperation op4 = ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id", 0).withValue("mimetype", "vnd.android.cursor.item/email_v2").withValue("data1", "aa@qq.com").withValue("data2", "2").build();
+        operations.add(op4);
+
+        try {
+            LogUtils.d("执行插入数据操作");
+            resolver.applyBatch("com.android.contacts", operations);
+            LogUtils.d("结束插入数据操作");
+        } catch (RemoteException | OperationApplicationException e) {
+            LogUtils.e("创建联系人失败,日志内容：" + e.toString());
+        }
     }
 
     /**
@@ -162,6 +232,7 @@ public class ContactAdderFragment extends BaseFragment implements OnAccountsUpda
         String email = etContactEmail.getText().toString();
         int phoneType = mContactPhoneTypes.get(spContactPhoneType.getSelectedItemPosition());
         int emailType = mContactEmailTypes.get(spContactEmail.getSelectedItemPosition());
+        // 模拟器环境下 mSelectedAccount 为 null，导致插入数据成功后，在联系人列表不显示(这种场景是因为 ContactManagerFragment.java 中显示联系人的条件是根据 DISPLAY_NAME 来显示的)，实际上数据已经插入到联系人列表中
         if (null == mSelectedAccount) {
             mSelectedAccount = new AccountData();
         }
@@ -179,13 +250,9 @@ public class ContactAdderFragment extends BaseFragment implements OnAccountsUpda
         LogUtils.i("Selected account: " + mSelectedAccount.getmName() + " (" + mSelectedAccount.getmType() + ")");
         LogUtils.i("Creating contact: " + name);
         try {
-            // todo 此处会报 resolver not found exception
-            getActivity().getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
-        } catch (Exception e) {
+            getContext().getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
+        } catch (RemoteException | OperationApplicationException e) {
             LogUtils.e("创建联系人失败,日志内容：" + e.toString());
-        } finally {
-            CharSequence txt = "创建联系人失败，请查看日志";
-            showToastShort(txt.toString());
         }
     }
 
