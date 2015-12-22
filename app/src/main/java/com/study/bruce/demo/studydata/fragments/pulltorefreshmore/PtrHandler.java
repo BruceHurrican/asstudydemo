@@ -27,12 +27,12 @@ public interface PtrHandler {
      * @param content
      * @param header
      */
-    void checkCanDoRefresh(final PtrFrameLayout frame, final View content, final View header);
+    boolean checkCanDoRefresh(final PtrFrameLayout frame, final View content, final View header);
 
     /**
      * When refresh begin
      *
      * @param frame
      */
-    void onREfreshBegin(final PtrFrameLayout frame);
+    void onRefreshBegin(final PtrFrameLayout frame);
 }

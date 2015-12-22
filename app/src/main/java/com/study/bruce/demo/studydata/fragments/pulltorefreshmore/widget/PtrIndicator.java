@@ -111,7 +111,7 @@ public class PtrIndicator {
         return mLastPos;
     }
 
-    public int getmCurrentPosY() {
+    public int getCurrentPosY() {
         return mCurrentPos;
     }
 
