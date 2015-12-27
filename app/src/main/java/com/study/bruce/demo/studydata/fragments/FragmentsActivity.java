@@ -28,6 +28,7 @@ import com.study.bruce.demo.base.BaseFragmentActivity;
 import com.study.bruce.demo.studydata.fragments.crash.CrashFragment;
 import com.study.bruce.demo.studydata.fragments.googlesample.api10.contact_manager.ContactManagerFragment;
 import com.study.bruce.demo.studydata.fragments.googlesample.templates.BlankFragment;
+import com.study.bruce.demo.studydata.fragments.meituananimation.MTFragment;
 import com.study.bruce.demo.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -64,6 +65,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         lv_demo_list = (ListView) findViewById(R.id.lv_fragment_list);
         lv_demo_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
+        addFragment2Container(new MTFragment(), "美团下拉刷新动画学习");
         addFragment2Container(new CrashFragment(), "测试 日志生成删除应用缓存本地文件");
         addFragment2Container(new ContactManagerFragment(), "查看联系人");
         addFragment2Container(new BlankFragment(), "谷歌模板-Blank");
@@ -108,9 +110,9 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
     @Override
     public void onBackPressed() {
         // 将入栈的 fragment 按 FILO 规则依次出栈
-        if (fragmentManager.getBackStackEntryCount() > 0 && fragmentManager.popBackStackImmediate(null, 0)){
+        if (fragmentManager.getBackStackEntryCount() > 0 && fragmentManager.popBackStackImmediate(null, 0)) {
             LogUtils.d("fragment栈中最上层的 fragment 出栈");
-            if (fragmentManager.getBackStackEntryCount() == 0){
+            if (fragmentManager.getBackStackEntryCount() == 0) {
                 if (rl_container.isShown()) {
                     rl_container.setVisibility(View.GONE);
                     lv_demo_list.setVisibility(View.VISIBLE);
