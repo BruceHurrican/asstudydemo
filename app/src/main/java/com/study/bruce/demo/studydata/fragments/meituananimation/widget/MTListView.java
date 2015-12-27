@@ -64,7 +64,7 @@ public class MTListView extends ListView implements AbsListView.OnScrollListener
     private void init(Context context) {
         setOverScrollMode(View.OVER_SCROLL_NEVER);
         setOnScrollListener(this);
-        headerView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.mt_item, null, false);
+        headerView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.mt_view_header, null, false);
         mtRefreshFirstStepView = (MTRefreshFirstStepView) headerView.findViewById(R.id.mt_first);
         mtRefreshSecondStepView = (MTRefreshSecondStepView) headerView.findViewById(R.id.mt_second);
         mtRefreshThirdStepView = (MTRefreshThirdStepView) headerView.findViewById(R.id.mt_third);
