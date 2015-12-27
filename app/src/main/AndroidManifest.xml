@@ -55,7 +55,8 @@
         </activity>
         <activity
             android:name="com.study.bruce.demo.studydata.fragments.FragmentsActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

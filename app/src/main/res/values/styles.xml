@@ -18,12 +18,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:background">#dd00AAFF</item>
     </style>
 
     <!-- 用于消除app启动时出现白屏的情景 -->
     <style name="Theme.Start" parent="android:Theme.Holo">
-        <item name="android:background">#575757</item>
+        <!--<item name="android:background">#575757</item>-->
+        <item name="android:background">#11575757</item>
     </style>
     <!-- 基类Button样式 -->
     <style name="BaseButton">
@@ -61,5 +62,11 @@
         <item name="android:activityCloseEnterAnimation">@android:anim/slide_in_left</item>
         <!-- activity finish 时退出效果 -->
         <item name="android:activityCloseExitAnimation">@android:anim/slide_out_right</item>
+    </style>
+
+    <!-- used in BlankFragment -->
+    <style name="AppTheme.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 </resources>

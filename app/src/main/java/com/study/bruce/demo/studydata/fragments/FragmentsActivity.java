@@ -27,6 +27,7 @@ import com.study.bruce.demo.R;
 import com.study.bruce.demo.base.BaseFragmentActivity;
 import com.study.bruce.demo.studydata.fragments.crash.CrashFragment;
 import com.study.bruce.demo.studydata.fragments.googlesample.api10.contact_manager.ContactManagerFragment;
+import com.study.bruce.demo.studydata.fragments.googlesample.templates.BlankFragment;
 import com.study.bruce.demo.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
 
         addFragment2Container(new CrashFragment(), "测试 日志生成删除应用缓存本地文件");
         addFragment2Container(new ContactManagerFragment(), "查看联系人");
+        addFragment2Container(new BlankFragment(), "谷歌模板-Blank");
 
         lv_demo_list.setOnItemClickListener(this);
         LogUtils.i("加载 fragment 列表完成");
@@ -82,6 +84,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        showToastShort(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
         LogUtils.d(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
         LogUtils.i("当前线程为 -->" + Thread.currentThread());
         fragmentTransaction.replace(R.id.rl_container, fragments.get(position));
