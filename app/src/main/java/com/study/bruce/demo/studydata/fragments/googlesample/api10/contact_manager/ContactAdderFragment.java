@@ -59,12 +59,6 @@ import butterknife.OnClick;
 public class ContactAdderFragment extends BaseFragment implements OnAccountsUpdateListener {
     public static final String ACCOUNT_NAME = "google_api10_sample_contact_adder_ACCOUNT_NAME";
     public static final String ACCOUNT_TYPE = "google_api10_sample_contact_adder_ACCOUNT_TYPE";
-    private List<AccountData> mAccounts;
-    private List<Integer> mContactEmailTypes;
-    private List<Integer> mContactPhoneTypes;
-    private AccountData mSelectedAccount;
-    private AccountAdapter mAccountAdapter;
-
     @Bind(R.id.sp_accountSpinner)
     Spinner spAccountSpinner;
     @Bind(R.id.et_contactNameEditText)
@@ -79,6 +73,11 @@ public class ContactAdderFragment extends BaseFragment implements OnAccountsUpda
     Spinner spContactEmail;
     @Bind(R.id.btn_contactSave)
     Button btnContactSave;
+    private List<AccountData> mAccounts;
+    private List<Integer> mContactEmailTypes;
+    private List<Integer> mContactPhoneTypes;
+    private AccountData mSelectedAccount;
+    private AccountAdapter mAccountAdapter;
 
     @Override
     public String getTAG() {

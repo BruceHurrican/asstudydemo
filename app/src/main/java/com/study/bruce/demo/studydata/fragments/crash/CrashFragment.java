@@ -116,7 +116,7 @@ public class CrashFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 LogUtils.d("删除程序webview缓存");
-                PublicUtil.recursionDelFile(new File(getActivity().getPackageName()+"/app_webview"));
+                PublicUtil.recursionDelFile(new File(getActivity().getPackageName() + "/app_webview"));
                 textView.setText("删除成功");
             }
         });

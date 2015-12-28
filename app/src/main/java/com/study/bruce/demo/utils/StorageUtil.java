@@ -23,8 +23,8 @@ import java.io.File;
  * Created by BruceHurrican on 2015/7/11.
  */
 public final class StorageUtil {
-    private static final int ERROR = -1;
     public static final String TAG = "StorageUtil";
+    private static final int ERROR = -1;
 
     private StorageUtil() {
     }
@@ -33,8 +33,7 @@ public final class StorageUtil {
      * SDCARD是否存在
      */
     public static boolean isSDcardExists() {
-        return Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED);
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
     /**

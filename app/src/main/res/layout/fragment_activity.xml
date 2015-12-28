@@ -13,15 +13,15 @@
 <!-- 主Demo布局文件 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:text="fragment 列表" />
+        android:text="fragment 列表"/>
 
     <ListView
         android:id="@+id/lv_fragment_list"
@@ -36,6 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tv_title"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 </RelativeLayout>
 

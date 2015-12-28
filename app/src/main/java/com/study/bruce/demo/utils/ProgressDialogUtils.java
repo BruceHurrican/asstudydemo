@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015.
- *    This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
+ *   This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
  *   And where any person can download and use, but not for commercial purposes.
  *   Author does not assume the resulting corresponding disputes.
  *   If you have good suggestions for the code, you can contact BurrceHurrican@foxmail.com
@@ -14,6 +14,7 @@ package com.study.bruce.demo.utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+
 import com.study.bruce.demo.R;
 
 /**

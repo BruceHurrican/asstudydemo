@@ -31,6 +31,10 @@ public class DemoApplication extends Application {
     private static RequestQueue queues;
     private List<Activity> container;
 
+    public static RequestQueue getHttpQueues() {
+        return queues;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -73,9 +77,5 @@ public class DemoApplication extends Application {
             activity.finish();
         }
         android.os.Process.killProcess(android.os.Process.myPid());
-    }
-
-    public static RequestQueue getHttpQueues() {
-        return queues;
     }
 }

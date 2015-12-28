@@ -37,6 +37,11 @@ import java.util.List;
  * Created by BruceHurrican on 2015/7/11.
  */
 public final class PublicUtil {
+    private static final int kSystemRootStateUnknow = -1;
+    private static final int kSystemRootStateDisable = 0;
+    private static final int kSystemRootStateEnable = 1;
+    private static int systemRootState = kSystemRootStateUnknow;
+
     private PublicUtil() {
     }
 
@@ -48,12 +53,8 @@ public final class PublicUtil {
     public static String getPhoneInfo(Context context) {
         return "产品名称：" + Build.PRODUCT + "\nCPU型号:" + Build.HARDWARE + "\nCPU类型1:" + Build.CPU_ABI + "\nCPU类型2:" +
                 Build.CPU_ABI2 + "\n标签:" + Build.TAGS + "\n手机型号:" + Build.MODEL + "\nSDK版本:" + Build.VERSION.SDK +
-                "\nSDK版本号:" + Build.VERSION.SDK_INT + "\n系统版本:" + Build.VERSION.RELEASE + "\n设备安卓版本:" + Build.VERSION
-                .RELEASE + "\n设备驱动:" + Build.DEVICE + "\n显示:" + Build.DISPLAY + "\n品牌:" + Build.BRAND + "\n主板:" +
-                Build.BOARD + "\n标识:" + Build.FINGERPRINT + "\nID:" + Build.ID + "\n制造商:" + Build
-                .MANUFACTURER + "\n用户组:" + Build.USER + "\n序列号:" + Build.SERIAL + "\nandroid设备标识码:" + Settings.Secure
-                .getString(context.getContentResolver(), Settings.Secure
-                        .ANDROID_ID);
+                "\nSDK版本号:" + Build.VERSION.SDK_INT + "\n系统版本:" + Build.VERSION.RELEASE + "\n设备安卓版本:" + Build.VERSION.RELEASE + "\n设备驱动:" + Build.DEVICE + "\n显示:" + Build.DISPLAY + "\n品牌:" + Build.BRAND + "\n主板:" +
+                Build.BOARD + "\n标识:" + Build.FINGERPRINT + "\nID:" + Build.ID + "\n制造商:" + Build.MANUFACTURER + "\n用户组:" + Build.USER + "\n序列号:" + Build.SERIAL + "\nandroid设备标识码:" + Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
     /**
@@ -129,11 +130,6 @@ public final class PublicUtil {
         return stringBuilder.toString();
     }
 
-    private static final int kSystemRootStateUnknow = -1;
-    private static final int kSystemRootStateDisable = 0;
-    private static final int kSystemRootStateEnable = 1;
-    private static int systemRootState = kSystemRootStateUnknow;
-
     /**
      * 判断手机是否已经root
      *
@@ -146,8 +142,7 @@ public final class PublicUtil {
             return "当前手机是否已经root ? 未root";
         }
         File f = null;
-        final String kSuSearchPaths[] = {"/system/bin/", "/system/xbin/",
-                "/system/sbin/", "/sbin/", "/vendor/bin/"};
+        final String kSuSearchPaths[] = {"/system/bin/", "/system/xbin/", "/system/sbin/", "/sbin/", "/vendor/bin/"};
         try {
             for (int i = 0; i < kSuSearchPaths.length; i++) {
                 String kSuSearchPath = kSuSearchPaths[i];

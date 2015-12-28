@@ -39,14 +39,6 @@ import java.util.Map;
 public class JsonUtils {
     public static final String TAG = "ConfigureUtils->";
 
-    public static class JsonData {
-        public Map<String, String> data; // json 数据 包括 key value eg: {"key01":"data01"}
-        public Map<Integer, List<String>> keyMap; // json 数组中多个jsonobject 中的key,为保证数据唯一,jsonobject中的key不能相同,eg:[{"key01":"data01"},{"key02":"data02"}]
-
-        public JsonData() {
-        }
-    }
-
     /**
      * 从JSON 数组中获取 json 数据
      *
@@ -111,6 +103,14 @@ public class JsonUtils {
                     Logs.e(TAG, e.toString());
                 }
             }
+        }
+    }
+
+    public static class JsonData {
+        public Map<String, String> data; // json 数据 包括 key value eg: {"key01":"data01"}
+        public Map<Integer, List<String>> keyMap; // json 数组中多个jsonobject 中的key,为保证数据唯一,jsonobject中的key不能相同,eg:[{"key01":"data01"},{"key02":"data02"}]
+
+        public JsonData() {
         }
     }
 }

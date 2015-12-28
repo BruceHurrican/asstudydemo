@@ -33,7 +33,6 @@ import java.util.Locale;
  * Created by BruceHurrican on 2015/12/9.
  */
 public final class LogUtils {
-    private static final String customTagPrefix = "bruce";
     /**
      * sd 卡根目录
      */
@@ -46,11 +45,11 @@ public final class LogUtils {
      * 崩溃日志路径
      */
     public static final String PATH_CRASH_LOG = FILE_PATH_ROOT + "crash/";
+    private static final String customTagPrefix = "bruce";
+    public static AndroidCustomLog androidCustomLog;
 
     private LogUtils() {
     }
-
-    public static AndroidCustomLog androidCustomLog;
 
     public static void v(String content) {
         if (!Constants.ISDEBUG) {

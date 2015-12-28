@@ -33,35 +33,36 @@ import java.util.Map;
  * 崩溃日志处理类
  * Created by BruceHurrican on 2015/12/10.
  */
-public class CrashHandler implements Thread.UncaughtExceptionHandler{
+public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private static final String TAG = "CrashHandler";
+    private static CrashHandler instance = new CrashHandler();
     private Thread.UncaughtExceptionHandler mDefaultHandler;// 系统默认的UncaughtExceptionHandler处理类
     private Context context;
     private List<Activity> listContainer;
-    private Map<String,String > info = new HashMap<String,String>(5);
+    private Map<String, String> info = new HashMap<String, String>(5);
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-    private static CrashHandler instance = new CrashHandler();
+
     private CrashHandler() {
     }
 
-    public static CrashHandler getInstance(){
+    public static CrashHandler getInstance() {
         return instance;
     }
 
-    public void init(Context context){
+    public void init(Context context) {
         this.context = context;
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
-    public void initActivityContainer(List<Activity> activities){
+    public void initActivityContainer(List<Activity> activities) {
         listContainer = activities;
     }
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        if (!handleException(ex) && null != mDefaultHandler){
-            mDefaultHandler.uncaughtException(thread,ex);
+        if (!handleException(ex) && null != mDefaultHandler) {
+            mDefaultHandler.uncaughtException(thread, ex);
         } else {
             try {
                 Thread.sleep(3000); // 让程序继续运行3秒，保证异常信息已经写入到文件中
@@ -70,7 +71,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler{
             }
             if (null != listContainer) {
                 for (Activity activity : listContainer) {
-                    LogUtils.e("销毁的activity："+activity.getLocalClassName());
+                    LogUtils.e("销毁的activity：" + activity.getLocalClassName());
                     activity.finish();
                 }
             }
@@ -79,11 +80,11 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler{
         }
     }
 
-    public boolean handleException(Throwable throwable){
-        if (null == throwable){
+    public boolean handleException(Throwable throwable) {
+        if (null == throwable) {
             return false;
         } else {
-            new Thread(){
+            new Thread() {
                 @Override
                 public void run() {
                     Looper.prepare();
@@ -94,47 +95,47 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler{
             // 收集设备参数信息
             collectDeviceInfo(context);
             StringBuffer sb = new StringBuffer();
-            for (Map.Entry<String,String> entry : info.entrySet()){
+            for (Map.Entry<String, String> entry : info.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                sb.append(key+"="+value+"\r\n");
+                sb.append(key + "=" + value + "\r\n");
             }
             Writer writer = new StringWriter();
             PrintWriter printWriter = new PrintWriter(writer);
             throwable.printStackTrace(printWriter);
             Throwable tmp = throwable.getCause();
             // 循环把所有异常信息写入writer中
-            while (null != tmp){
+            while (null != tmp) {
                 tmp.printStackTrace(printWriter);
                 tmp = tmp.getCause();
             }
             printWriter.close();
             sb.append(writer.toString());
-            LogUtils.log2file(LogUtils.PATH_CRASH_LOG,TAG,sb.toString());
+            LogUtils.log2file(LogUtils.PATH_CRASH_LOG, TAG, sb.toString());
             return true;
         }
     }
 
-    public void collectDeviceInfo(Context context){
+    public void collectDeviceInfo(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {
             // 得到应用信息即主Activity
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(),PackageManager.GET_ACTIVITIES);
-            if (null != packageInfo){
+            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), PackageManager.GET_ACTIVITIES);
+            if (null != packageInfo) {
                 String versionName = packageInfo.versionName == null ? "null" : packageInfo.versionName;
-                String versionCode = packageInfo.versionCode +"";
-                info.put("versionName",versionName);
-                info.put("versionCode",versionCode);
+                String versionCode = packageInfo.versionCode + "";
+                info.put("versionName", versionName);
+                info.put("versionCode", versionCode);
             }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         Field[] fields = Build.class.getDeclaredFields(); // 反射机制
-        for (Field field : fields){
+        for (Field field : fields) {
             try {
                 field.setAccessible(true);
                 info.put(field.getName(), field.get("").toString());
-                LogUtils.d(field.getName()+":"+field.get(""));
+                LogUtils.d(field.getName() + ":" + field.get(""));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

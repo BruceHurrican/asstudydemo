@@ -30,6 +30,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
     private TextView tv_left, tv_right, tv_center;
     private ImageView iv_left, iv_right;
     private Context context;
+    private OnTitleBarClickListener titleBarClickListener;
 
     public TitleBar(Context context) {
         super(context);
@@ -97,15 +98,14 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
 
     /**
      * 设置按钮图片样式
-     * @param leftImgResID 左按钮图片资源ID
+     *
+     * @param leftImgResID  左按钮图片资源ID
      * @param rightImgResID 右按钮图片资源ID
      */
-    public void setBtnImg(int leftImgResID,int rightImgResID){
+    public void setBtnImg(int leftImgResID, int rightImgResID) {
         iv_left.setImageResource(leftImgResID);
         iv_right.setImageResource(rightImgResID);
     }
-
-    private OnTitleBarClickListener titleBarClickListener;
 
     public void setOnTitleBarClickListener(OnTitleBarClickListener listener) {
         titleBarClickListener = listener;

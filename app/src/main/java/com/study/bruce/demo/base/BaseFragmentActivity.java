@@ -33,13 +33,16 @@ import java.lang.ref.WeakReference;
  * Created by BruceHurrican on 2015/9/13.
  */
 public abstract class BaseFragmentActivity extends FragmentActivity {
-    private Context context;
     private final String TAG = getTAG();
+    private Context context;
     private DemoApplication application;
     /**
      * 加载进度等待对话框
      */
     private ProgressDialog pd_waiting;
+    private UIHandler mUIHandler;
+    private WorkerHandler mWorkerHandler;
+    private HandlerThread mHandlerThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -260,10 +263,6 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
             mWorkerHandler.removeCallbacksAndMessages(null);
         }
     }
-
-    private UIHandler mUIHandler;
-    private WorkerHandler mWorkerHandler;
-    private HandlerThread mHandlerThread;
 
     public static class UIHandler extends Handler {
         WeakReference<BaseFragmentActivity> weakReference;

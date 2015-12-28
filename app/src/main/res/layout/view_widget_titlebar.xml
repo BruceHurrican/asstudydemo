@@ -12,8 +12,9 @@
   ~   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:id="@+id/rl_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#336DCAF6"
@@ -26,7 +27,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/btn_left_arrow" />
+        android:src="@drawable/btn_left_arrow"/>
 
     <TextView
         android:id="@+id/tv_left"
@@ -34,7 +35,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/iv_left"
         android:text="上一帧"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/tv_center"
@@ -42,7 +43,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="当前帧"
-        android:textSize="18sp" />
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tv_right"
@@ -50,7 +51,7 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/iv_right"
         android:text="下一帧"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
 
     <ImageView
         android:id="@+id/iv_right"
@@ -59,5 +60,5 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/btn_right_arrow" />
+        android:src="@drawable/btn_right_arrow"/>
 </RelativeLayout>

@@ -11,8 +11,8 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/iv_accountIcon"
@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="6dp" />
+        android:layout_marginRight="6dp"/>
 
     <TextView
         android:id="@+id/tv_secondAccountLine"
@@ -31,7 +31,7 @@
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/iv_accountIcon"
         android:ellipsize="marquee"
-        android:textColor="@android:color/secondary_text_light" />
+        android:textColor="@android:color/secondary_text_light"/>
 
     <TextView
         android:id="@+id/tv_firstAccountLine"
@@ -43,5 +43,5 @@
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/iv_accountIcon"
         android:gravity="center_vertical"
-        android:textColor="@android:color/primary_text_light" />
+        android:textColor="@android:color/primary_text_light"/>
 </RelativeLayout>

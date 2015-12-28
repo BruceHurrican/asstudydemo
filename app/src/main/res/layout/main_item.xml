@@ -10,8 +10,9 @@
   ~   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
   -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView
     android:id="@android:id/text1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
@@ -19,4 +20,4 @@
     android:scrollHorizontally="true"
     android:singleLine="true"
     android:textColor="@android:color/white"
-    android:textSize="20sp" />
+    android:textSize="20sp"/>
