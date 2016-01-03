@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015.
+ * Copyright (c) 2016.
  *   This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
  *   And where any person can download and use, but not for commercial purposes.
  *   Author does not assume the resulting corresponding disputes.
@@ -29,6 +29,7 @@ import com.study.bruce.demo.studydata.fragments.crash.CrashFragment;
 import com.study.bruce.demo.studydata.fragments.googlesample.api10.contact_manager.ContactManagerFragment;
 import com.study.bruce.demo.studydata.fragments.googlesample.templates.BlankFragment;
 import com.study.bruce.demo.studydata.fragments.meituananimation.MTFragment;
+import com.study.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
 import com.study.bruce.demo.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -65,6 +66,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         lv_demo_list = (ListView) findViewById(R.id.lv_fragment_list);
         lv_demo_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
+        addFragment2Container(new Rotate3dFragment(), "利用 Camera 实现 3D 卡片翻转动画");
         addFragment2Container(new MTFragment(), "美团下拉刷新动画学习");
         addFragment2Container(new CrashFragment(), "测试 日志生成删除应用缓存本地文件");
         addFragment2Container(new ContactManagerFragment(), "查看联系人");
