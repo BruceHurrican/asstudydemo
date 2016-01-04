@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2015.
+  ~ Copyright (c) 2016.
   ~   This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
   ~   And where any person can download and use, but not for commercial purposes.
   ~   Author does not assume the resulting corresponding disputes.
@@ -18,7 +18,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">#dd00AAFF</item>
+        <!-- 颜色设置为透明是为了使用此 theme 的布局文件中的 background 设置有效 ,以 fragment_activity.xml 文件为例,如果此处颜色设置不透明为其他任一颜色,则布局文件中的background设置无效,
+        即使在布局文件中使用其他 theme 也同样无效, listView 中的 listSelector 属性设置也无效 -->
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
     <!-- 用于消除app启动时出现白屏的情景 -->

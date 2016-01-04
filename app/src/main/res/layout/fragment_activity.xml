@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2015.
+  ~ Copyright (c) 2016.
   ~   This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
   ~   And where any person can download and use, but not for commercial purposes.
   ~   Author does not assume the resulting corresponding disputes.
@@ -14,21 +14,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:background="@android:color/holo_green_dark">
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:text="fragment 列表"/>
+        android:text="fragment 列表"
+        android:textColor="#fff"/>
 
     <ListView
         android:id="@+id/lv_fragment_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
-        android:listSelector="#000"
+        android:focusable="true"
+        android:listSelector="@android:color/holo_blue_light"
         tools:listitem="@layout/main_item"/>
 
     <RelativeLayout
