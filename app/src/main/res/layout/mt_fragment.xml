@@ -16,7 +16,7 @@
                 android:layout_height="match_parent">
 
     <com.study.bruce.demo.studydata.fragments.meituananimation.widget.MTListView
-        android:id="@+id/mt_listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+            android:id="@+id/mt_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 </RelativeLayout>

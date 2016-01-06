@@ -15,33 +15,33 @@
                 android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/iv_accountIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="6dp"/>
+            android:id="@+id/iv_accountIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="6dp"/>
 
     <TextView
-        android:id="@+id/tv_secondAccountLine"
-        style="@style/BaseTextView"
-        android:layout_width="match_parent"
-        android:layout_height="26dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/iv_accountIcon"
-        android:ellipsize="marquee"
-        android:textColor="@android:color/secondary_text_light"/>
+            android:id="@+id/tv_secondAccountLine"
+            style="@style/BaseTextView"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/iv_accountIcon"
+            android:ellipsize="marquee"
+            android:textColor="@android:color/secondary_text_light"/>
 
     <TextView
-        android:id="@+id/tv_firstAccountLine"
-        style="@style/BaseTextView"
-        android:layout_width="match_parent"
-        android:layout_above="@id/tv_secondAccountLine"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/iv_accountIcon"
-        android:gravity="center_vertical"
-        android:textColor="@android:color/primary_text_light"/>
+            android:id="@+id/tv_firstAccountLine"
+            style="@style/BaseTextView"
+            android:layout_width="match_parent"
+            android:layout_above="@id/tv_secondAccountLine"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_toRightOf="@id/iv_accountIcon"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/primary_text_light"/>
 </RelativeLayout>

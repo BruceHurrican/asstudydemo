@@ -16,9 +16,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.util.ArrayMap;
-
 import com.study.bruce.demo.log.Logs;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

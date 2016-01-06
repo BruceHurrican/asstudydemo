@@ -19,13 +19,11 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.base.BaseFragment;
 import com.study.bruce.demo.utils.LogUtils;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * 谷歌AS 模板，使用 FloatingActionButton, SnackBar

@@ -22,7 +22,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
-
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.utils.LogUtils;
 

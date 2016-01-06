@@ -14,7 +14,6 @@ package com.study.bruce.demo;
 
 import android.app.Activity;
 import android.app.Application;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.study.bruce.demo.utils.LogUtils;

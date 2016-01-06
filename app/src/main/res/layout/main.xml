@@ -17,15 +17,15 @@
               android:orientation="vertical">
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:text="工作Demo"/>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="工作Demo"/>
 
     <ListView
-        android:id="@+id/lv__demo_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/background_dark"/>
+            android:id="@+id/lv__demo_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_dark"/>
 </LinearLayout>
 

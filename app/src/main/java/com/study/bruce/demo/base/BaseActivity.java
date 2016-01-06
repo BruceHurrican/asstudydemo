@@ -21,7 +21,6 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.widget.Toast;
-
 import com.study.bruce.demo.DemoApplication;
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.utils.LogUtils;

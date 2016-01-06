@@ -18,7 +18,6 @@ import android.view.LayoutInflater;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import com.study.bruce.demo.R;
 
 import java.util.List;

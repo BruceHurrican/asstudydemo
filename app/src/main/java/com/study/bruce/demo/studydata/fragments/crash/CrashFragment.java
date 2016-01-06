@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.study.bruce.demo.base.BaseFragment;
 import com.study.bruce.demo.utils.LogUtils;
 import com.study.bruce.demo.utils.PublicUtil;

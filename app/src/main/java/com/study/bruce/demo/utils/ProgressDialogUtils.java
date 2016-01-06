@@ -14,7 +14,6 @@ package com.study.bruce.demo.utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-
 import com.study.bruce.demo.R;
 
 /**

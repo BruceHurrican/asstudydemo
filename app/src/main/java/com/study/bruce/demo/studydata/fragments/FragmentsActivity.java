@@ -22,7 +22,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.base.BaseFragmentActivity;
 import com.study.bruce.demo.studydata.fragments.crash.CrashFragment;

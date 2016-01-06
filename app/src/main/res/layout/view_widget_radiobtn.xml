@@ -11,8 +11,8 @@
   -->
 
 <RadioButton
-    style="@style/BaseRadioButton"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:text="默认值">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/BaseRadioButton"
+        android:text="默认值">
 
 </RadioButton>

@@ -26,7 +26,6 @@ import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-
 import com.study.bruce.demo.log.Logs;
 
 import java.io.File;
@@ -182,13 +181,13 @@ public final class PublicUtil {
      *
      * @return boolean
      */
-    public static String isNetWorkAvailable(Context context) {
+    public static boolean isNetWorkAvailable(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         boolean isWifiOK = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
-        Logs.i("PublicUtil", "isWifiOK -->" + isWifiOK);
+        LogUtils.i("isWifiOK -->" + isWifiOK);
         boolean isInternetOK = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnectedOrConnecting();
-        Logs.i("PublicUtil", "isInternetOK -->" + isInternetOK);
-        return (isWifiOK || isInternetOK) ? "当前手机是否联网 ? 已经联网" : "当前手机是否联网 ? 未连接网络";
+        LogUtils.i("isInternetOK -->" + isInternetOK);
+        return isWifiOK || isInternetOK;
     }
 
     /**

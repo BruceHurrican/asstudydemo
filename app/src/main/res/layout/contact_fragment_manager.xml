@@ -18,20 +18,20 @@
               android:orientation="vertical">
 
     <ListView
-        android:id="@+id/lv_contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+            android:id="@+id/lv_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
     <CheckBox
-        android:id="@+id/cb_contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="仅显示不可见联系人"/>
+            android:id="@+id/cb_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仅显示不可见联系人"/>
 
     <Button
-        android:id="@+id/btn_contact"
-        style="@style/BaseButton"
-        android:layout_width="match_parent"
-        android:text="增加联系人"/>
+            android:id="@+id/btn_contact"
+            style="@style/BaseButton"
+            android:layout_width="match_parent"
+            android:text="增加联系人"/>
 </LinearLayout>

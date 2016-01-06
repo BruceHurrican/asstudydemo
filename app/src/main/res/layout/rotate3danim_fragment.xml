@@ -17,28 +17,28 @@
                 android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btn_3d"
-        style="@style/BaseButton"
-        android:layout_margin="10dp"
-        android:background="@drawable/btn_round"
-        android:text="打开"
-        android:textColor="#fff"
-        android:textSize="18sp"/>
+            android:id="@+id/btn_3d"
+            style="@style/BaseButton"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_round"
+            android:text="打开"
+            android:textColor="#fff"
+            android:textSize="18sp"/>
 
     <RelativeLayout
-        android:id="@+id/rl_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/btn_3d"
-        android:background="#000">
+            android:id="@+id/rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/btn_3d"
+            android:background="#000">
 
         <ImageView
-            android:id="@+id/iv_3d"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true"
-            android:scaleType="centerInside"
-            android:src="@mipmap/rotate3danim"
-            tools:ignore="contentDescription"/>
+                android:id="@+id/iv_3d"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@mipmap/rotate3danim"
+                tools:ignore="contentDescription"/>
     </RelativeLayout>
 </RelativeLayout>
