@@ -24,6 +24,7 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import com.study.bruce.demo.log.Logs;
@@ -31,6 +32,8 @@ import com.study.bruce.demo.log.Logs;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 工具类
@@ -249,5 +252,21 @@ public final class PublicUtil {
             }
         }
         return size;
+    }
+
+    /**
+     * 判断 url 是否合法
+     *
+     * @param url
+     * @return
+     */
+    public static boolean isUrl(String url) {
+        if (TextUtils.isEmpty(url)) {
+            return false;
+        }
+        String regEx = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(url);
+        return matcher.matches();
     }
 }
