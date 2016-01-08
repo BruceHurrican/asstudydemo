@@ -1,6 +1,19 @@
 /*
- * Copyright (c) 2015.
- *   This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
+ * BruceHurrican
+ * Copyright (c) 2016.
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ *
+ *    This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
  *   And where any person can download and use, but not for commercial purposes.
  *   Author does not assume the resulting corresponding disputes.
  *   If you have good suggestions for the code, you can contact BurrceHurrican@foxmail.com
@@ -24,14 +37,16 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
-import butterknife.OnClick;
+
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.base.BaseFragment;
 import com.study.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.study.bruce.demo.utils.LogUtils;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 /**
  * google api10 sample ContactManager 查看联系人
