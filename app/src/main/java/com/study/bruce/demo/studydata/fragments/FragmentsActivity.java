@@ -104,8 +104,10 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         showToastShort(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
         LogUtils.d(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
         LogUtils.i("当前线程为 -->" + Thread.currentThread());
-        fragmentTransaction.replace(R.id.rl_container, fragments.get(position));
+        // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         fragmentTransaction.addToBackStack(fragmentNamesList.get(position));
+        fragmentTransaction.replace(R.id.rl_container, fragments.get(position));
         fragmentTransaction.commit();
         if (!rl_container.isShown()) {
             rl_container.setVisibility(View.VISIBLE);

@@ -79,9 +79,14 @@
         <item name="android:activityCloseExitAnimation">@android:anim/slide_out_right</item>
     </style>
 
+    <style name="ActivityChangeAnimation">
+        <item name="android:windowAnimationStyle">@style/ActivityChangeStyle</item>
+    </style>
+
     <!-- used in BlankFragment -->
     <style name="AppTheme.NoActionBar">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/ActivityChangeStyle</item>
     </style>
 </resources>

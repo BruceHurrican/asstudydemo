@@ -32,6 +32,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -118,6 +120,25 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         LogUtils.i(String.format("你点击了第 %s 条Demo %s", position + 1, demoNamesList.get(position)));
         LogUtils.i("当前线程为 -->" + Thread.currentThread());
         startActivity(it);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.testmenu1:
+                LogUtils.d(item.getTitle() + " 菜单按钮被点击");
+                break;
+            case R.id.testmenu2:
+                LogUtils.d(item.getTitle() + " 菜单按钮被点击");
+                break;
+        }
+        return true;
     }
 
     private class NetWorkAvailableReceiver extends BroadcastReceiver {
