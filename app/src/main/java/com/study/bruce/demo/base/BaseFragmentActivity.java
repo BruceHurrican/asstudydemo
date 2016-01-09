@@ -302,7 +302,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     }
 
     /**
-     * 了线程Handler，用作耗时处理，替换AsyncTask做后台请求
+     * 子线程Handler，用作耗时处理，替换AsyncTask做后台请求
      */
     public static class WorkerHandler extends Handler {
         WeakReference<BaseFragmentActivity> weakReference;
