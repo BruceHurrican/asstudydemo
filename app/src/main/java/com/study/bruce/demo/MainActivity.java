@@ -133,6 +133,8 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         switch (item.getItemId()) {
             case R.id.testmenu1:
                 LogUtils.d(item.getTitle() + " 菜单按钮被点击");
+                LogUtils.i("隐式启动 Intent");
+                startActivity(new Intent("START_FRAGMENT_ACTIVITY"));
                 break;
             case R.id.testmenu2:
                 LogUtils.d(item.getTitle() + " 菜单按钮被点击");
