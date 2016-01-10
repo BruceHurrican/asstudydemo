@@ -26,8 +26,8 @@
   -->
 
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rl_container"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#336DCAF6"
@@ -47,7 +47,7 @@
             style="@style/BaseTextView"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/iv_left"
-            android:text="上一帧"
+            android:text="返回"
             android:textSize="16sp"/>
 
     <TextView
@@ -55,7 +55,7 @@
             style="@style/BaseTextView"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="当前帧"
+            android:text="标题栏"
             android:textSize="18sp"/>
 
     <TextView
@@ -63,7 +63,7 @@
             style="@style/BaseTextView"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/iv_right"
-            android:text="下一帧"
+            android:text="详情"
             android:textSize="16sp"/>
 
     <ImageView

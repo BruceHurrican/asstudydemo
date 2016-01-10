@@ -43,17 +43,25 @@ import com.study.bruce.demo.base.BaseActivity;
 import com.study.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.study.bruce.demo.utils.LogUtils;
 import com.study.bruce.demo.utils.PublicUtil;
+import com.study.bruce.demo.widget.TitleBar;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * 主Activity
  * Created by BruceHurrican on 2015/5/24.
  */
-public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener, Serializable {
+public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener, Serializable, TitleBar.OnTitleBarClickListener {
     private static final long serialVersionUID = -3277762441808693645L;
+    @Bind(R.id.titlebar)
+    TitleBar titlebar;
+    @Bind(R.id.lv__demo_list)
+    ListView lv_demo_list;
     private List<Class<? extends Activity>> demos;
     private List<String> demoNamesList;
     private Intent it;
@@ -62,12 +70,14 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         initContainer();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(netWorkAvailableReceiver, filter);
+        titlebar.setOnTitleBarClickListener(this);
     }
 
     @Override
@@ -78,6 +88,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     @Override
     protected void onDestroy() {
         unregisterReceiver(netWorkAvailableReceiver);
+        ButterKnife.unbind(this);
         super.onDestroy();
 //        android.os.Process.killProcess(android.os.Process.myPid());
     }
@@ -88,7 +99,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     private void initContainer() {
         demos = new ArrayList<>(5);
         demoNamesList = new ArrayList<>(5);
-        ListView lv_demo_list = (ListView) findViewById(R.id.lv__demo_list);
+//        ListView lv_demo_list = (ListView) findViewById(R.id.lv__demo_list);
 //        lv_demo_list.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, demoNamesList));
         lv_demo_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, demoNamesList));
         it = new Intent();
@@ -141,6 +152,16 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onLeftBtnClick() {
+        LogUtils.d("左侧按钮被点击");
+    }
+
+    @Override
+    public void onRightBtnClick() {
+        LogUtils.d("右侧按钮被点击");
     }
 
     private class NetWorkAvailableReceiver extends BroadcastReceiver {

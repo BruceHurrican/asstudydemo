@@ -58,7 +58,9 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
     }
 
     private void initViews() {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        // 获取 LayoutInflater 实例的两种方法
+//        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.view_widget_titlebar, this);
         tv_left = (TextView) findViewById(R.id.tv_left);
         tv_right = (TextView) findViewById(R.id.tv_right);
