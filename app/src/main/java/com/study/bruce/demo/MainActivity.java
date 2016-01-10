@@ -149,6 +149,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 break;
             case R.id.testmenu2:
                 LogUtils.d(item.getTitle() + " 菜单按钮被点击");
+                LogUtils.i("本机DPI：" + getResources().getDisplayMetrics().densityDpi + "\nXDPI：" + getResources().getDisplayMetrics().xdpi + "\nYDPI：" + getResources().getDisplayMetrics().ydpi);
                 break;
         }
         return true;
