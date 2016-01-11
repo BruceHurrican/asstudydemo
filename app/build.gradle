@@ -28,9 +28,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
-        applicationId "com.study.bruce.com.study.bruce.demo.com.myapplication"
+        applicationId 'com.study.bruce.demo'
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -47,6 +46,8 @@ android {
     }
     dexOptions {
         incremental true
+    }
+    productFlavors {
     }
 }
 
