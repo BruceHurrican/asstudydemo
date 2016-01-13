@@ -42,6 +42,8 @@ android {
         }
         debug {
             minifyEnabled false
+            shrinkResources true
+            proguardFile 'D:/study/local_study_demo/local_study_demo_as/app/proguard-rules.pro'
         }
     }
     dexOptions {
