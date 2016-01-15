@@ -282,4 +282,16 @@ public final class PublicUtil {
         Matcher matcher = pattern.matcher(url);
         return matcher.matches();
     }
+
+    /**
+     * 按照 yyyy-MM-dd HH:mm:ss 格式 获取系统当前时间
+     *
+     * @return
+     */
+    public static String getCurrentTime() {
+        long time = System.currentTimeMillis();
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
+    }
 }
