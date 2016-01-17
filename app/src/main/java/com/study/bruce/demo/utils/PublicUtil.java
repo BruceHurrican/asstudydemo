@@ -42,8 +42,17 @@ import android.util.DisplayMetrics;
 
 import com.study.bruce.demo.log.Logs;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -268,6 +277,70 @@ public final class PublicUtil {
     }
 
     /**
+     * 保存信息到本地文件
+     *
+     * @param context
+     * @param fileName
+     * @param content  文件内容
+     * @param saveMode 文件读写模式 {@link Context#MODE_PRIVATE},{@link Context#MODE_APPEND}
+     */
+    public static void saveInfo2File(Context context, String fileName, String content, int saveMode) {
+        FileOutputStream fileOutputStream;
+        BufferedWriter bufferedWriter = null;
+        try {
+            fileOutputStream = context.openFileOutput(fileName, saveMode);
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
+            bufferedWriter.write(content);
+        } catch (IOException e) {
+            LogUtils.e(e.toString());
+        } finally {
+            if (null != bufferedWriter) {
+                try {
+                    bufferedWriter.close();
+                    LogUtils.i("保存信息成功");
+                } catch (IOException e) {
+                    LogUtils.e(e.toString());
+                }
+            }
+        }
+    }
+
+    /**
+     * 从文件中读取信息
+     *
+     * @param context
+     * @param fileName 文件名称
+     * @return 文件内容
+     */
+    public static String readInfoFromFile(Context context, String fileName) {
+        FileInputStream fileInputStream;
+        BufferedReader bufferedReader = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            fileInputStream = context.openFileInput(fileName);
+            bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+            String line;
+            while (null != (line = bufferedReader.readLine())) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            LogUtils.e(e.toString());
+            return "读取信息失败";
+        } finally {
+            if (null != bufferedReader) {
+                try {
+                    bufferedReader.close();
+                    LogUtils.i("读取信息成功");
+                } catch (IOException e) {
+                    LogUtils.e(e.toString());
+                    return "读取信息失败";
+                }
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
      * 判断 url 是否合法
      *
      * @param url
@@ -281,5 +354,17 @@ public final class PublicUtil {
         Pattern pattern = Pattern.compile(regEx);
         Matcher matcher = pattern.matcher(url);
         return matcher.matches();
+    }
+
+    /**
+     * 按照 yyyy-MM-dd HH:mm:ss 格式 获取系统当前时间
+     *
+     * @return
+     */
+    public static String getCurrentTime() {
+        long time = System.currentTimeMillis();
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
     }
 }

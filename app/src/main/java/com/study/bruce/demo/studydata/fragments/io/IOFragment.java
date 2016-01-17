@@ -38,15 +38,7 @@ import android.widget.TextView;
 
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.base.BaseFragment;
-import com.study.bruce.demo.utils.LogUtils;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import com.study.bruce.demo.utils.PublicUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -90,63 +82,14 @@ public class IOFragment extends BaseFragment {
                     showToastShort("不能保存空信息到本地文件");
                     return;
                 } else {
-                    saveInfo2File(getActivity(), DEMO, saveInfo,Context.MODE_PRIVATE);
+                    PublicUtil.saveInfo2File(getActivity(), DEMO, saveInfo, Context.MODE_PRIVATE);
                 }
                 break;
             case R.id.btn_read:
-                String content = readInfoFromFile(getActivity(), DEMO);
+                String content = PublicUtil.readInfoFromFile(getActivity(), DEMO);
                 tv_show.setText(content);
                 break;
         }
-    }
-
-    public void saveInfo2File(Context context, String fileName, String content,int saveMode) {
-        FileOutputStream fileOutputStream;
-        BufferedWriter bufferedWriter = null;
-        try {
-            fileOutputStream = context.openFileOutput(fileName, saveMode);
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
-            bufferedWriter.write(content);
-        } catch (IOException e) {
-            LogUtils.e(e.toString());
-        } finally {
-            if (null != bufferedWriter) {
-                try {
-                    bufferedWriter.close();
-                    LogUtils.i("保存信息成功");
-                } catch (IOException e) {
-                    LogUtils.e(e.toString());
-                }
-            }
-        }
-    }
-
-    public String readInfoFromFile(Context context, String fileName) {
-        FileInputStream fileInputStream;
-        BufferedReader bufferedReader = null;
-        StringBuilder stringBuilder = new StringBuilder();
-        try {
-            fileInputStream = context.openFileInput(fileName);
-            bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-            String line;
-            while (null != (line = bufferedReader.readLine())) {
-                stringBuilder.append(line);
-            }
-        } catch (IOException e) {
-            LogUtils.e(e.toString());
-            return "读取信息失败";
-        } finally {
-            if (null != bufferedReader) {
-                try {
-                    bufferedReader.close();
-                    LogUtils.i("读取信息成功");
-                } catch (IOException e) {
-                    LogUtils.e(e.toString());
-                    return "读取信息失败";
-                }
-            }
-        }
-        return stringBuilder.toString();
     }
 
     @Override
