@@ -42,7 +42,14 @@ import android.util.DisplayMetrics;
 
 import com.study.bruce.demo.log.Logs;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -265,6 +272,55 @@ public final class PublicUtil {
             }
         }
         return size;
+    }
+
+    public static void saveInfo2File(Context context, String fileName, String content, int saveMode) {
+        FileOutputStream fileOutputStream;
+        BufferedWriter bufferedWriter = null;
+        try {
+            fileOutputStream = context.openFileOutput(fileName, saveMode);
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
+            bufferedWriter.write(content);
+        } catch (IOException e) {
+            LogUtils.e(e.toString());
+        } finally {
+            if (null != bufferedWriter) {
+                try {
+                    bufferedWriter.close();
+                    LogUtils.i("保存信息成功");
+                } catch (IOException e) {
+                    LogUtils.e(e.toString());
+                }
+            }
+        }
+    }
+
+    public static String readInfoFromFile(Context context, String fileName) {
+        FileInputStream fileInputStream;
+        BufferedReader bufferedReader = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            fileInputStream = context.openFileInput(fileName);
+            bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+            String line;
+            while (null != (line = bufferedReader.readLine())) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            LogUtils.e(e.toString());
+            return "读取信息失败";
+        } finally {
+            if (null != bufferedReader) {
+                try {
+                    bufferedReader.close();
+                    LogUtils.i("读取信息成功");
+                } catch (IOException e) {
+                    LogUtils.e(e.toString());
+                    return "读取信息失败";
+                }
+            }
+        }
+        return stringBuilder.toString();
     }
 
     /**
