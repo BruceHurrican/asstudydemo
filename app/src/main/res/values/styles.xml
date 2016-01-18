@@ -48,12 +48,16 @@
         <item name="android:singleLine">true</item>
         <item name="android:clickable">true</item>
         <item name="android:onClick">onClick</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
     <!-- 基类TextView -->
     <style name="BaseTextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
     <!-- 基类RadioButto -->
     <style name="BaseRadioButton">
