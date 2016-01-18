@@ -39,6 +39,7 @@ import android.widget.RelativeLayout;
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.base.BaseFragmentActivity;
 import com.study.bruce.demo.studydata.fragments.crash.CrashFragment;
+import com.study.bruce.demo.studydata.fragments.database.DBFragment;
 import com.study.bruce.demo.studydata.fragments.googlesample.api10.contact_manager.ContactManagerFragment;
 import com.study.bruce.demo.studydata.fragments.googlesample.templates.BlankFragment;
 import com.study.bruce.demo.studydata.fragments.io.IOFragment;
@@ -81,7 +82,8 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         lv_demo_list = (ListView) findViewById(R.id.lv_fragment_list);
         lv_demo_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
-        addFragment2Container(new IOFragment(), "数据持久化储存");
+        addFragment2Container(new DBFragment(), "数据库");
+        addFragment2Container(new IOFragment(), "文件储存");
         addFragment2Container(new JSWebviewFragment(), "webview js 交互");
         addFragment2Container(new Rotate3dFragment(), "利用 Camera 实现 3D 卡片翻转动画");
         addFragment2Container(new MTFragment(), "美团下拉刷新动画学习");
