@@ -46,6 +46,7 @@ import com.study.bruce.demo.studydata.fragments.io.IOFragment;
 import com.study.bruce.demo.studydata.fragments.meituananimation.MTFragment;
 import com.study.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
 import com.study.bruce.demo.studydata.fragments.webviewjs.JSWebviewFragment;
+import com.study.bruce.demo.studydata.fragments.widgetdemo.WidgetFragment;
 import com.study.bruce.demo.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         lv_demo_list = (ListView) findViewById(R.id.lv_fragment_list);
         lv_demo_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
+        addFragment2Container(new WidgetFragment(), "系统控件练习");
         addFragment2Container(new DBFragment(), "数据库");
         addFragment2Container(new IOFragment(), "文件储存");
         addFragment2Container(new JSWebviewFragment(), "webview js 交互");
