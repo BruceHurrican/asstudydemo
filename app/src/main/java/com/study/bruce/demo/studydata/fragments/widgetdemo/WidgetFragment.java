@@ -31,6 +31,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -42,6 +44,9 @@ import android.widget.Button;
 import com.study.bruce.demo.MainActivity;
 import com.study.bruce.demo.R;
 import com.study.bruce.demo.base.BaseFragment;
+import com.study.bruce.demo.utils.LogUtils;
+
+import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -75,7 +80,6 @@ public class WidgetFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.btn_send_notification:
                 NotificationManager manager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-                Notification notification2 = new Notification(R.mipmap.icon_demo, "通知测试", System.currentTimeMillis());
                 Notification.Builder builder = new Notification.Builder(getActivity());
                 builder.setContentInfo("补充内容");
                 builder.setContentText("主内容区");
@@ -87,7 +91,13 @@ public class WidgetFragment extends BaseFragment {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 builder.setContentIntent(pendingIntent);
+                File file = new File("/system/media/audio/ringtones/Bollywood.ogg");
+                LogUtils.i("音频文件是否存在" + file.exists());
+                Uri soundUri = Uri.fromFile(file);
+                builder.setSound(soundUri); // 设置通知到来时的声音
+                builder.setLights(Color.GREEN, 1000, 1000);
                 Notification notification = builder.build();
+                notification.flags = Notification.FLAG_SHOW_LIGHTS;
                 manager.notify(NOTIFICATION_ID, notification);
                 break;
         }
