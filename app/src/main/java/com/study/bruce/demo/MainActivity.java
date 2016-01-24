@@ -40,6 +40,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.study.bruce.demo.base.BaseActivity;
+import com.study.bruce.demo.studydata.activities.media.CameraActivity;
 import com.study.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.study.bruce.demo.utils.LogUtils;
 import com.study.bruce.demo.utils.PublicUtil;
@@ -105,6 +106,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         it = new Intent();
 
         addDemoContainer(FragmentsActivity.class, "fragment 入口");
+        addDemoContainer(CameraActivity.class, "调用系统相机获取相片");
 
         lv_demo_list.setOnItemClickListener(this);
         LogUtils.i("加载列表完成");
