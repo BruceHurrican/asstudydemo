@@ -32,6 +32,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,10 +43,12 @@ import android.widget.ListView;
 import com.study.bruce.demo.base.BaseActivity;
 import com.study.bruce.demo.studydata.activities.media.CameraActivity;
 import com.study.bruce.demo.studydata.fragments.FragmentsActivity;
+import com.study.bruce.demo.utils.DataCleanManager;
 import com.study.bruce.demo.utils.LogUtils;
 import com.study.bruce.demo.utils.PublicUtil;
 import com.study.bruce.demo.widget.TitleBar;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -153,6 +156,29 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 LogUtils.d(item.getTitle() + " 菜单按钮被点击");
                 LogUtils.i("本机DPI：" + getResources().getDisplayMetrics().densityDpi + "\nXDPI：" + getResources().getDisplayMetrics().xdpi + "\nYDPI：" + getResources().getDisplayMetrics().ydpi);
                 showToastShort("本机DPI：" + getResources().getDisplayMetrics().densityDpi + "\nXDPI：" + getResources().getDisplayMetrics().xdpi + "\nYDPI：" + getResources().getDisplayMetrics().ydpi);
+                break;
+            case R.id.menu_3:
+                try {
+                    showToastShort("缓存文件大小->" + DataCleanManager.getFormatSize(this, getCacheDir()));
+//                    LogUtils.i("缓存文件大小->" + DataCleanManager.getFileSize(getCacheDir())
+//                            + "\n数据文件大小->" + DataCleanManager.getFileSize(getFilesDir())
+//                            + "\nsharePreference大小->" + DataCleanManager.getFileSize(new File("/data/data/" + getPackageName() + "/shared_prefs"))
+//                            + "\nSD卡中缓存文件大小->" + DataCleanManager.getFileSize(getExternalCacheDir())
+//                            + "\nSD卡中数据文件大小->" + DataCleanManager.getFileSize(getExternalFilesDir(Environment.DIRECTORY_PICTURES))
+//                            + "\n整个应用数据文件大小->" + DataCleanManager.getFileSize(new File("/data/data/" + getPackageName())));
+                    LogUtils.i("缓存文件大小->" + DataCleanManager.getFormatSize(this, getCacheDir())
+                            + "\n数据文件大小->" + DataCleanManager.getFormatSize(this, getFilesDir())
+                            + "\nsharePreference大小->" + DataCleanManager.getFormatSize(this, new File("/data/data/" + getPackageName() + "/shared_prefs"))
+                            + "\nSD卡中缓存文件大小->" + DataCleanManager.getFormatSize(this, getExternalCacheDir())
+                            + "\nSD卡中数据文件大小->" + DataCleanManager.getFormatSize(this, getExternalFilesDir(Environment.DIRECTORY_PICTURES))
+                            + "\n整个应用数据文件大小->" + DataCleanManager.getFormatSize(this, new File("/data/data/" + getPackageName())));
+                } catch (Exception e) {
+                    LogUtils.e(e.toString());
+                }
+                break;
+            case R.id.menu_4:
+                showToastShort("清除缓存完毕");
+                DataCleanManager.cleanApplicationData(MainActivity.this, "/data/data/" + getPackageName());
                 break;
         }
         return true;
