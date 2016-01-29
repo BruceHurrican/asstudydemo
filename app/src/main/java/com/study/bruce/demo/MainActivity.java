@@ -30,6 +30,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Environment;
@@ -179,6 +181,15 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
             case R.id.menu_4:
                 showToastShort("清除缓存完毕");
                 DataCleanManager.cleanApplicationData(MainActivity.this, "/data/data/" + getPackageName());
+                break;
+            case R.id.menu_5:
+                try {
+                    PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
+                    LogUtils.i("应用名称：" + info.versionName + "\n应用版本：" + info.versionCode + "\n应用包名：" + info.packageName);
+                    showToastShort("应用名称：" + info.versionName + "\n应用版本：" + info.versionCode + "\n应用包名：" + info.packageName);
+                } catch (PackageManager.NameNotFoundException e) {
+                    LogUtils.e(e.toString());
+                }
                 break;
         }
         return true;
