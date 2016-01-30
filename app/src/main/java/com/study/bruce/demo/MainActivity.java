@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         it = new Intent();
 
         addDemoContainer(FragmentsActivity.class, "fragment 入口");
-        addDemoContainer(CameraActivity.class, "调用系统相机获取相片");
+        addDemoContainer(CameraActivity.class, "调用系统相机相册获取相片");
 
         lv_demo_list.setOnItemClickListener(this);
         LogUtils.i("加载列表完成");

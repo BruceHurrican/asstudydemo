@@ -55,11 +55,15 @@ import butterknife.OnClick;
 public class CameraActivity extends BaseActivity {
     public static final int TAKE_PHOTO = 1;
     public static final int CROP_PHOTO = 2;
+    public static final int ALBUM_IMG = 3;
     @Bind(R.id.btn_camera)
     Button btn_amera;
+    @Bind(R.id.btn_album)
+    Button btn_album;
     @Bind(R.id.iv_show)
     ImageView iv_show;
     private Uri imageUri;
+    private File tmpFile;
 
     @Override
     public String getTAG() {
@@ -70,10 +74,11 @@ public class CameraActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_activity);
+        tmpFile = new File(Environment.getExternalStorageDirectory(), "tmpImage.jpg");
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btn_camera})
+    @OnClick({R.id.btn_camera, R.id.btn_album})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_camera:
@@ -88,15 +93,40 @@ public class CameraActivity extends BaseActivity {
                     LogUtils.e(e.toString());
                 }
                 imageUri = Uri.fromFile(outputImage);
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                 startActivityForResult(intent, TAKE_PHOTO);
+                break;
+            case R.id.btn_album:
+                Intent albumIntent = new Intent("android.intent.action.PICK");
+                try {
+                    if (tmpFile.exists()) {
+                        tmpFile.delete();
+                    }
+                    tmpFile.createNewFile();
+                } catch (IOException e) {
+                    tmpFile = null;
+                    LogUtils.e(e.toString());
+                }
+                if (tmpFile == null) {
+                    return;
+                }
+                albumIntent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+                albumIntent.putExtra("output", Uri.fromFile(tmpFile));
+                albumIntent.putExtra("crop", "true");
+                albumIntent.putExtra("aspectX", 1);// 裁剪框比例
+                albumIntent.putExtra("aspectY", 1);
+                int crop = 180;
+                albumIntent.putExtra("outputX", crop);// 输出图片大小
+                albumIntent.putExtra("outputY", crop);
+                startActivityForResult(albumIntent, ALBUM_IMG);
                 break;
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        LogUtils.i("requestCode:" + requestCode + "\nresultCode:" + resultCode + "\ndata:" + data);
         switch (requestCode) {
             case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
@@ -114,6 +144,15 @@ public class CameraActivity extends BaseActivity {
                         iv_show.setImageBitmap(bitmap);
                     } catch (FileNotFoundException e) {
                         LogUtils.e(e.toString());
+                    }
+                }
+                break;
+            case ALBUM_IMG:
+                if (resultCode == RESULT_OK) {
+                    Bitmap bitmap;
+                    if (null != tmpFile) {
+                        bitmap = BitmapFactory.decodeFile(tmpFile.getAbsolutePath());
+                        iv_show.setImageBitmap(bitmap);
                     }
                 }
                 break;
