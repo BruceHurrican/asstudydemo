@@ -40,7 +40,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.study.bruce.demo.base.BaseActivity;
 import com.study.bruce.demo.studydata.activities.media.CameraActivity;
@@ -48,6 +47,7 @@ import com.study.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.study.bruce.demo.utils.DataCleanManager;
 import com.study.bruce.demo.utils.LogUtils;
 import com.study.bruce.demo.utils.PublicUtil;
+import com.study.bruce.demo.widget.AnimListView;
 import com.study.bruce.demo.widget.TitleBar;
 
 import java.io.File;
@@ -66,8 +66,8 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     private static final long serialVersionUID = -3277762441808693645L;
     @Bind(R.id.titlebar)
     TitleBar titlebar;
-    @Bind(R.id.lv__demo_list)
-    ListView lv_demo_list;
+    @Bind(R.id.lv_demo_list)
+    AnimListView lv_demo_list;
     private List<Class<? extends Activity>> demos;
     private List<String> demoNamesList;
     private Intent it;
