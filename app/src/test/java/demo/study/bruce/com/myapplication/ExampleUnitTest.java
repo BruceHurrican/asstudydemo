@@ -14,6 +14,8 @@
 
 package demo.study.bruce.com.demo;
 
+import android.test.InstrumentationTestCase;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
