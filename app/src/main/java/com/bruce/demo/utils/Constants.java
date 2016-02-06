@@ -23,41 +23,13 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-apply plugin: 'com.android.application'
+package com.bruce.demo.utils;
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
-    defaultConfig {
-        applicationId 'com.bruce.demo'
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            shrinkResources true
-            proguardFile 'D:/study/local_study_demo/local_study_demo_as/app/proguard-rules.pro'
-        }
-    }
-    dexOptions {
-        incremental true
-    }
-    productFlavors {
-    }
-}
-
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile files('libs/volley.jar')
-    compile files('libs/butterknife-7.0.1.jar')
+/**
+ * 常量类
+ * Created by BruceHurrican on 2015/12/10.
+ */
+public final class Constants {
+    // todo 后续所有定义的常量均移入此类中
+    public static final boolean ISDEBUG = true; // 日志开关
 }

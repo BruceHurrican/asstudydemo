@@ -25,7 +25,7 @@
   -->
 
 <manifest
-    package="com.study.bruce.demo"
+    package="com.bruce.demo"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -69,7 +69,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.study.bruce.demo.studydata.fragments.FragmentsActivity"
+            android:name=".studydata.fragments.FragmentsActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

@@ -30,20 +30,20 @@
               android:gravity="center"
               android:orientation="vertical">
 
-    <com.study.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshFirstStepView
+    <com.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshFirstStepView
             android:id="@+id/mt_first"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_margin="10dp"/>
 
-    <com.study.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshSecondStepView
+    <com.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshSecondStepView
             android:id="@+id/mt_second"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:visibility="gone"/>
 
-    <com.study.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshThirdStepView
+    <com.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshThirdStepView
             android:id="@+id/mt_third"
             android:layout_width="45dp"
             android:layout_height="45dp"

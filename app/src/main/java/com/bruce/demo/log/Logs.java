@@ -23,41 +23,56 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-apply plugin: 'com.android.application'
+package com.bruce.demo.log;
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
-    defaultConfig {
-        applicationId 'com.bruce.demo'
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            shrinkResources true
-            proguardFile 'D:/study/local_study_demo/local_study_demo_as/app/proguard-rules.pro'
-        }
-    }
-    dexOptions {
-        incremental true
-    }
-    productFlavors {
-    }
-}
+import android.util.Log;
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile files('libs/volley.jar')
-    compile files('libs/butterknife-7.0.1.jar')
+import com.bruce.demo.utils.Constants;
+
+/**
+ * 日志基类
+ * Created by BruceHurrican on 2015/7/5.
+ */
+public final class Logs {
+    private static Logs instance;
+
+    private Logs() {
+    }
+
+    public static Logs getInstance() {
+        if (null != instance) {
+            instance = new Logs();
+        }
+        return instance;
+    }
+
+    public static void v(String tag, String text) {
+        if (Constants.ISDEBUG) {
+            Log.v(tag, text);
+        }
+    }
+
+    public static void d(String tag, String text) {
+        if (Constants.ISDEBUG) {
+            Log.d(tag, text);
+        }
+    }
+
+    public static void i(String tag, String text) {
+        if (Constants.ISDEBUG) {
+            Log.i(tag, text);
+        }
+    }
+
+    public static void w(String tag, String text) {
+        if (Constants.ISDEBUG) {
+            Log.w(tag, text);
+        }
+    }
+
+    public static void e(String tag, String text) {
+        if (Constants.ISDEBUG) {
+            Log.e(tag, text);
+        }
+    }
 }

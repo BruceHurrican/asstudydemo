@@ -23,41 +23,36 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-apply plugin: 'com.android.application'
+package com.bruce.demo;
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
-    defaultConfig {
-        applicationId 'com.bruce.demo'
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            shrinkResources true
-            proguardFile 'D:/study/local_study_demo/local_study_demo_as/app/proguard-rules.pro'
-        }
-    }
-    dexOptions {
-        incremental true
-    }
-    productFlavors {
-    }
-}
+import android.test.AndroidTestCase;
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile files('libs/volley.jar')
-    compile files('libs/butterknife-7.0.1.jar')
+import com.bruce.demo.utils.PublicUtil;
+
+/**
+ * Created by BruceHurrican on 2016/1/31.
+ */
+public class MethodUnitTest extends AndroidTestCase {
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        super.tearDown();
+    }
+
+    public void test() {
+        assertEquals(true, PublicUtil.isNetWorkAvailable(getContext()));
+        assertEquals(false, PublicUtil.isUrl("aaa"));
+        assertEquals("当前手机是否已经root ? 已经root", PublicUtil.isRootSystem());
+    }
+
+    /**
+     * 测试方法必须以test作为前缀
+     */
+    public void testaa() {
+        assertEquals(true, PublicUtil.isUrl("http://www.baidu.com"));
+    }
 }

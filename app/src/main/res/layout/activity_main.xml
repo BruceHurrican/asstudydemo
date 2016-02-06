@@ -29,7 +29,7 @@
               android:layout_height="fill_parent"
               android:orientation="vertical">
 
-    <com.study.bruce.demo.widget.TitleBar
+    <com.bruce.demo.widget.TitleBar
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -40,8 +40,8 @@
             android:singleLine="true"
             android:text="工作Demo"/>
 
-    <com.study.bruce.demo.widget.AnimListView
-        android:id="@+id/lv_demo_list"
+    <com.bruce.demo.widget.AnimListView
+        android:id="@+id/alv_demo_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/background_dark"/>

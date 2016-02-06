@@ -23,41 +23,45 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-apply plugin: 'com.android.application'
+package com.bruce.demo.widget;
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
-    defaultConfig {
-        applicationId 'com.bruce.demo'
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            shrinkResources true
-            proguardFile 'D:/study/local_study_demo/local_study_demo_as/app/proguard-rules.pro'
-        }
-    }
-    dexOptions {
-        incremental true
-    }
-    productFlavors {
-    }
-}
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.ListView;
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile files('libs/volley.jar')
-    compile files('libs/butterknife-7.0.1.jar')
+/**
+ * 自定义有回弹效果的 ListView
+ * Created by BruceHurrican on 2016/2/5.
+ */
+public class AnimListView extends ListView {
+    public AnimListView(Context context) {
+        super(context);
+    }
+
+    public AnimListView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public AnimListView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    /**
+     * 修改 maxOverScrollY 值可以达到滑动到顶/底端时有回弹效果，ListView 默认为0，无回弹效果
+     *
+     * @param deltaX
+     * @param deltaY
+     * @param scrollX
+     * @param scrollY
+     * @param scrollRangeX
+     * @param scrollRangeY
+     * @param maxOverScrollX
+     * @param maxOverScrollY
+     * @param isTouchEvent
+     * @return
+     */
+    @Override
+    protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX, int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
+        return super.overScrollBy(deltaX, deltaY, scrollX, scrollY, scrollRangeX, scrollRangeY, maxOverScrollX, 150, isTouchEvent);
+    }
 }
