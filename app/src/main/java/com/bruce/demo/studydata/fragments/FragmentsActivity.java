@@ -81,6 +81,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_activity);
         ButterKnife.bind(this);
+        LogUtils.i("当前进程ID：" + android.os.Process.myPid());
         fragmentManager = getSupportFragmentManager();
         initContainer();
     }

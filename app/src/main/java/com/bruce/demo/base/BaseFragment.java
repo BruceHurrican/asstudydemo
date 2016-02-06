@@ -25,7 +25,6 @@
 
 package com.bruce.demo.base;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -36,6 +35,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
+import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
 import com.bruce.demo.utils.LogUtils;
 
@@ -61,12 +61,13 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = getActivity();
+        context = DemoApplication.demoAppContext;
 //        TAG = getTAG();
     }
 
     public void showToastShort(final String text) {
-        ((Activity) context).runOnUiThread(new Runnable() {
+        initUIHandler();
+        getUIHandler().post(new Runnable() {
             @Override
             public void run() {
                 if (null != context) {
@@ -79,7 +80,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void showToastLong(final String text) {
-        ((Activity) context).runOnUiThread(new Runnable() {
+        initUIHandler();
+        getUIHandler().post(new Runnable() {
             @Override
             public void run() {
                 if (null != context) {

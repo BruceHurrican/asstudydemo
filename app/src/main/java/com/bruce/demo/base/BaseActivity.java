@@ -60,7 +60,7 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = BaseActivity.this;
+        context = DemoApplication.demoAppContext;
 //        TAG = getTAG();
         application = (DemoApplication) getApplication();
         application.addActivity(this);

@@ -25,16 +25,20 @@
 
 package com.bruce.demo.studydata.fragments.webviewjs;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
+import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.bruce.demo.DemoApplication;
 import com.bruce.demo.base.BaseFragment;
 import com.bruce.demo.utils.LogUtils;
 
@@ -43,6 +47,9 @@ import com.bruce.demo.utils.LogUtils;
  * Created by BruceHurrican on 2016/1/13.
  */
 public class JSWebviewFragment extends BaseFragment {
+
+    private WebView webView;
+
     @Override
     public String getTAG() {
         return "JSWebviewFragment";
@@ -51,16 +58,66 @@ public class JSWebviewFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        WebView webView = new WebView(getActivity());
+        /*
+         用全局 applicationContext 避免内存泄漏,如此则如果要显示 JS 中的 alert 需要重写 onJsAlert() 否则报错
+         错误信息
+         JsDialogHelper: Cannot create a dialog, the WebView context is not an Activity.
+         java.lang.ClassCastException: com.bruce.demo.DemoApplication cannot be cast to android.app.Activity
+         */
+        WebView webView = new WebView(DemoApplication.demoAppContext);
         webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webView.setWebChromeClient(new WebChromeClient()); // 允许弹出 alert
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("提示:").setMessage(message);
+                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        LogUtils.d("js对话框按钮 ok 被点击");
+                        result.confirm();
+                    }
+                });
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        LogUtils.d("js对话框按钮 cancel 被点击");
+                        result.cancel();
+                    }
+                });
+                builder.setCancelable(false);
+                builder.create();
+                builder.show();
+                return true;
+            }
+        }); // 允许弹出 alert
 
         webView.addJavascriptInterface(this, "jswebview");
         webView.loadUrl("file:///android_asset/test.html");
         return webView;
+    }
+
+    @Override
+    public void onPause() {
+        if (null != webView) {
+            webView.onPause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        /*
+         最优解决方案为在调用 WebView 的 Activity onDestroy() 时调用 webView.destroy();
+         并将该 Activity 所在进程销毁,调用 android.os.Process.killProcess(android.os.Process.myPid()); 实现
+         */
+        if (null != webView) {
+            webView.destroy();
+        }
+        super.onDestroy();
     }
 
     @JavascriptInterface

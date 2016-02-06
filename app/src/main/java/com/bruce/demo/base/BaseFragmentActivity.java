@@ -60,7 +60,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = BaseFragmentActivity.this;
+        context = DemoApplication.demoAppContext;
 //        TAG = getTAG();
         application = (DemoApplication) getApplication();
         application.addActivity(this);

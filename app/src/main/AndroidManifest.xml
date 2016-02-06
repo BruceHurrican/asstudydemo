@@ -71,6 +71,7 @@
         <activity
             android:name=".studydata.fragments.FragmentsActivity"
             android:launchMode="singleTop"
+            android:process=":process.sub"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="START_FRAGMENT_ACTIVITY"/>

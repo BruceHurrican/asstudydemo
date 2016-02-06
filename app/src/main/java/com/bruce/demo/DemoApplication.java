@@ -27,6 +27,7 @@ package com.bruce.demo;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -40,6 +41,7 @@ import java.util.List;
  * Created by BruceHurrican on 2015/6/7.
  */
 public class DemoApplication extends Application {
+    public static Context demoAppContext;
     // used in volley_demo
     private static RequestQueue queues;
     private List<Activity> container;
@@ -51,7 +53,10 @@ public class DemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        queues = Volley.newRequestQueue(getApplicationContext());
+        if (null == demoAppContext) {
+            demoAppContext = getApplicationContext();
+        }
+        queues = Volley.newRequestQueue(demoAppContext);
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(getApplicationContext());
 //        crashHandler.initActivityContainer(container);
