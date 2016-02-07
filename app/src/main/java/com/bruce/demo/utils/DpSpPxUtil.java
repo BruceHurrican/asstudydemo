@@ -93,6 +93,12 @@ public final class DpSpPxUtil {
         return (int) (spValue * fontScale + 0.5f);
     }
 
+    /**
+     * 系统自带转换方法和上述方法相同
+     * @param context
+     * @param spValue
+     * @return
+     */
     public static int sp2px2(Context context, float spValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, spValue, context.getResources().getDisplayMetrics());
     }
