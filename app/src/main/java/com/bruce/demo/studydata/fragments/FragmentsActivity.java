@@ -45,6 +45,7 @@ import com.bruce.demo.studydata.fragments.googlesample.templates.BlankFragment;
 import com.bruce.demo.studydata.fragments.io.IOFragment;
 import com.bruce.demo.studydata.fragments.meituananimation.MTFragment;
 import com.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
+import com.bruce.demo.studydata.fragments.sliding.SlidingFragment;
 import com.bruce.demo.studydata.fragments.webviewjs.JSWebviewFragment;
 import com.bruce.demo.studydata.fragments.widgetdemo.WidgetFragment;
 import com.bruce.demo.utils.LogUtils;
@@ -97,6 +98,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         fragmentNamesList = new ArrayList<>(5);
         alv_fragment_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
+        addFragment2Container(new SlidingFragment(), "滑动效果练习");
         addFragment2Container(new WidgetFragment(), "系统控件练习");
         addFragment2Container(new DBFragment(), "数据库");
         addFragment2Container(new IOFragment(), "文件储存");
