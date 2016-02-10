@@ -50,6 +50,8 @@
         <item name="android:onClick">onClick</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@drawable/btn_base_press</item>
     </style>
     <!-- 基类TextView -->
     <style name="BaseTextView">
