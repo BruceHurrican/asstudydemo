@@ -99,7 +99,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         alv_fragment_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
         addFragment2Container(new SlidingFragment(), "滑动效果练习");
-        addFragment2Container(new WidgetFragment(), "系统控件练习");
+        addFragment2Container(new WidgetFragment(), "控件练习");
         addFragment2Container(new DBFragment(), "数据库");
         addFragment2Container(new IOFragment(), "文件储存");
         addFragment2Container(new JSWebviewFragment(), "webview js 交互");

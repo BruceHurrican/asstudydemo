@@ -42,9 +42,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.bruce.demo.MainActivity;
+import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
 import com.bruce.demo.utils.LogUtils;
-import com.bruce.demo.R;
+import com.bruce.demo.widget.ScratchCardView;
+import com.bruce.demo.widget.TitleBar2;
 
 import java.io.File;
 
@@ -53,13 +55,19 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 系统控件练习
+ * 控件练习
  * Created by BruceHurrican on 2016/1/23.
  */
 public class WidgetFragment extends BaseFragment {
     public static final int NOTIFICATION_ID = 1;
     @Bind(R.id.btn_send_notification)
     Button btn_send_notification;
+    @Bind(R.id.btn_reset)
+    Button btn_reset;
+    @Bind(R.id.title_bar)
+    TitleBar2 title_bar;
+    @Bind(R.id.scratch_card_view)
+    ScratchCardView scratch_card_view;
 
     @Override
     public String getTAG() {
@@ -74,8 +82,42 @@ public class WidgetFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        LogUtils.d("=====onViewCreated======");
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        LogUtils.d("=====onActivityCreated======");
+
+        title_bar.setOnTitleBarClickListener(new TitleBar2.TitleBarClickListener() {
+            @Override
+            public void onLeftClick(View view) {
+                LogUtils.d("left btn clicked");
+                showToastShort("left btn clicked");
+            }
+
+            @Override
+            public void onRightClick(View view) {
+                LogUtils.d("right btn clicked");
+                showToastShort("right btn clicked");
+            }
+        });
+
+        scratch_card_view.setOnResetScratchViewListener(new ScratchCardView.ResetScratchViewListener() {
+            @Override
+            public void onResetFinished(String info) {
+                LogUtils.d(info);
+                showToastShort(info);
+            }
+        });
+    }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @OnClick({R.id.btn_send_notification})
+    @OnClick({R.id.btn_send_notification, R.id.btn_reset})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_send_notification:
@@ -99,6 +141,9 @@ public class WidgetFragment extends BaseFragment {
                 Notification notification = builder.build();
                 notification.flags = Notification.FLAG_SHOW_LIGHTS;
                 manager.notify(NOTIFICATION_ID, notification);
+                break;
+            case R.id.btn_reset:
+                scratch_card_view.resetScratchView("再抽一次吧");
                 break;
         }
     }
