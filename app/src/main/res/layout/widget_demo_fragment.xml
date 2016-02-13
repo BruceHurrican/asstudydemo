@@ -24,7 +24,9 @@
   ~   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/rl_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:custom="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
@@ -70,9 +72,26 @@
         android:text="属性动画"
         tools:ignore="HardCodedText"/>
 
+    <Button
+        android:id="@+id/btn_svg"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_animate"
+        android:text="SVG动画"
+        tools:ignore="HardCodedText"/>
+
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_svg"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/btn_animate"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:src="@drawable/svg_vector_anim"-->
+    <!--tools:ignore="ContentDescription"/>-->
+
     <com.bruce.demo.widget.ScratchCardView
         android:id="@+id/scratch_card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_send_notification"/>
+        android:layout_below="@id/btn_svg"/>
 </RelativeLayout>

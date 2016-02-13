@@ -34,6 +34,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +43,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bruce.demo.MainActivity;
 import com.bruce.demo.R;
@@ -62,16 +65,23 @@ import butterknife.OnClick;
  */
 public class WidgetFragment extends BaseFragment {
     public static final int NOTIFICATION_ID = 1;
+    @Bind(R.id.rl_root)
+    RelativeLayout rl_root;
     @Bind(R.id.btn_send_notification)
     Button btn_send_notification;
     @Bind(R.id.btn_reset)
     Button btn_reset;
     @Bind(R.id.btn_animate)
     Button btn_animate;
+    @Bind(R.id.btn_svg)
+    Button btn_svg;
     @Bind(R.id.title_bar)
     TitleBar2 title_bar;
     @Bind(R.id.scratch_card_view)
     ScratchCardView scratch_card_view;
+    //    @Bind(R.id.iv_svg)
+//    ImageView iv_svg;
+    private ImageView iv;
 
     @Override
     public String getTAG() {
@@ -90,6 +100,22 @@ public class WidgetFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         LogUtils.d("=====onViewCreated======");
+
+        iv = new ImageView(getActivity());
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.topMargin = 15;
+        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        layoutParams.addRule(RelativeLayout.BELOW, R.id.btn_animate);
+        iv.setLayoutParams(layoutParams);
+        iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            iv.setImageResource(R.drawable.svg_vector_anim);
+        } else {
+            iv.setImageResource(R.mipmap.rotate3danim2);
+            LogUtils.e("系统当前版本不支持 SVG 动画");
+            showToastShort("系统当前版本不支持 SVG 动画");
+        }
+        rl_root.addView(iv);
     }
 
     @Override
@@ -121,7 +147,7 @@ public class WidgetFragment extends BaseFragment {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @OnClick({R.id.btn_send_notification, R.id.btn_reset, R.id.btn_animate})
+    @OnClick({R.id.btn_send_notification, R.id.btn_reset, R.id.btn_animate, R.id.btn_svg})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_send_notification:
@@ -173,6 +199,15 @@ public class WidgetFragment extends BaseFragment {
                         scratch_card_view.animate().rotationBy(90f);
                     }
                 });
+                break;
+            case R.id.btn_svg:
+//                ((Animatable) iv_svg.getDrawable()).start();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ((Animatable) iv.getDrawable()).start();
+                } else {
+                    LogUtils.e("系统当前版本不支持 SVG 动画");
+                    showToastShort("系统当前版本不支持 SVG 动画");
+                }
                 break;
         }
     }
