@@ -25,6 +25,8 @@
 
 package com.bruce.demo.studydata.fragments.widgetdemo;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -64,6 +66,8 @@ public class WidgetFragment extends BaseFragment {
     Button btn_send_notification;
     @Bind(R.id.btn_reset)
     Button btn_reset;
+    @Bind(R.id.btn_animate)
+    Button btn_animate;
     @Bind(R.id.title_bar)
     TitleBar2 title_bar;
     @Bind(R.id.scratch_card_view)
@@ -117,7 +121,7 @@ public class WidgetFragment extends BaseFragment {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @OnClick({R.id.btn_send_notification, R.id.btn_reset})
+    @OnClick({R.id.btn_send_notification, R.id.btn_reset, R.id.btn_animate})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_send_notification:
@@ -144,6 +148,31 @@ public class WidgetFragment extends BaseFragment {
                 break;
             case R.id.btn_reset:
                 scratch_card_view.resetScratchView("再抽一次吧");
+                break;
+            case R.id.btn_animate:
+                scratch_card_view.animate().alpha(0.5f).y(250f).scaleX(0.5f).setDuration(2000).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        LogUtils.i("=====属性动画开始=======");
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        LogUtils.i("=====属性动画结束=======");
+                    }
+                }).withStartAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        showToastShort("属性动画开始");
+                    }
+                }).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        showToastShort("属性动画结束");
+                        scratch_card_view.animate().rotationBy(90f);
+                    }
+                });
                 break;
         }
     }

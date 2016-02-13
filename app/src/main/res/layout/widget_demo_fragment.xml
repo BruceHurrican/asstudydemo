@@ -62,9 +62,17 @@
         android:text="重置刮刮卡"
         tools:ignore="HardCodedText"/>
 
+    <Button
+        android:id="@+id/btn_animate"
+        style="@style/BaseButton"
+        android:layout_below="@id/title_bar"
+        android:layout_toRightOf="@id/btn_reset"
+        android:text="属性动画"
+        tools:ignore="HardCodedText"/>
+
     <com.bruce.demo.widget.ScratchCardView
         android:id="@+id/scratch_card_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_send_notification"/>
 </RelativeLayout>
