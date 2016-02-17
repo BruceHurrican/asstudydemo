@@ -64,7 +64,7 @@ public class JSWebviewFragment extends BaseFragment {
          JsDialogHelper: Cannot create a dialog, the WebView context is not an Activity.
          java.lang.ClassCastException: com.bruce.demo.DemoApplication cannot be cast to android.app.Activity
          */
-        WebView webView = new WebView(DemoApplication.demoAppContext);
+        WebView webView = new WebView(getActivity().getApplicationContext());
         webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);

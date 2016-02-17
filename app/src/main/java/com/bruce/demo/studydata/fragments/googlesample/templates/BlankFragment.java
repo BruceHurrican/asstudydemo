@@ -81,6 +81,7 @@ public class BlankFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        fab.setOnClickListener(null);
         ButterKnife.unbind(this);
     }
 }

@@ -28,10 +28,12 @@ package com.bruce.demo;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.bruce.demo.utils.Constants;
 import com.bruce.demo.utils.LogUtils;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +43,17 @@ import java.util.List;
  * Created by BruceHurrican on 2015/6/7.
  */
 public class DemoApplication extends Application {
-    public static Context demoAppContext;
+    public Context demoAppContext;
     // used in volley_demo
     private static RequestQueue queues;
     private List<Activity> container;
+    // memory leak tools
+    private RefWatcher refWatcher;
+
+    public static RefWatcher getRefWatcher(Context context) {
+        DemoApplication application = (DemoApplication) context.getApplicationContext();
+        return application.refWatcher;
+    }
 
     public static RequestQueue getHttpQueues() {
         return queues;
@@ -61,6 +70,14 @@ public class DemoApplication extends Application {
 //        crashHandler.init(getApplicationContext());
 //        crashHandler.initActivityContainer(container);
         container = new ArrayList<>(5);
+
+        if (Constants.IS_OPEN_LEAKCANARY) {
+            refWatcher = initLeadCanary();
+        }
+    }
+
+    private RefWatcher initLeadCanary() {
+        return Constants.ISDEBUG ? LeakCanary.install(this) : RefWatcher.DISABLED;
     }
 
     public void addActivity(Activity activity) {
@@ -94,6 +111,8 @@ public class DemoApplication extends Application {
             LogUtils.i("程序有序退出中，当前activity：" + activity.getLocalClassName());
             activity.finish();
         }
+        queues.stop();
+        queues = null;
         android.os.Process.killProcess(android.os.Process.myPid());
     }
 }

@@ -60,7 +60,7 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = DemoApplication.demoAppContext;
+        context = getApplicationContext();
 //        TAG = getTAG();
         application = (DemoApplication) getApplication();
         application.addActivity(this);
@@ -70,6 +70,8 @@ public abstract class BaseActivity extends Activity {
     protected void onDestroy() {
         application.delActivity(this);
         super.onDestroy();
+        recycleUIHandler();
+        recycleWorkerHandler();
     }
 
     public abstract String getTAG();

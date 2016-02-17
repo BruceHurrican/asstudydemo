@@ -37,6 +37,7 @@ import android.widget.Toast;
 
 import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
+import com.bruce.demo.utils.Constants;
 import com.bruce.demo.utils.LogUtils;
 
 import java.lang.ref.WeakReference;
@@ -61,7 +62,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = DemoApplication.demoAppContext;
+        context = getActivity().getApplicationContext();
 //        TAG = getTAG();
     }
 
@@ -91,6 +92,17 @@ public abstract class BaseFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        recycleUIHandler();
+        recycleWorkerHandler();
+        // 监控 fragment 是否存在 memory leak
+        if (Constants.IS_OPEN_LEAKCANARY) {
+            DemoApplication.getRefWatcher(getActivity()).watch(this);
+        }
     }
 
     /**

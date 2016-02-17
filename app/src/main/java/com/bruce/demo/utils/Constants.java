@@ -32,4 +32,9 @@ package com.bruce.demo.utils;
 public final class Constants {
     // todo 后续所有定义的常量均移入此类中
     public static final boolean ISDEBUG = true; // 日志开关
+
+    /**
+     * 是否打开内存泄漏监控
+     */
+    public static final boolean IS_OPEN_LEAKCANARY = true;
 }

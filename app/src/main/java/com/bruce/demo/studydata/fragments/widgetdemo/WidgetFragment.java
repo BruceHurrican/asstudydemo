@@ -123,6 +123,7 @@ public class WidgetFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         LogUtils.d("=====onActivityCreated======");
 
+        // 要在 onDestroy() 方法中 解除事件绑定，否则会造成内存泄漏
         title_bar.setOnTitleBarClickListener(new TitleBar2.TitleBarClickListener() {
             @Override
             public void onLeftClick(View view) {
@@ -137,6 +138,7 @@ public class WidgetFragment extends BaseFragment {
             }
         });
 
+        // 要在 onDestroy() 方法中 解除事件绑定，否则会造成内存泄漏
         scratch_card_view.setOnResetScratchViewListener(new ScratchCardView.ResetScratchViewListener() {
             @Override
             public void onResetFinished(String info) {
@@ -215,6 +217,9 @@ public class WidgetFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        // 解除事件绑定防止内存泄漏
+        title_bar.setOnTitleBarClickListener(null);
+        scratch_card_view.setOnResetScratchViewListener(null);
         ButterKnife.unbind(this);
     }
 }
