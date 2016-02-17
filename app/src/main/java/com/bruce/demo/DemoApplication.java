@@ -72,11 +72,11 @@ public class DemoApplication extends Application {
         container = new ArrayList<>(5);
 
         if (Constants.IS_OPEN_LEAKCANARY) {
-            refWatcher = initLeadCanary();
+            refWatcher = initLeakCanary();
         }
     }
 
-    private RefWatcher initLeadCanary() {
+    private RefWatcher initLeakCanary() {
         return Constants.ISDEBUG ? LeakCanary.install(this) : RefWatcher.DISABLED;
     }
 
