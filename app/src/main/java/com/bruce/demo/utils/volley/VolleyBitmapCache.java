@@ -23,7 +23,7 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com.bruce.demo.utils;
+package com.bruce.demo.utils.volley;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;

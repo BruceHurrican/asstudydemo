@@ -28,8 +28,6 @@ package com.bruce.demo;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.bruce.demo.utils.Constants;
 import com.bruce.demo.utils.LogUtils;
 import com.squareup.leakcanary.LeakCanary;
@@ -45,7 +43,7 @@ import java.util.List;
 public class DemoApplication extends Application {
     public Context demoAppContext;
     // used in volley_demo
-    private static RequestQueue queues;
+//    private static RequestQueue queues;
     private List<Activity> container;
     // memory leak tools
     private RefWatcher refWatcher;
@@ -55,9 +53,9 @@ public class DemoApplication extends Application {
         return application.refWatcher;
     }
 
-    public static RequestQueue getHttpQueues() {
-        return queues;
-    }
+//    public static RequestQueue getHttpQueues() {
+//        return queues;
+//    }
 
     @Override
     public void onCreate() {
@@ -65,7 +63,7 @@ public class DemoApplication extends Application {
         if (null == demoAppContext) {
             demoAppContext = getApplicationContext();
         }
-        queues = Volley.newRequestQueue(demoAppContext);
+//        queues = Volley.newRequestQueue(demoAppContext);
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(getApplicationContext());
 //        crashHandler.initActivityContainer(container);
@@ -111,8 +109,8 @@ public class DemoApplication extends Application {
             LogUtils.i("程序有序退出中，当前activity：" + activity.getLocalClassName());
             activity.finish();
         }
-        queues.stop();
-        queues = null;
+//        queues.stop();
+//        queues = null;
         android.os.Process.killProcess(android.os.Process.myPid());
     }
 }

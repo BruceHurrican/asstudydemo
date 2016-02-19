@@ -30,9 +30,9 @@
               android:orientation="vertical">
 
     <com.bruce.demo.widget.TitleBar
-        android:id="@+id/titlebar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     <TextView
             android:layout_width="fill_parent"
@@ -41,7 +41,7 @@
             android:text="工作Demo"/>
 
     <com.bruce.demo.widget.AnimListView
-        android:id="@+id/alv_demo_list"
+            android:id="@+id/alv_demo_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/background_dark"/>
