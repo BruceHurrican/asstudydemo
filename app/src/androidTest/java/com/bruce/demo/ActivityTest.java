@@ -40,6 +40,7 @@ public class ActivityTest extends ActivityInstrumentationTestCase2<MainActivity>
     public void testProcess() {
         setActivityInitialTouchMode(false);
         assertNotNull(getActivity().getTAG());
+        assertNotNull(getActivity());
 //        assertEquals("aa",getActivity().getTAG());
     }
 }

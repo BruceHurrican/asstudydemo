@@ -27,10 +27,10 @@
 <RelativeLayout
     android:id="@+id/rl_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <com.bruce.demo.widget.TitleBar2
         android:id="@+id/title_bar"
@@ -79,19 +79,34 @@
         android:text="SVG动画"
         tools:ignore="HardCodedText"/>
 
-    <!--<ImageView-->
-    <!--android:id="@+id/iv_svg"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@id/btn_animate"-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:src="@drawable/svg_vector_anim"-->
-    <!--tools:ignore="ContentDescription"/>-->
+    <Button
+        android:id="@+id/btn_svg2"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_animate"
+        android:layout_toRightOf="@id/btn_svg"
+        android:text="SVG动画2"
+        tools:ignore="HardCodedText"/>
+    <Button
+        android:id="@+id/btn_svg3"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_animate"
+        android:layout_toRightOf="@id/btn_svg2"
+        android:text="SVG动画3"
+        tools:ignore="HardCodedText"/>
 
     <com.bruce.demo.widget.ScratchCardView
         android:id="@+id/scratch_card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_svg"/>
+
+    <ImageView
+        android:id="@+id/iv_svg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_animate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/leak_canary_icon"
+        tools:ignore="ContentDescription"/>
 </RelativeLayout>

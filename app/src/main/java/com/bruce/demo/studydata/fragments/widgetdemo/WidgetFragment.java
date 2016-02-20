@@ -75,12 +75,16 @@ public class WidgetFragment extends BaseFragment {
     Button btn_animate;
     @Bind(R.id.btn_svg)
     Button btn_svg;
+    @Bind(R.id.btn_svg2)
+    Button btn_svg2;
+    @Bind(R.id.btn_svg3)
+    Button btn_svg3;
     @Bind(R.id.title_bar)
     TitleBar2 title_bar;
     @Bind(R.id.scratch_card_view)
     ScratchCardView scratch_card_view;
-    //    @Bind(R.id.iv_svg)
-//    ImageView iv_svg;
+    @Bind(R.id.iv_svg2)
+    ImageView iv_svg2;
     private ImageView iv;
 
     @Override
@@ -149,7 +153,7 @@ public class WidgetFragment extends BaseFragment {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @OnClick({R.id.btn_send_notification, R.id.btn_reset, R.id.btn_animate, R.id.btn_svg})
+    @OnClick({R.id.btn_send_notification, R.id.btn_reset, R.id.btn_animate, R.id.btn_svg, R.id.btn_svg2, R.id.btn_svg3})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_send_notification:
@@ -207,6 +211,26 @@ public class WidgetFragment extends BaseFragment {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     ((Animatable) iv.getDrawable()).start();
                 } else {
+                    LogUtils.e("系统当前版本不支持 SVG 动画");
+                    showToastShort("系统当前版本不支持 SVG 动画");
+                }
+                break;
+            case R.id.btn_svg2:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    iv_svg2.setImageResource(R.drawable.svg_delete_anim);
+                    ((Animatable) iv_svg2.getDrawable()).start();
+                } else {
+                    iv_svg2.setImageResource(R.mipmap.rotate3danim2);
+                    LogUtils.e("系统当前版本不支持 SVG 动画");
+                    showToastShort("系统当前版本不支持 SVG 动画");
+                }
+                break;
+            case R.id.btn_svg3:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    iv_svg2.setImageResource(R.drawable.svg_search_anim);
+                    ((Animatable) iv_svg2.getDrawable()).start();
+                } else {
+                    iv_svg2.setImageResource(R.mipmap.rotate3danim2);
                     LogUtils.e("系统当前版本不支持 SVG 动画");
                     showToastShort("系统当前版本不支持 SVG 动画");
                 }

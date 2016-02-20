@@ -130,7 +130,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         LogUtils.i("当前线程为 -->" + Thread.currentThread());
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        fragmentTransaction.addToBackStack(fragmentNamesList.get(position));
+//        fragmentTransaction.addToBackStack(fragmentNamesList.get(position));
         fragmentTransaction.replace(R.id.rl_container, fragments.get(position));
         fragmentTransaction.commit();
         if (!rl_container.isShown()) {
