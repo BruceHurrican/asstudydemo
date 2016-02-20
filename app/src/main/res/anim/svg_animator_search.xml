@@ -26,9 +26,9 @@
 
 <objectAnimator
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="2000"
+    android:duration="3000"
     android:propertyName="trimPathStart"
-    android:valueFrom="0"
-    android:valueTo="1"
+    android:valueFrom="1"
+    android:valueTo="0"
     android:valueType="floatType"
     android:interpolator="@android:anim/accelerate_decelerate_interpolator"/>

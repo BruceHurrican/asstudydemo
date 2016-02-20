@@ -29,7 +29,4 @@
     <target
         android:name="search"
         android:animation="@anim/svg_animator_search"/>
-    <target
-        android:name="bar"
-        android:animation="@anim/svg_animator_search_line"/>
 </animated-vector>
