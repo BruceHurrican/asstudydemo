@@ -98,41 +98,64 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         fragmentNamesList = new ArrayList<>(5);
         alv_fragment_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
-        addFragment2Container(new SlidingFragment(), "滑动效果练习");
-        addFragment2Container(new WidgetFragment(), "控件练习");
-        addFragment2Container(new DBFragment(), "数据库");
-        addFragment2Container(new IOFragment(), "文件储存");
-        addFragment2Container(new JSWebviewFragment(), "webview js 交互");
-        addFragment2Container(new Rotate3dFragment(), "利用 Camera 实现 3D 卡片翻转动画");
-        addFragment2Container(new MTFragment(), "美团下拉刷新动画学习");
-        addFragment2Container(new CrashFragment(), "测试 日志生成删除应用缓存本地文件");
-        addFragment2Container(new ContactManagerFragment(), "查看联系人");
-        addFragment2Container(new BlankFragment(), "谷歌模板-Blank");
+        addFragment2Container("滑动效果练习");
+        addFragment2Container("控件练习");
+        addFragment2Container("数据库");
+        addFragment2Container( "文件储存");
+        addFragment2Container("webview js 交互");
+        addFragment2Container("利用 Camera 实现 3D 卡片翻转动画");
+        addFragment2Container("美团下拉刷新动画学习");
+        addFragment2Container("测试 日志生成删除应用缓存本地文件");
+        addFragment2Container("查看联系人");
+        addFragment2Container("谷歌模板-Blank");
 
         alv_fragment_list.setOnItemClickListener(this);
         LogUtils.i("加载 fragment 列表完成");
     }
 
     /**
-     * @param fragment
      * @param fragmentName
      */
-    private void addFragment2Container(Fragment fragment, String fragmentName) {
+    private void addFragment2Container(String fragmentName) {
         fragmentNamesList.add(fragmentName);
-        fragments.add(fragment);
     }
 
+    private String fragmentName;
+    private Fragment targetFragment;
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         showToastShort(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
         LogUtils.d(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
         LogUtils.i("当前线程为 -->" + Thread.currentThread());
+        fragmentName = fragmentNamesList.get(position);
+        if (fragmentName.equals("滑动效果练习")){
+            targetFragment = new SlidingFragment();
+        } else if (fragmentName.equals("控件练习")){
+            targetFragment = new WidgetFragment();
+        }else if (fragmentName.equals("数据库")) {
+            targetFragment = new DBFragment();
+        }else if (fragmentName.equals("文件储存")) {
+            targetFragment = new IOFragment();
+        }else if (fragmentName.equals("webview js 交互")) {
+            targetFragment = new JSWebviewFragment();
+        }else if (fragmentName.equals("利用 Camera 实现 3D 卡片翻转动画")) {
+            targetFragment = new Rotate3dFragment();
+        }else if (fragmentName.equals("美团下拉刷新动画学习")) {
+            targetFragment = new MTFragment();
+        }else if (fragmentName.equals("测试 日志生成删除应用缓存本地文件")) {
+            targetFragment = new CrashFragment();
+        }else if (fragmentName.equals("查看联系人")) {
+            targetFragment = new ContactManagerFragment();
+        }else if (fragmentName.equals("谷歌模板-Blank")) {
+            targetFragment = new BlankFragment();
+        }
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-//        fragmentTransaction.addToBackStack(fragmentNamesList.get(position));
-        fragmentTransaction.replace(R.id.rl_container, fragments.get(position));
+        fragmentTransaction.addToBackStack(fragmentName);
+        fragmentTransaction.replace(R.id.rl_container, targetFragment);
         fragmentTransaction.commit();
+        targetFragment = null;
         if (!rl_container.isShown()) {
             rl_container.setVisibility(View.VISIBLE);
         }
