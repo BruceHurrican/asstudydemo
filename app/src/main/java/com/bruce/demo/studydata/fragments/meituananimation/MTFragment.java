@@ -32,17 +32,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-
-import com.bruce.demo.base.BaseFragment;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.bruce.demo.R;
+import com.bruce.demo.base.BaseFragment;
 import com.bruce.demo.studydata.fragments.meituananimation.widget.MTListView;
 import com.bruce.demo.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * 美团下拉刷新动画

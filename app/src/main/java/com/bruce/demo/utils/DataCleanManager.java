@@ -225,7 +225,7 @@ public class DataCleanManager {
         return getFormatSize(getFolderSize(file));
     }
 
-    public static String getFormatSize(Context context,File file) throws Exception {
+    public static String getFormatSize(Context context, File file) throws Exception {
         return Formatter.formatFileSize(context, getFolderSize(file));
     }
 }

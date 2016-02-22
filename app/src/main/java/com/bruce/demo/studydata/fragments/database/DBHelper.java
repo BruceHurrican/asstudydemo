@@ -28,7 +28,6 @@ package com.bruce.demo.studydata.fragments.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.bruce.demo.utils.LogUtils;
 
 /**

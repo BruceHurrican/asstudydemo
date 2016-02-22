@@ -37,16 +37,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-
-import com.bruce.demo.base.BaseFragment;
-import com.bruce.demo.studydata.fragments.FragmentsActivity;
-import com.bruce.demo.R;
-import com.bruce.demo.utils.LogUtils;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import com.bruce.demo.R;
+import com.bruce.demo.base.BaseFragment;
+import com.bruce.demo.studydata.fragments.FragmentsActivity;
+import com.bruce.demo.utils.LogUtils;
 
 /**
  * google api10 sample ContactManager 查看联系人

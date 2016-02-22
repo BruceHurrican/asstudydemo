@@ -32,13 +32,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
-import android.webkit.JsResult;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-
-import com.bruce.demo.DemoApplication;
+import android.webkit.*;
 import com.bruce.demo.base.BaseFragment;
 import com.bruce.demo.utils.LogUtils;
 

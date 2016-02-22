@@ -36,13 +36,11 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
-import com.bruce.demo.base.BaseFragment;
-import com.bruce.demo.R;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.bruce.demo.R;
+import com.bruce.demo.base.BaseFragment;
 
 /**
  * 利用 Camera 实现 3D 卡片翻转动画

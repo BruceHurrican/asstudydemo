@@ -35,7 +35,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragmentActivity;
 import com.bruce.demo.studydata.fragments.crash.CrashFragment;
@@ -54,9 +55,6 @@ import com.bruce.demo.widget.AnimListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * fragment 入口
  * Created by BruceHurrican on 2015/11/15.
@@ -71,6 +69,8 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
     private List<Fragment> fragments;
     private List<String> fragmentNamesList;
     private FragmentManager fragmentManager;
+    private String fragmentName;
+    private Fragment targetFragment;
 
     @Override
     public String getTAG() {
@@ -101,7 +101,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         addFragment2Container("滑动效果练习");
         addFragment2Container("控件练习");
         addFragment2Container("数据库");
-        addFragment2Container( "文件储存");
+        addFragment2Container("文件储存");
         addFragment2Container("webview js 交互");
         addFragment2Container("利用 Camera 实现 3D 卡片翻转动画");
         addFragment2Container("美团下拉刷新动画学习");
@@ -120,8 +120,6 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         fragmentNamesList.add(fragmentName);
     }
 
-    private String fragmentName;
-    private Fragment targetFragment;
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -129,25 +127,25 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         LogUtils.d(String.format("你点击了第 %s 条Demo %s", position + 1, fragmentNamesList.get(position)));
         LogUtils.i("当前线程为 -->" + Thread.currentThread());
         fragmentName = fragmentNamesList.get(position);
-        if (fragmentName.equals("滑动效果练习")){
+        if (fragmentName.equals("滑动效果练习")) {
             targetFragment = new SlidingFragment();
-        } else if (fragmentName.equals("控件练习")){
+        } else if (fragmentName.equals("控件练习")) {
             targetFragment = new WidgetFragment();
-        }else if (fragmentName.equals("数据库")) {
+        } else if (fragmentName.equals("数据库")) {
             targetFragment = new DBFragment();
-        }else if (fragmentName.equals("文件储存")) {
+        } else if (fragmentName.equals("文件储存")) {
             targetFragment = new IOFragment();
-        }else if (fragmentName.equals("webview js 交互")) {
+        } else if (fragmentName.equals("webview js 交互")) {
             targetFragment = new JSWebviewFragment();
-        }else if (fragmentName.equals("利用 Camera 实现 3D 卡片翻转动画")) {
+        } else if (fragmentName.equals("利用 Camera 实现 3D 卡片翻转动画")) {
             targetFragment = new Rotate3dFragment();
-        }else if (fragmentName.equals("美团下拉刷新动画学习")) {
+        } else if (fragmentName.equals("美团下拉刷新动画学习")) {
             targetFragment = new MTFragment();
-        }else if (fragmentName.equals("测试 日志生成删除应用缓存本地文件")) {
+        } else if (fragmentName.equals("测试 日志生成删除应用缓存本地文件")) {
             targetFragment = new CrashFragment();
-        }else if (fragmentName.equals("查看联系人")) {
+        } else if (fragmentName.equals("查看联系人")) {
             targetFragment = new ContactManagerFragment();
-        }else if (fragmentName.equals("谷歌模板-Blank")) {
+        } else if (fragmentName.equals("谷歌模板-Blank")) {
             targetFragment = new BlankFragment();
         }
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果

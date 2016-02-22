@@ -25,22 +25,22 @@
   -->
 
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:height="200dp"
-    android:width="200dp"
-    android:viewportHeight="100"
-    android:viewportWidth="100">
-<group>
-    <path
-        android:name="path1"
-        android:strokeColor="@android:color/holo_green_dark"
-        android:strokeWidth="5"
-        android:strokeLineCap="round"
-        android:pathData="M 20,80 L 50,80 80,80"/>
-    <path
-        android:name="path2"
-        android:strokeColor="@android:color/holo_green_dark"
-        android:strokeWidth="5"
-        android:strokeLineCap="round"
-        android:pathData="M 20,20 L 50,20 80,20"/>
-</group>
+        android:height="200dp"
+        android:width="200dp"
+        android:viewportHeight="100"
+        android:viewportWidth="100">
+    <group>
+        <path
+                android:name="path1"
+                android:strokeColor="@android:color/holo_green_dark"
+                android:strokeWidth="5"
+                android:strokeLineCap="round"
+                android:pathData="M 20,80 L 50,80 80,80"/>
+        <path
+                android:name="path2"
+                android:strokeColor="@android:color/holo_green_dark"
+                android:strokeWidth="5"
+                android:strokeLineCap="round"
+                android:pathData="M 20,20 L 50,20 80,20"/>
+    </group>
 </vector>

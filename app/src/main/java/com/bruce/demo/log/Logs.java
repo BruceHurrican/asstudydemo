@@ -26,7 +26,6 @@
 package com.bruce.demo.log;
 
 import android.util.Log;
-
 import com.bruce.demo.utils.Constants;
 
 /**

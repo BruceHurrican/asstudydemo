@@ -28,8 +28,8 @@
      在anim下编写 根元素为 objectAnimator 时,为了保证代码编写方便,可先
      在animator下写好代码后,考入anim下-->
 <objectAnimator
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="4000"
-    android:propertyName="rotation"
-    android:valueFrom="0"
-    android:valueTo="360"/>
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:duration="4000"
+        android:propertyName="rotation"
+        android:valueFrom="0"
+        android:valueTo="360"/>

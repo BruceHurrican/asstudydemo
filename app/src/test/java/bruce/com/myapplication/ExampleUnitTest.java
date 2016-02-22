@@ -27,8 +27,9 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+
     @Test
-    public void tests() throws Exception{
+    public void tests() throws Exception {
         assertTrue(PublicUtil.isUrl("https://www.baidu.com"));
     }
 }

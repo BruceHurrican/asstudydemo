@@ -26,7 +26,6 @@
 package com.bruce.demo;
 
 import android.test.AndroidTestCase;
-
 import com.bruce.demo.utils.DpSpPxUtil;
 
 /**

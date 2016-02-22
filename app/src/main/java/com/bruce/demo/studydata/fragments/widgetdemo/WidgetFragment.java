@@ -45,7 +45,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.bruce.demo.MainActivity;
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
@@ -54,10 +56,6 @@ import com.bruce.demo.widget.ScratchCardView;
 import com.bruce.demo.widget.TitleBar2;
 
 import java.io.File;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * 控件练习

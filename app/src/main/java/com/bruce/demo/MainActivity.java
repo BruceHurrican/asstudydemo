@@ -38,9 +38,10 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.studydata.activities.media.CameraActivity;
 import com.bruce.demo.studydata.fragments.FragmentsActivity;
@@ -55,9 +56,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 /**
  * 主Activity
  * Created by BruceHurrican on 2015/5/24.
@@ -68,6 +66,16 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     TitleBar titlebar;
     @Bind(R.id.alv_demo_list)
     AnimListView alv_demo_list;
+    @Bind(R.id.bottomBar)
+    RadioGroup bottomBar;
+    @Bind(R.id.btn_favourite)
+    RadioButton btn_favourite;
+    @Bind(R.id.btn_search)
+    RadioButton btn_search;
+    @Bind(R.id.btn_pocket)
+    RadioButton btn_pocket;
+    @Bind(R.id.btn_mine)
+    RadioButton btn_mine;
     private List<Class<? extends Activity>> demos;
     private List<String> demoNamesList;
     private Intent it;
@@ -84,6 +92,25 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(netWorkAvailableReceiver, filter);
         titlebar.setOnTitleBarClickListener(this);
+        bottomBar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.btn_favourite:
+                        LogUtils.d("收藏按钮被点击");
+                        break;
+                    case R.id.btn_search:
+                        LogUtils.d("搜索按钮被点击");
+                        break;
+                    case R.id.btn_pocket:
+                        LogUtils.d("钱包按钮被点击");
+                        break;
+                    case R.id.btn_mine:
+                        LogUtils.d("我的按钮被点击");
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -144,6 +171,26 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @OnCheckedChanged({R.id.btn_favourite, R.id.btn_search, R.id.btn_pocket, R.id.btn_mine})
+    public void bottomBarBtnTxtPressed(CompoundButton buttonView, boolean isChecked) {
+        LogUtils.d("buttonView:" + buttonView + "\nisChecked:" + isChecked);
+        switch (buttonView.getId()) {
+            case R.id.btn_favourite:
+                btn_favourite.setTextColor(getResources().getColor(isChecked ? R.color.bottombartxt_pressed : R.color.bottombartxt_unpressed));
+                break;
+            case R.id.btn_search:
+                btn_search.setTextColor(getResources().getColor(isChecked ? R.color.bottombartxt_pressed : R.color.bottombartxt_unpressed));
+                break;
+            case R.id.btn_pocket:
+                btn_pocket.setTextColor(getResources().getColor(isChecked ? R.color.bottombartxt_pressed : R.color.bottombartxt_unpressed));
+                break;
+            case R.id.btn_mine:
+                btn_mine.setTextColor(getResources().getColor(isChecked ? R.color.bottombartxt_pressed : R.color.bottombartxt_unpressed));
+                break;
+        }
+
     }
 
     @Override

@@ -29,32 +29,32 @@
                 android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btn_createDB"
-        style="@style/BaseButton"
-        android:text="创建数据库"/>
+            android:id="@+id/btn_createDB"
+            style="@style/BaseButton"
+            android:text="创建数据库"/>
 
     <Button
-        android:id="@+id/btn_add"
-        style="@style/BaseButton"
-        android:layout_toRightOf="@id/btn_createDB"
-        android:text="增加数据"/>
+            android:id="@+id/btn_add"
+            style="@style/BaseButton"
+            android:layout_toRightOf="@id/btn_createDB"
+            android:text="增加数据"/>
 
     <Button
-        android:id="@+id/btn_update"
-        style="@style/BaseButton"
-        android:layout_toRightOf="@id/btn_add"
-        android:text="更新数据"/>
+            android:id="@+id/btn_update"
+            style="@style/BaseButton"
+            android:layout_toRightOf="@id/btn_add"
+            android:text="更新数据"/>
 
     <Button
-        android:id="@+id/btn_delete"
-        style="@style/BaseButton"
-        android:layout_below="@id/btn_createDB"
-        android:text="删除数据"/>
+            android:id="@+id/btn_delete"
+            style="@style/BaseButton"
+            android:layout_below="@id/btn_createDB"
+            android:text="删除数据"/>
 
     <Button
-        android:id="@+id/btn_query"
-        style="@style/BaseButton"
-        android:layout_below="@id/btn_createDB"
-        android:layout_toRightOf="@id/btn_delete"
-        android:text="查询数据"/>
+            android:id="@+id/btn_query"
+            style="@style/BaseButton"
+            android:layout_below="@id/btn_createDB"
+            android:layout_toRightOf="@id/btn_delete"
+            android:text="查询数据"/>
 </RelativeLayout>

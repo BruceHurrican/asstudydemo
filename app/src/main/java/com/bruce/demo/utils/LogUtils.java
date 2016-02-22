@@ -27,14 +27,9 @@ package com.bruce.demo.utils;
 
 import android.os.Environment;
 import android.text.TextUtils;
-
 import com.bruce.demo.log.Logs;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;

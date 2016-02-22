@@ -24,26 +24,35 @@
   -->
 
 <!-- 主Demo布局文件 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
 
     <com.bruce.demo.widget.TitleBar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"/>
 
     <TextView
+            android:id="@+id/tv_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="工作Demo"/>
-
+            android:text="工作Demo"
+            android:layout_below="@id/titlebar"
+            tools:ignore="HardcodedText"/>
+    <include
+            android:id="@+id/bottomBar"
+            layout="@layout/view_bottom"/>
     <com.bruce.demo.widget.AnimListView
             android:id="@+id/alv_demo_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/bottomBar"
+            android:layout_below="@id/tv_title"
             android:background="@android:color/background_dark"/>
-</LinearLayout>
+</RelativeLayout>
 

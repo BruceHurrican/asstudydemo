@@ -25,9 +25,9 @@
   -->
 
 <animated-vector
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/svg_vector">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:drawable="@drawable/svg_vector">
     <target
-        android:name="svg_test"
-        android:animation="@anim/svg_animator"/>
+            android:name="svg_test"
+            android:animation="@anim/svg_animator"/>
 </animated-vector>

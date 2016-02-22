@@ -30,4 +30,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="btn_pressed">#00bb9c</color>
     <color name="btn_unpressed">#11cd6e</color>
+    <color name="bottombartxt_pressed">#00A1E7</color>
+    <color name="bottombartxt_unpressed">#C1C1C1</color>
 </resources>
