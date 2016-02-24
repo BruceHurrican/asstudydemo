@@ -180,27 +180,29 @@ public class WidgetFragment extends BaseFragment {
                 scratch_card_view.resetScratchView("再抽一次吧");
                 break;
             case R.id.btn_animate:
-                scratch_card_view.animate().alpha(0.5f).y(250f).scaleX(0.5f).setDuration(2000).setListener(new AnimatorListenerAdapter() {
+                scratch_card_view.animate().alpha(0.5f).y(250f).rotationBy(90f).scaleX(0.5f).setDuration(2000).setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animation) {
-                        LogUtils.i("=====属性动画开始=======");
+                        LogUtils.i("=====属性动画开始1=======");
                     }
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
-                        LogUtils.i("=====属性动画结束=======");
+                        LogUtils.i("=====属性动画结束1=======");
                     }
                 }).withStartAction(new Runnable() {
                     @Override
                     public void run() {
                         showToastShort("属性动画开始");
+                        LogUtils.i("=====属性动画开始2=======");
                     }
                 }).withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         showToastShort("属性动画结束");
-                        scratch_card_view.animate().rotationBy(90f);
+                        LogUtils.i("=====属性动画结束2=======");
+                        scratch_card_view.animate().cancel();
                     }
                 });
                 break;
