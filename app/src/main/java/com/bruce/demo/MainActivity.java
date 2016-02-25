@@ -26,6 +26,7 @@
 package com.bruce.demo;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,15 +34,18 @@ import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.studydata.activities.media.CameraActivity;
 import com.bruce.demo.studydata.fragments.FragmentsActivity;
@@ -55,6 +59,10 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 
 /**
  * 主Activity
@@ -164,7 +172,11 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 //        Logs.i(TAG, "你点击了第" + (position + 1) + "条Demo--"+demoNamesList.get(position));
         LogUtils.i(String.format("你点击了第 %s 条Demo %s", position + 1, demoNamesList.get(position)));
         LogUtils.i("当前线程为 -->" + Thread.currentThread());
-        startActivity(it);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(it, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+        } else {
+            startActivity(it);
+        }
     }
 
     @Override

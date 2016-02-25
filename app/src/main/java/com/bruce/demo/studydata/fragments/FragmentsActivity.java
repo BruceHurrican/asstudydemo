@@ -33,6 +33,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.graphics.Palette;
+import android.transition.Explode;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -86,6 +87,10 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setEnterTransition(new Explode());
+            getWindow().setExitTransition(new Explode());
+        }
         setContentView(R.layout.fragment_activity);
         ButterKnife.bind(this);
         LogUtils.i("当前进程ID：" + android.os.Process.myPid());
