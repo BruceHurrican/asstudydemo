@@ -45,9 +45,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.bruce.demo.MainActivity;
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
@@ -56,6 +54,11 @@ import com.bruce.demo.widget.ScratchCardView;
 import com.bruce.demo.widget.TitleBar2;
 
 import java.io.File;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 控件练习
@@ -180,10 +183,21 @@ public class WidgetFragment extends BaseFragment {
                 scratch_card_view.resetScratchView("再抽一次吧");
                 break;
             case R.id.btn_animate:
+                final AtomicBoolean atomicBoolean = new AtomicBoolean(true);
                 scratch_card_view.animate().alpha(0.5f).y(250f).rotationBy(90f).scaleX(0.5f).setDuration(2000).setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         LogUtils.i("=====属性动画开始1=======");
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            if (atomicBoolean.get()) {
+                                // 控件显示阴影
+                                scratch_card_view.animate().translationZ(150f);
+                                atomicBoolean.set(false);
+                            } else {
+                                scratch_card_view.animate().translationZ(0f);
+                                atomicBoolean.set(true);
+                            }
+                        }
                     }
 
                     @Override
@@ -229,6 +243,7 @@ public class WidgetFragment extends BaseFragment {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     iv_svg2.setImageResource(R.drawable.svg_search_anim);
                     ((Animatable) iv_svg2.getDrawable()).start();
+                    btn_svg2.setTranslationZ(100f);
                 } else {
                     iv_svg2.setImageResource(R.mipmap.rotate3danim2);
                     LogUtils.e("系统当前版本不支持 SVG 动画");

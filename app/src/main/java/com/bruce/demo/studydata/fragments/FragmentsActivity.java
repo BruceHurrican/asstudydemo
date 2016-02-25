@@ -25,18 +25,21 @@
 
 package com.bruce.demo.studydata.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.graphics.Palette;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragmentActivity;
 import com.bruce.demo.studydata.fragments.crash.CrashFragment;
@@ -54,6 +57,9 @@ import com.bruce.demo.widget.AnimListView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * fragment 入口
@@ -85,6 +91,23 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         LogUtils.i("当前进程ID：" + android.os.Process.myPid());
         fragmentManager = getSupportFragmentManager();
         initContainer();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.rotate3danim);
+//        Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+//            @Override
+//            public void onGenerated(Palette palette) {
+//                // 通过 Palette 来获取对应的色调
+//                Palette.Swatch vibrant = palette.getDarkVibrantSwatch();
+//                // 将颜色设置给相应的组件
+////                getActionBar().setBackgroundDrawable(new ColorDrawable(vibrant.getRgb()));
+//                Window window = getWindow();
+//                window.setStatusBarColor(vibrant.getRgb());
+//            }
+//        });
+            Palette.Builder builder = Palette.from(bitmap);
+            getWindow().setStatusBarColor(builder.generate().getDarkVibrantSwatch().getRgb());
+        }
     }
 
     @Override
