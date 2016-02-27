@@ -76,6 +76,7 @@
         android:id="@+id/btn_svg"
         style="@style/BaseButton"
         android:layout_below="@id/btn_animate"
+        android:background="@drawable/btn_lollipop"
         android:text="SVG动画"
         tools:ignore="HardCodedText"/>
 
@@ -84,6 +85,7 @@
         style="@style/BaseButton"
         android:layout_below="@id/btn_animate"
         android:layout_toRightOf="@id/btn_svg"
+        android:background="?android:attr/selectableItemBackground"
         android:text="SVG动画2"
         tools:ignore="HardCodedText"/>
 
@@ -92,15 +94,23 @@
         style="@style/BaseButton"
         android:layout_below="@id/btn_animate"
         android:layout_toRightOf="@id/btn_svg2"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         android:elevation="150dp"
         android:text="SVG动画3"
+        tools:ignore="HardCodedText"/>
+
+    <Button
+        android:id="@+id/btn_animate2"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_svg3"
+        android:text="Circular Reveal动画"
         tools:ignore="HardCodedText"/>
 
     <com.bruce.demo.widget.ScratchCardView
         android:id="@+id/scratch_card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_svg"/>
+        android:layout_below="@id/btn_animate2"/>
 
     <ImageView
         android:id="@+id/iv_svg2"
@@ -109,6 +119,6 @@
         android:layout_below="@id/btn_animate"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        android:src="@drawable/leak_canary_icon"
+        android:src="@mipmap/rotate3danim"
         tools:ignore="ContentDescription"/>
 </RelativeLayout>

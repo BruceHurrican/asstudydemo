@@ -41,7 +41,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -80,12 +82,15 @@ public class WidgetFragment extends BaseFragment {
     Button btn_svg2;
     @Bind(R.id.btn_svg3)
     Button btn_svg3;
+    @Bind(R.id.btn_animate2)
+    Button btn_animate2;
     @Bind(R.id.title_bar)
     TitleBar2 title_bar;
     @Bind(R.id.scratch_card_view)
     ScratchCardView scratch_card_view;
     @Bind(R.id.iv_svg2)
     ImageView iv_svg2;
+    boolean animate2Flag = true;
     private ImageView iv;
 
     @Override
@@ -154,7 +159,7 @@ public class WidgetFragment extends BaseFragment {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @OnClick({R.id.btn_send_notification, R.id.btn_reset, R.id.btn_animate, R.id.btn_svg, R.id.btn_svg2, R.id.btn_svg3})
+    @OnClick({R.id.btn_send_notification, R.id.btn_reset, R.id.btn_animate, R.id.btn_svg, R.id.btn_svg2, R.id.btn_svg3, R.id.btn_animate2})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_send_notification:
@@ -248,6 +253,27 @@ public class WidgetFragment extends BaseFragment {
                     iv_svg2.setImageResource(R.mipmap.rotate3danim2);
                     LogUtils.e("系统当前版本不支持 SVG 动画");
                     showToastShort("系统当前版本不支持 SVG 动画");
+                }
+                break;
+            case R.id.btn_animate2:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    if (animate2Flag) {
+                        Animator animator = ViewAnimationUtils.createCircularReveal(iv_svg2, iv_svg2.getWidth() / 2, iv_svg2.getHeight() / 2, iv_svg2.getWidth(), 0);
+                        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                        animator.setDuration(2000);
+                        animator.start();
+                        animate2Flag = false;
+                    } else {
+                        Animator animator = ViewAnimationUtils.createCircularReveal(iv_svg2, 0, 0, 0, (float) Math.hypot(iv_svg2.getWidth(), iv_svg2.getHeight()));
+                        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                        animator.setDuration(2000);
+                        animator.start();
+                        animate2Flag = true;
+                    }
+                } else {
+                    iv_svg2.setImageResource(R.mipmap.rotate3danim2);
+                    LogUtils.e("系统当前版本不支持 CircularReveal 动画");
+                    showToastShort("系统当前版本不支持 CircularReveal 动画");
                 }
                 break;
         }

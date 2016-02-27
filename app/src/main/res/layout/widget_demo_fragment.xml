@@ -25,10 +25,10 @@
   -->
 
 <RelativeLayout
+    android:id="@+id/rl_root"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:custom="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/rl_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -94,11 +94,17 @@
             android:text="SVG动画3"
             tools:ignore="HardCodedText"/>
 
+    <Button
+        android:id="@+id/btn_animate2"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_svg3"
+        android:text="Circular Reveal动画"
+        tools:ignore="HardCodedText"/>
     <com.bruce.demo.widget.ScratchCardView
             android:id="@+id/scratch_card_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btn_svg"/>
+            android:layout_below="@id/btn_animate2"/>
 
     <ImageView
             android:id="@+id/iv_svg2"
