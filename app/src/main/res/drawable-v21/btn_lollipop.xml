@@ -28,9 +28,9 @@
         android:color="@android:color/holo_red_light">
     <item>
         <shape
-            android:shape="oval">
+                android:shape="oval">
             <solid
-                android:color="?android:colorAccent"/>
+                    android:color="?android:colorAccent"/>
         </shape>
     </item>
 </ripple>
