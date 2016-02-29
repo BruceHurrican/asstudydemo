@@ -30,33 +30,33 @@
               android:orientation="vertical">
 
     <EditText
-            android:id="@+id/et_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="请输入要保存的信息"
-            android:singleLine="true"
-            android:textColor="#fff"
-            android:textSize="22sp"/>
+        android:id="@+id/et_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入要保存的信息"
+        android:singleLine="true"
+        android:textColor="#fff"
+        android:textSize="22sp"/>
 
     <TextView
-            android:id="@+id/tv_show"
-            style="@style/BaseTextView"
-            android:text="从文件中获取的信息"
-            android:textColor="#0d0"
-            android:textSize="22sp"/>
+        android:id="@+id/tv_show"
+        style="@style/BaseTextView"
+        android:text="从文件中获取的信息"
+        android:textColor="#0d0"
+        android:textSize="22sp"/>
 
     <Button
-            android:id="@+id/btn_save"
-            style="@style/BaseButton"
-            android:text="保存信息"
-            android:textColor="#fff"
-            android:textSize="22sp"/>
+        android:id="@+id/btn_save"
+        style="@style/BaseButton"
+        android:text="保存信息"
+        android:textColor="#fff"
+        android:textSize="22sp"/>
 
     <Button
-            android:id="@+id/btn_read"
-            style="@style/BaseButton"
-            android:text="读取信息"
-            android:textColor="#fff"
-            android:textSize="22sp"/>
+        android:id="@+id/btn_read"
+        style="@style/BaseButton"
+        android:text="读取信息"
+        android:textColor="#fff"
+        android:textSize="22sp"/>
 
 </LinearLayout>

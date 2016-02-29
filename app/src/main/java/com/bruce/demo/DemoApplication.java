@@ -28,6 +28,7 @@ package com.bruce.demo;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+
 import com.bruce.demo.utils.Constants;
 import com.bruce.demo.utils.LogUtils;
 import com.squareup.leakcanary.LeakCanary;

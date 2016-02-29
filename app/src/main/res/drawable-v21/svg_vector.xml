@@ -29,10 +29,10 @@
         android:viewportHeight="100"
         android:viewportWidth="100">
     <group
-            android:name="svg_test"
-            android:rotation="0">
+        android:name="svg_test"
+        android:rotation="0">
         <path
-                android:fillColor="@android:color/holo_blue_bright"
-                android:pathData="M 25 50 a 25,25 0 1,0 50,0"/>
+            android:fillColor="@android:color/holo_blue_bright"
+            android:pathData="M 25 50 a 25,25 0 1,0 50,0"/>
     </group>
 </vector>

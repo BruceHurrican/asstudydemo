@@ -35,6 +35,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.bruce.demo.base.BaseFragment;
 import com.bruce.demo.utils.LogUtils;
 import com.bruce.demo.utils.PublicUtil;

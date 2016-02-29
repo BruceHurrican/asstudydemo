@@ -27,6 +27,7 @@ package com.bruce.demo.utils.volley;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;
+
 import com.android.volley.toolbox.ImageLoader;
 
 /**

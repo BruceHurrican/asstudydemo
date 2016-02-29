@@ -12,41 +12,45 @@
   -->
 
 <RadioGroup
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/bottomBar"
-        android:background="#F7F7F7"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:showIn="@layout/activity_main">
+    android:id="@+id/bottomBar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="#F7F7F7"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    tools:showIn="@layout/activity_main">
+
     <RadioButton
-            android:id="@+id/btn_favourite"
-            style="@style/BottomBarBtn"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/bg_favourite"
-            android:checked="true"
-            android:textColor="@color/bottombartxt_pressed"
-            android:text="收藏"/>
+        android:id="@+id/btn_favourite"
+        style="@style/BottomBarBtn"
+        android:layout_weight="1"
+        android:checked="true"
+        android:drawableTop="@drawable/bg_favourite"
+        android:text="收藏"
+        android:textColor="@color/bottombartxt_pressed"/>
+
     <RadioButton
-            android:id="@+id/btn_search"
-            android:layout_weight="1"
-            style="@style/BottomBarBtn"
-            android:drawableTop="@drawable/bg_search"
-            android:text="搜索"/>
+        android:id="@+id/btn_search"
+        style="@style/BottomBarBtn"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/bg_search"
+        android:text="搜索"/>
+
     <RadioButton
-            android:id="@+id/btn_pocket"
-            android:layout_weight="1"
-            style="@style/BottomBarBtn"
-            android:drawableTop="@drawable/bg_pocket"
-            android:text="钱包"/>
+        android:id="@+id/btn_pocket"
+        style="@style/BottomBarBtn"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/bg_pocket"
+        android:text="钱包"/>
+
     <RadioButton
-            android:id="@+id/btn_mine"
-            android:layout_weight="1"
-            style="@style/BottomBarBtn"
-            android:drawableTop="@drawable/bg_mine"
-            android:text="我的"/>
+        android:id="@+id/btn_mine"
+        style="@style/BottomBarBtn"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/bg_mine"
+        android:text="我的"/>
 </RadioGroup>

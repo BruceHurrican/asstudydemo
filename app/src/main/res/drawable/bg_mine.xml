@@ -12,6 +12,6 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true" android:drawable="@mipmap/mine_pressed"/>
-    <item android:state_checked="false" android:drawable="@mipmap/mine_unpressed"/>
+    <item android:drawable="@mipmap/mine_pressed" android:state_checked="true"/>
+    <item android:drawable="@mipmap/mine_unpressed" android:state_checked="false"/>
 </selector>

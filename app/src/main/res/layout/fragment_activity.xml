@@ -31,27 +31,27 @@
                 android:background="@android:color/holo_green_dark">
 
     <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="fragment 列表"
-            android:textColor="#fff"/>
+        android:id="@+id/tv_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="fragment 列表"
+        android:textColor="#fff"/>
 
     <com.bruce.demo.widget.AnimListView
-            android:id="@+id/alv_fragment_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_title"
-            android:focusable="true"
-            android:listSelector="@android:color/holo_blue_light"
-            tools:listitem="@layout/main_item"/>
+        android:id="@+id/alv_fragment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:focusable="true"
+        android:listSelector="@android:color/holo_blue_light"
+        tools:listitem="@layout/main_item"/>
 
     <RelativeLayout
-            android:id="@+id/rl_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/tv_title"
-            android:visibility="gone"/>
+        android:id="@+id/rl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_title"
+        android:visibility="gone"/>
 </RelativeLayout>
 

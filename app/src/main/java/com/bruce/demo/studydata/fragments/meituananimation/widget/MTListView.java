@@ -36,6 +36,7 @@ import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.bruce.demo.R;
 import com.bruce.demo.utils.LogUtils;
 

@@ -28,90 +28,90 @@
             android:layout_height="match_parent">
 
     <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TableRow>
 
             <TextView
-                    style="@style/BaseTextView"
-                    android:text="目标账户"/>
+                style="@style/BaseTextView"
+                android:text="目标账户"/>
         </TableRow>
 
         <TableRow>
 
             <Spinner
-                    android:id="@+id/sp_accountSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                android:id="@+id/sp_accountSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
         </TableRow>
 
         <TableRow>
 
             <TextView
-                    style="@style/BaseTextView"
-                    android:text="联系人姓名"/>
+                style="@style/BaseTextView"
+                android:text="联系人姓名"/>
         </TableRow>
 
         <TableRow>
 
             <EditText
-                    android:id="@+id/et_contactNameEditText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                android:id="@+id/et_contactNameEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
         </TableRow>
 
         <TableRow>
 
             <TextView
-                    style="@style/BaseTextView"
-                    android:text="联系电话"/>
+                style="@style/BaseTextView"
+                android:text="联系电话"/>
         </TableRow>
 
         <TableRow>
 
             <EditText
-                    android:id="@+id/et_contactPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                android:id="@+id/et_contactPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
             <Spinner
-                    android:id="@+id/sp_contactPhoneType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                android:id="@+id/sp_contactPhoneType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </TableRow>
 
         <TableRow>
 
             <TextView
-                    style="@style/BaseTextView"
-                    android:text="Email"/>
+                style="@style/BaseTextView"
+                android:text="Email"/>
         </TableRow>
 
         <TableRow>
 
             <EditText
-                    android:id="@+id/et_contactEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                android:id="@+id/et_contactEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
             <Spinner
-                    android:id="@+id/sp_contactEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                android:id="@+id/sp_contactEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </TableRow>
 
         <TableRow>
 
             <Button
-                    android:id="@+id/btn_contactSave"
-                    style="@style/BaseButton"
-                    android:layout_weight="1"
-                    android:text="保存"/>
+                android:id="@+id/btn_contactSave"
+                style="@style/BaseButton"
+                android:layout_weight="1"
+                android:text="保存"/>
         </TableRow>
     </TableLayout>
 

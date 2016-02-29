@@ -27,6 +27,6 @@
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
                  android:drawable="@drawable/svg_search">
     <target
-            android:name="search"
-            android:animation="@anim/svg_animator_search"/>
+        android:name="search"
+        android:animation="@anim/svg_animator_search"/>
 </animated-vector>

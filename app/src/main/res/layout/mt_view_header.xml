@@ -31,28 +31,28 @@
               android:orientation="vertical">
 
     <com.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshFirstStepView
-            android:id="@+id/mt_first"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_margin="10dp"/>
+        android:id="@+id/mt_first"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"/>
 
     <com.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshSecondStepView
-            android:id="@+id/mt_second"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_margin="10dp"
-            android:visibility="gone"/>
+        android:id="@+id/mt_second"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:visibility="gone"/>
 
     <com.bruce.demo.studydata.fragments.meituananimation.widget.MTRefreshThirdStepView
-            android:id="@+id/mt_third"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_margin="10dp"
-            android:visibility="gone"/>
+        android:id="@+id/mt_third"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:visibility="gone"/>
 
     <TextView
-            android:id="@+id/tv_pull_to_refresh"
-            style="@style/BaseTextView"
-            android:layout_marginLeft="10dp"
-            android:text="下拉刷新"/>
+        android:id="@+id/tv_pull_to_refresh"
+        style="@style/BaseTextView"
+        android:layout_marginLeft="10dp"
+        android:text="下拉刷新"/>
 </LinearLayout>

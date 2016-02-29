@@ -31,21 +31,21 @@
               android:orientation="vertical">
 
     <Button
-            android:id="@+id/btn_camera"
-            style="@style/BaseButton"
-            android:text="系统相机"
-            tools:ignore="HardcodedText"/>
+        android:id="@+id/btn_camera"
+        style="@style/BaseButton"
+        android:text="系统相机"
+        tools:ignore="HardcodedText"/>
 
     <Button
-            android:id="@+id/btn_album"
-            style="@style/BaseButton"
-            android:text="系统相册"
-            tools:ignore="HardcodedText"/>
+        android:id="@+id/btn_album"
+        style="@style/BaseButton"
+        android:text="系统相册"
+        tools:ignore="HardcodedText"/>
 
     <ImageView
-            android:id="@+id/iv_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            tools:ignore="ContentDescription"/>
+        android:id="@+id/iv_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription"/>
 </LinearLayout>

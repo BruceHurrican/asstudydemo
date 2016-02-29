@@ -26,36 +26,36 @@
   -->
 
 <RadioGroup
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#336DCAF6"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#336DCAF6"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <RadioButton
-            android:id="@+id/btn_1"
-            style="@style/BaseRadioButton"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="首页1"/>
+        android:id="@+id/btn_1"
+        style="@style/BaseRadioButton"
+        android:layout_weight="1"
+        android:checked="true"
+        android:text="首页1"/>
 
     <RadioButton
-            android:id="@+id/btn_2"
-            style="@style/BaseRadioButton"
-            android:layout_weight="1"
-            android:text="首页2"/>
+        android:id="@+id/btn_2"
+        style="@style/BaseRadioButton"
+        android:layout_weight="1"
+        android:text="首页2"/>
 
     <RadioButton
-            android:id="@+id/btn_3"
-            style="@style/BaseRadioButton"
-            android:layout_weight="1"
-            android:text="首页3"/>
+        android:id="@+id/btn_3"
+        style="@style/BaseRadioButton"
+        android:layout_weight="1"
+        android:text="首页3"/>
 
     <RadioButton
-            android:id="@+id/btn_4"
-            style="@style/BaseRadioButton"
-            android:layout_weight="1"
-            android:text="首页4"/>
+        android:id="@+id/btn_4"
+        style="@style/BaseRadioButton"
+        android:layout_weight="1"
+        android:text="首页4"/>
 </RadioGroup>

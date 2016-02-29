@@ -227,12 +227,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 //                            + "\nSD卡中缓存文件大小->" + DataCleanManager.getFileSize(getExternalCacheDir())
 //                            + "\nSD卡中数据文件大小->" + DataCleanManager.getFileSize(getExternalFilesDir(Environment.DIRECTORY_PICTURES))
 //                            + "\n整个应用数据文件大小->" + DataCleanManager.getFileSize(new File("/data/data/" + getPackageName())));
-                    LogUtils.i("缓存文件大小->" + DataCleanManager.getFormatSize(this, getCacheDir())
-                            + "\n数据文件大小->" + DataCleanManager.getFormatSize(this, getFilesDir())
-                            + "\nsharePreference大小->" + DataCleanManager.getFormatSize(this, new File("/data/data/" + getPackageName() + "/shared_prefs"))
-                            + "\nSD卡中缓存文件大小->" + DataCleanManager.getFormatSize(this, getExternalCacheDir())
-                            + "\nSD卡中数据文件大小->" + DataCleanManager.getFormatSize(this, getExternalFilesDir(Environment.DIRECTORY_PICTURES))
-                            + "\n整个应用数据文件大小->" + DataCleanManager.getFormatSize(this, new File("/data/data/" + getPackageName())));
+                    LogUtils.i("缓存文件大小->" + DataCleanManager.getFormatSize(this, getCacheDir()) + "\n数据文件大小->" + DataCleanManager.getFormatSize(this, getFilesDir()) + "\nsharePreference大小->" + DataCleanManager.getFormatSize(this, new File("/data/data/" + getPackageName() + "/shared_prefs")) + "\nSD卡中缓存文件大小->" + DataCleanManager.getFormatSize(this, getExternalCacheDir()) + "\nSD卡中数据文件大小->" + DataCleanManager.getFormatSize(this, getExternalFilesDir(Environment.DIRECTORY_PICTURES)) + "\n整个应用数据文件大小->" + DataCleanManager.getFormatSize(this, new File("/data/data/" + getPackageName())));
                 } catch (Exception e) {
                     LogUtils.e(e.toString());
                 }

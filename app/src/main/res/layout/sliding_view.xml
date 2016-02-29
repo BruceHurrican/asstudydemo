@@ -31,22 +31,22 @@
                                                         android:orientation="vertical">
 
     <TextView
-            style="@style/BaseTextView"
-            android:background="#f00"
-            android:text="hello world"
-            tools:ignore="HardcodedText"/>
+        style="@style/BaseTextView"
+        android:background="#f00"
+        android:text="hello world"
+        tools:ignore="HardcodedText"/>
 
     <TextView
-            style="@style/BaseTextView"
-            android:background="#ff0"
-            android:text="hello world2"
-            android:textColor="#000"
-            tools:ignore="HardcodedText"/>
+        style="@style/BaseTextView"
+        android:background="#ff0"
+        android:text="hello world2"
+        android:textColor="#000"
+        tools:ignore="HardcodedText"/>
 
     <TextView
-            style="@style/BaseTextView"
-            android:background="#00f"
-            android:text="hello world3"
-            tools:ignore="HardcodedText"/>
+        style="@style/BaseTextView"
+        android:background="#00f"
+        android:text="hello world3"
+        tools:ignore="HardcodedText"/>
 
 </com.bruce.demo.studydata.fragments.sliding.SlidingView>

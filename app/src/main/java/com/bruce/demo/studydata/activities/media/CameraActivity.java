@@ -35,9 +35,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.utils.LogUtils;
@@ -45,6 +43,10 @@ import com.bruce.demo.utils.LogUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 调用系统照相机获取相片

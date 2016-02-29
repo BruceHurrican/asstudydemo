@@ -35,12 +35,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
 import com.bruce.demo.utils.PublicUtil;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 数据持久化储存

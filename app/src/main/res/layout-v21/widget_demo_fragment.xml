@@ -25,100 +25,100 @@
   -->
 
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:custom="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/rl_root"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:id="@+id/rl_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <com.bruce.demo.widget.TitleBar2
-            android:id="@+id/title_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            custom:leftBackground="@drawable/btn_left_arrow"
-            custom:leftText="左按钮"
-            custom:leftTextColor="#a3d"
-            custom:leftTextSize="8sp"
-            custom:rightBackground="@drawable/btn_right_arrow"
-            custom:rightText="右按钮"
-            custom:rightTextColor="#aaddff"
-            custom:rightTextSize="8sp"
-            custom:titleBarBackground="#ada220"
-            custom:titleText="控件练习"
-            custom:titleTextColor2="#fff"
-            custom:titleTextSize="12sp"/>
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:leftBackground="@drawable/btn_left_arrow"
+        custom:leftText="左按钮"
+        custom:leftTextColor="#a3d"
+        custom:leftTextSize="8sp"
+        custom:rightBackground="@drawable/btn_right_arrow"
+        custom:rightText="右按钮"
+        custom:rightTextColor="#aaddff"
+        custom:rightTextSize="8sp"
+        custom:titleBarBackground="#ada220"
+        custom:titleText="控件练习"
+        custom:titleTextColor2="#fff"
+        custom:titleTextSize="12sp"/>
 
     <Button
-            android:id="@+id/btn_send_notification"
-            style="@style/BaseButton"
-            android:layout_below="@id/title_bar"
-            android:text="发送通知"
-            tools:ignore="HardCodedText"/>
+        android:id="@+id/btn_send_notification"
+        style="@style/BaseButton"
+        android:layout_below="@id/title_bar"
+        android:text="发送通知"
+        tools:ignore="HardCodedText"/>
 
     <Button
-            android:id="@+id/btn_reset"
-            style="@style/BaseButton"
-            android:layout_below="@id/title_bar"
-            android:layout_toRightOf="@id/btn_send_notification"
-            android:text="重置刮刮卡"
-            tools:ignore="HardCodedText"/>
+        android:id="@+id/btn_reset"
+        style="@style/BaseButton"
+        android:layout_below="@id/title_bar"
+        android:layout_toRightOf="@id/btn_send_notification"
+        android:text="重置刮刮卡"
+        tools:ignore="HardCodedText"/>
 
     <Button
-            android:id="@+id/btn_animate"
-            style="@style/BaseButton"
-            android:layout_below="@id/title_bar"
-            android:layout_toRightOf="@id/btn_reset"
-            android:text="属性动画"
-            tools:ignore="HardCodedText"/>
+        android:id="@+id/btn_animate"
+        style="@style/BaseButton"
+        android:layout_below="@id/title_bar"
+        android:layout_toRightOf="@id/btn_reset"
+        android:text="属性动画"
+        tools:ignore="HardCodedText"/>
 
     <Button
-            android:id="@+id/btn_svg"
-            style="@style/BaseButton"
-            android:layout_below="@id/btn_animate"
-            android:background="@drawable/btn_lollipop"
-            android:text="SVG动画"
-            tools:ignore="HardCodedText"/>
+        android:id="@+id/btn_svg"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_animate"
+        android:background="@drawable/btn_lollipop"
+        android:text="SVG动画"
+        tools:ignore="HardCodedText"/>
 
     <Button
-            android:id="@+id/btn_svg2"
-            style="@style/BaseButton"
-            android:layout_below="@id/btn_animate"
-            android:layout_toRightOf="@id/btn_svg"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="SVG动画2"
-            tools:ignore="HardCodedText"/>
+        android:id="@+id/btn_svg2"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_animate"
+        android:layout_toRightOf="@id/btn_svg"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="SVG动画2"
+        tools:ignore="HardCodedText"/>
 
     <Button
-            android:id="@+id/btn_svg3"
-            style="@style/BaseButton"
-            android:layout_below="@id/btn_animate"
-            android:layout_toRightOf="@id/btn_svg2"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:elevation="150dp"
-            android:text="SVG动画3"
-            tools:ignore="HardCodedText"/>
+        android:id="@+id/btn_svg3"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_animate"
+        android:layout_toRightOf="@id/btn_svg2"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:elevation="150dp"
+        android:text="SVG动画3"
+        tools:ignore="HardCodedText"/>
 
     <Button
-            android:id="@+id/btn_animate2"
-            style="@style/BaseButton"
-            android:layout_below="@id/btn_svg3"
-            android:text="Circular Reveal动画"
-            tools:ignore="HardCodedText"/>
+        android:id="@+id/btn_animate2"
+        style="@style/BaseButton"
+        android:layout_below="@id/btn_svg3"
+        android:text="Circular Reveal动画"
+        tools:ignore="HardCodedText"/>
 
     <com.bruce.demo.widget.ScratchCardView
-            android:id="@+id/scratch_card_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btn_animate2"/>
+        android:id="@+id/scratch_card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_animate2"/>
 
     <ImageView
-            android:id="@+id/iv_svg2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btn_animate"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="150dp"
-            android:src="@mipmap/rotate3danim"
-            tools:ignore="ContentDescription"/>
+        android:id="@+id/iv_svg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_animate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:src="@mipmap/rotate3danim"
+        tools:ignore="ContentDescription"/>
 </RelativeLayout>
