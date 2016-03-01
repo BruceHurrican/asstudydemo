@@ -28,9 +28,9 @@ package com.bruce.demo;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-
 import com.bruce.demo.utils.Constants;
 import com.bruce.demo.utils.LogUtils;
+import com.github.moduth.blockcanary.BlockCanary;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -48,6 +48,8 @@ public class DemoApplication extends Application {
     private List<Activity> container;
     // memory leak tools
     private RefWatcher refWatcher;
+
+    private static Context sContext;
 
     public static RefWatcher getRefWatcher(Context context) {
         DemoApplication application = (DemoApplication) context.getApplicationContext();
@@ -70,9 +72,17 @@ public class DemoApplication extends Application {
 //        crashHandler.initActivityContainer(container);
         container = new ArrayList<>(5);
 
-        if (Constants.IS_OPEN_LEAKCANARY) {
+        if (Constants.IS_OPEN_UI_BLOCK_CANARY) {
+            sContext = this;
+            BlockCanary.install(this, new DemoBlockCanaryContext()).start();
+        }
+        if (Constants.IS_OPEN_LEAK_CANARY) {
             refWatcher = initLeakCanary();
         }
+    }
+
+    public static Context getAppContext() {
+        return sContext;
     }
 
     private RefWatcher initLeakCanary() {

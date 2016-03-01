@@ -100,7 +100,7 @@ public abstract class BaseFragment extends Fragment {
         recycleUIHandler();
         recycleWorkerHandler();
         // 监控 fragment 是否存在 memory leak
-        if (Constants.IS_OPEN_LEAKCANARY) {
+        if (Constants.IS_OPEN_LEAK_CANARY) {
             DemoApplication.getRefWatcher(getActivity()).watch(this);
         }
     }

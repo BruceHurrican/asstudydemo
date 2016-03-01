@@ -36,5 +36,9 @@ public final class Constants {
     /**
      * 是否打开内存泄漏监控
      */
-    public static final boolean IS_OPEN_LEAKCANARY = true;
+    public static final boolean IS_OPEN_LEAK_CANARY = true;
+    /**
+     * 是否打开UI卡顿监控
+     */
+    public static final boolean IS_OPEN_UI_BLOCK_CANARY = true;
 }
