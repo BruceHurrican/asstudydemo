@@ -28,6 +28,8 @@ package com.bruce.demo;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.bruce.demo.utils.Constants;
 import com.bruce.demo.utils.LogUtils;
 import com.github.moduth.blockcanary.BlockCanary;
@@ -42,14 +44,24 @@ import java.util.List;
  * Created by BruceHurrican on 2015/6/7.
  */
 public class DemoApplication extends Application {
+    // ===============game 2048==============================
+    public static SharedPreferences mSp;
+    public static int mGameGoal;
+    public static int mGameLines;
+    public static int mItemSize;
+    public static int SCORE = 0;
+    public static String SP_HIGH_SCORE = "SP_HIGH_SCORE";
+    public static String KEY_HIGH_SCORE = "KEY_HIGH_SCORE";
+    public static String KEY_GAME_LINES = "KEY_GAME_LINES";
+    public static String KEY_GAME_GOAL = "KEY_GAME_GOAL";
+    private static Context sContext;
     public Context demoAppContext;
     // used in volley_demo
 //    private static RequestQueue queues;
     private List<Activity> container;
     // memory leak tools
     private RefWatcher refWatcher;
-
-    private static Context sContext;
+    // =====================================================
 
     public static RefWatcher getRefWatcher(Context context) {
         DemoApplication application = (DemoApplication) context.getApplicationContext();
@@ -59,6 +71,10 @@ public class DemoApplication extends Application {
 //    public static RequestQueue getHttpQueues() {
 //        return queues;
 //    }
+
+    public static Context getAppContext() {
+        return sContext;
+    }
 
     @Override
     public void onCreate() {
@@ -79,10 +95,12 @@ public class DemoApplication extends Application {
         if (Constants.IS_OPEN_LEAK_CANARY) {
             refWatcher = initLeakCanary();
         }
-    }
 
-    public static Context getAppContext() {
-        return sContext;
+        // game 2048
+        mSp = getSharedPreferences(SP_HIGH_SCORE, 0);
+        mGameLines = mSp.getInt(KEY_GAME_LINES, 4);
+        mGameGoal = mSp.getInt(KEY_GAME_GOAL, 2048);
+        mItemSize = 100;
     }
 
     private RefWatcher initLeakCanary() {
@@ -124,4 +142,6 @@ public class DemoApplication extends Application {
 //        queues = null;
         android.os.Process.killProcess(android.os.Process.myPid());
     }
+
+
 }
