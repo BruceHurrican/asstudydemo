@@ -100,7 +100,7 @@ public class DemoApplication extends Application {
         mSp = getSharedPreferences(SP_HIGH_SCORE, 0);
         mGameLines = mSp.getInt(KEY_GAME_LINES, 4);
         mGameGoal = mSp.getInt(KEY_GAME_GOAL, 2048);
-        mItemSize = 100;
+        mItemSize = 0;
     }
 
     private RefWatcher initLeakCanary() {

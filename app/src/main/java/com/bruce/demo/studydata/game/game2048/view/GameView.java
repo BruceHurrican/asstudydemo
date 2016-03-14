@@ -215,7 +215,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         display.getMetrics(metrics);
-//        DemoApplication.mItemSize = metrics.heightPixels / DemoApplication.mGameLines;
+        DemoApplication.mItemSize = metrics.widthPixels / DemoApplication.mGameLines;
         initGameView(DemoApplication.mItemSize);
     }
 

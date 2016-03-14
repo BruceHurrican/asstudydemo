@@ -36,7 +36,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:text="configuration"
+        android:text="设置"
+        android:textColor="@android:color/black"
         android:textSize="36sp"/>
 
     <View
@@ -55,6 +56,7 @@
         android:layout_below="@+id/tv_gamelines"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
         android:background="@drawable/game_2048_white_btn"
         android:text="4"
         android:textSize="24sp"/>
@@ -77,6 +79,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="TargetGoal"
+        android:textColor="@android:color/black"
         android:textSize="24sp"/>
 
     <TextView
@@ -87,6 +90,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:text="GameLines"
+        android:textColor="@android:color/black"
         android:textSize="24sp"/>
 
     <Button
@@ -98,6 +102,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/game_2048_white_btn"
         android:text="2048"
+        android:textColor="@android:color/black"
         android:textSize="24sp"/>
 
     <View
@@ -116,7 +121,8 @@
         android:layout_above="@+id/view2"
         android:layout_alignLeft="@+id/view2"
         android:background="@drawable/game_2048_white_btn"
-        android:text="Back"
+        android:text="返回"
+        android:textColor="@android:color/black"
         android:textSize="24sp"/>
 
     <Button
@@ -126,7 +132,8 @@
         android:layout_above="@+id/view2"
         android:layout_alignRight="@+id/view2"
         android:background="@drawable/game_2048_white_btn"
-        android:text="Done"
+        android:text="确定"
+        android:textColor="@android:color/black"
         android:textSize="24sp"/>
 
 </RelativeLayout>
