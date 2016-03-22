@@ -36,9 +36,13 @@ public final class Constants {
     /**
      * 是否打开内存泄漏监控
      */
-    public static final boolean IS_OPEN_LEAK_CANARY = true;
+    public static final boolean IS_OPEN_LEAK_CANARY = ISDEBUG;
     /**
      * 是否打开UI卡顿监控
      */
-    public static final boolean IS_OPEN_UI_BLOCK_CANARY = true;
+    public static final boolean IS_OPEN_UI_BLOCK_CANARY = ISDEBUG;
+    /**
+     * 是否打开 chrome 调试 android 设备
+     */
+    public static final boolean IS_OPEN_STETHO = ISDEBUG;
 }

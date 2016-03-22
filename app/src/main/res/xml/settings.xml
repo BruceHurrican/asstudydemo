@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="General">
+
+        <CheckBoxPreference
+            android:key="checkbox_preference"
+            android:title="Boolean setting"
+            android:summary="et the value of this boolean property"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Other Options">
+
+        <ListPreference
+            android:key="list_preference"
+            android:title="List of choices"
+            android:summary="Choose from a set of values"
+            android:entries="@array/pref_list_keys"
+            android:entryValues="@array/pref_list_values"
+            android:dialogTitle="Choices"
+            />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

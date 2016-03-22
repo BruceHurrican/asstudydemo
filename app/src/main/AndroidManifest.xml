@@ -90,6 +90,19 @@
             android:name=".studydata.game.game2048.activity.ConfigPreferenceActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+        <!-- stetho -->
+        <activity
+            android:name=".facebook.stetho.StethoDemoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".facebook.stetho.StethoDemoSettingsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".facebook.stetho.APODActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
