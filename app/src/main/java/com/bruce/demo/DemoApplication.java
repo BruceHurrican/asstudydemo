@@ -29,7 +29,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.provider.CalendarContract;
 
@@ -53,16 +52,6 @@ import java.util.List;
  * Created by BruceHurrican on 2015/6/7.
  */
 public class DemoApplication extends Application {
-    // ===============game 2048==============================
-    public static SharedPreferences mSp;
-    public static int mGameGoal;
-    public static int mGameLines;
-    public static int mItemSize;
-    public static int SCORE = 0;
-    public static String SP_HIGH_SCORE = "SP_HIGH_SCORE";
-    public static String KEY_HIGH_SCORE = "KEY_HIGH_SCORE";
-    public static String KEY_GAME_LINES = "KEY_GAME_LINES";
-    public static String KEY_GAME_GOAL = "KEY_GAME_GOAL";
     private static Context sContext;
     public Context demoAppContext;
     // used in volley_demo
@@ -70,7 +59,6 @@ public class DemoApplication extends Application {
     private List<Activity> container;
     // memory leak tools
     private RefWatcher refWatcher;
-    // =====================================================
 
     public static RefWatcher getRefWatcher(Context context) {
         DemoApplication application = (DemoApplication) context.getApplicationContext();
@@ -129,11 +117,6 @@ public class DemoApplication extends Application {
                     .build());
         }
 
-        // game 2048
-        mSp = getSharedPreferences(SP_HIGH_SCORE, 0);
-        mGameLines = mSp.getInt(KEY_GAME_LINES, 4);
-        mGameGoal = mSp.getInt(KEY_GAME_GOAL, 2048);
-        mItemSize = 0;
     }
 
     private RefWatcher initLeakCanary() {

@@ -33,7 +33,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.bruce.demo.DemoApplication;
+import com.bruce.demo.studydata.game.game2048.activity.GameActivity;
 
 /**
  * Created by BruceHurrican on 2016/3/14.
@@ -58,7 +58,7 @@ public class GameItem extends FrameLayout {
         mTvNum = new TextView(getContext());
         setNum(mCardShowNum);
         // 修改 5X5时字体太大
-        int gameLines = DemoApplication.mSp.getInt(DemoApplication.KEY_GAME_LINES, 4);
+        int gameLines = GameActivity.mSp.getInt(GameActivity.KEY_GAME_LINES, 4);
         if (gameLines == 4) {
             mTvNum.setTextSize(35);
         } else if (gameLines == 5) {

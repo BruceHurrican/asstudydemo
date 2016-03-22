@@ -26,6 +26,7 @@
 package com.bruce.demo.studydata.game.game2048.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +35,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.studydata.game.game2048.view.GameView;
@@ -49,6 +49,16 @@ import butterknife.OnClick;
  * Created by BruceHurrican on 2016/3/14.
  */
 public class GameActivity extends BaseActivity {
+    // ===============game 2048==============================
+    public static SharedPreferences mSp;
+    public static int mGameGoal;
+    public static int mGameLines;
+    public static int mItemSize;
+    public static int SCORE = 0;
+    public static String SP_HIGH_SCORE = "SP_HIGH_SCORE";
+    public static String KEY_HIGH_SCORE = "KEY_HIGH_SCORE";
+    public static String KEY_GAME_LINES = "KEY_GAME_LINES";
+    public static String KEY_GAME_GOAL = "KEY_GAME_GOAL";
     // activity 的引用
     private static GameActivity mGameActivity;
     @Bind(R.id.tv_Goal)
@@ -101,8 +111,13 @@ public class GameActivity extends BaseActivity {
         setContentView(R.layout.game_2048_activity_game);
         ButterKnife.bind(this);
 
-        mHighScore = DemoApplication.mSp.getInt(DemoApplication.KEY_HIGH_SCORE, 0);
-        mGoal = DemoApplication.mSp.getInt(DemoApplication.KEY_GAME_GOAL, 2048);
+        mSp = getSharedPreferences(SP_HIGH_SCORE, 0);
+        mGameLines = mSp.getInt(KEY_GAME_LINES, 4);
+        mGameGoal = mSp.getInt(KEY_GAME_GOAL, 2048);
+        mItemSize = 0;
+
+        mHighScore = mSp.getInt(KEY_HIGH_SCORE, 0);
+        mGoal = mSp.getInt(KEY_GAME_GOAL, 2048);
         mTvHighScore.setText(mHighScore + "");
         mTvGoal.setText(mGoal + "");
         mTvScore.setText("0");
@@ -151,7 +166,7 @@ public class GameActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            mGoal = DemoApplication.mSp.getInt(DemoApplication.KEY_GAME_GOAL, 2048);
+            mGoal = mSp.getInt(KEY_GAME_GOAL, 2048);
             mTvGoal.setText("" + mGoal);
             getHightScore();
             mGameView.startGame();
@@ -162,7 +177,7 @@ public class GameActivity extends BaseActivity {
      * 获取最高分数
      */
     private void getHightScore() {
-        int score = DemoApplication.mSp.getInt(DemoApplication.KEY_HIGH_SCORE, 0);
+        int score = mSp.getInt(KEY_HIGH_SCORE, 0);
         setScore(score, 1);
     }
 

@@ -42,7 +42,6 @@ import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.GridLayout;
 
-import com.bruce.demo.DemoApplication;
 import com.bruce.demo.studydata.game.game2048.activity.GameActivity;
 import com.bruce.demo.studydata.game.game2048.bean.GameItem;
 
@@ -75,7 +74,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
 
     public GameView(Context context) {
         super(context);
-        mTarget = DemoApplication.mSp.getInt(DemoApplication.KEY_GAME_GOAL, 2048);
+        mTarget = GameActivity.mSp.getInt(GameActivity.KEY_GAME_GOAL, 2048);
         initGameMatrix();
     }
 
@@ -86,7 +85,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
 
     public void startGame() {
         initGameMatrix();
-        initGameView(DemoApplication.mItemSize);
+        initGameView(GameActivity.mItemSize);
     }
 
     private void initGameView(int cardSize) {
@@ -119,7 +118,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         }
         if (sum != 0) {
             GameActivity.getGameActivity().setScore(mScoreHistory, 0);
-            DemoApplication.SCORE = mScoreHistory;
+            GameActivity.SCORE = mScoreHistory;
             for (int i = 0; i < mGameLines; i++) {
                 for (int j = 0; j < mGameLines; j++) {
                     mGameMatrix[i][j].setNum(mGameMatrixHistory[i][j]);
@@ -199,14 +198,14 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         // 初始化矩阵
         removeAllViews();
         mScoreHistory = 0;
-        DemoApplication.SCORE = 0;
-        DemoApplication.mGameLines = DemoApplication.mSp.getInt(DemoApplication.KEY_GAME_LINES, 4);
-        mGameLines = DemoApplication.mGameLines;
+        GameActivity.SCORE = 0;
+        GameActivity.mGameLines = GameActivity.mSp.getInt(GameActivity.KEY_GAME_LINES, 4);
+        mGameLines = GameActivity.mGameLines;
         mGameMatrix = new GameItem[mGameLines][mGameLines];
         mGameMatrixHistory = new int[mGameLines][mGameLines];
         mCalList = new ArrayList<Integer>();
         mBlanks = new ArrayList<Point>();
-        mHighScore = DemoApplication.mSp.getInt(DemoApplication.KEY_HIGH_SCORE, 0);
+        mHighScore = GameActivity.mSp.getInt(GameActivity.KEY_HIGH_SCORE, 0);
         setColumnCount(mGameLines);
         setRowCount(mGameLines);
         setOnTouchListener(this);
@@ -215,8 +214,8 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         display.getMetrics(metrics);
-        DemoApplication.mItemSize = metrics.widthPixels / DemoApplication.mGameLines;
-        initGameView(DemoApplication.mItemSize);
+        GameActivity.mItemSize = metrics.widthPixels / GameActivity.mGameLines;
+        initGameView(GameActivity.mItemSize);
     }
 
     @Override
@@ -236,7 +235,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 if (isMoved()) {
                     addRandomNum();
                     // 修改显示分数
-                    GameActivity.getGameActivity().setScore(DemoApplication.SCORE, 0);
+                    GameActivity.getGameActivity().setScore(GameActivity.SCORE, 0);
                 }
                 checkCompleted();
                 break;
@@ -250,7 +249,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
      * 保存历史记录
      */
     private void saveHistoryMatrix() {
-        mScoreHistory = DemoApplication.SCORE;
+        mScoreHistory = GameActivity.SCORE;
         for (int i = 0; i < mGameLines; i++) {
             for (int j = 0; j < mGameLines; j++) {
                 mGameMatrixHistory[i][j] = mGameMatrix[i][j].getNum();
@@ -296,7 +295,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
         } else if (flagSuper) { // 启动超级用户权限来添加自定义数字
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             final EditText et = new EditText(getContext());
-            builder.setTitle("Back Door").setView(et).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            builder.setTitle("HappyTime").setView(et).setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
@@ -305,7 +304,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                         checkCompleted();
                     }
                 }
-            }).setNegativeButton("ByeBye", new DialogInterface.OnClickListener() {
+            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
@@ -357,12 +356,12 @@ public class GameView extends GridLayout implements View.OnTouchListener {
     private void checkCompleted() {
         int result = checkNums();
         if (result == 0) {
-            if (DemoApplication.SCORE > mHighScore) {
-                SharedPreferences.Editor editor = DemoApplication.mSp.edit();
-                editor.putInt(DemoApplication.KEY_HIGH_SCORE, DemoApplication.SCORE);
+            if (GameActivity.SCORE > mHighScore) {
+                SharedPreferences.Editor editor = GameActivity.mSp.edit();
+                editor.putInt(GameActivity.KEY_HIGH_SCORE, GameActivity.SCORE);
                 editor.apply();
-                GameActivity.getGameActivity().setScore(DemoApplication.SCORE, 1);
-                DemoApplication.SCORE = 0;
+                GameActivity.getGameActivity().setScore(GameActivity.SCORE, 1);
+                GameActivity.SCORE = 0;
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("GameActivity Over").setPositiveButton("Again", new DialogInterface.OnClickListener() {
@@ -372,7 +371,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     startGame();
                 }
             }).create().show();
-            DemoApplication.SCORE = 0;
+            GameActivity.SCORE = 0;
         } else if (result == 2) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Mission Accomplished").setPositiveButton("Again", new DialogInterface.OnClickListener() {
@@ -387,24 +386,24 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
                     // 继续游戏 修改target
-                    SharedPreferences.Editor editor = DemoApplication.mSp.edit();
+                    SharedPreferences.Editor editor = GameActivity.mSp.edit();
                     if (mTarget == 1024) {
-                        editor.putInt(DemoApplication.KEY_GAME_GOAL, 2048);
+                        editor.putInt(GameActivity.KEY_GAME_GOAL, 2048);
                         mTarget = 2048;
                         GameActivity.getGameActivity().setGoal(2048);
                     } else if (mTarget == 2048) {
-                        editor.putInt(DemoApplication.KEY_GAME_GOAL, 4096);
+                        editor.putInt(GameActivity.KEY_GAME_GOAL, 4096);
                         mTarget = 4096;
                         GameActivity.getGameActivity().setGoal(4096);
                     } else {
-                        editor.putInt(DemoApplication.KEY_GAME_GOAL, 4096);
+                        editor.putInt(GameActivity.KEY_GAME_GOAL, 4096);
                         mTarget = 4096;
                         GameActivity.getGameActivity().setGoal(4096);
                     }
                     editor.apply();
                 }
             }).create().show();
-            DemoApplication.SCORE = 0;
+            GameActivity.SCORE = 0;
         }
     }
 
@@ -437,7 +436,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     } else {
                         if (mKeyItemNum == currentNum) {
                             mCalList.add(mKeyItemNum * 2);
-                            DemoApplication.SCORE += mKeyItemNum * 2;
+                            GameActivity.SCORE += mKeyItemNum * 2;
                             mKeyItemNum = -1;
                         } else {
                             mCalList.add(mKeyItemNum);
@@ -477,7 +476,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     } else {
                         if (mKeyItemNum == currentNum) {
                             mCalList.add(mKeyItemNum * 2);
-                            DemoApplication.SCORE += mKeyItemNum * 2;
+                            GameActivity.SCORE += mKeyItemNum * 2;
                             mKeyItemNum = -1;
                         } else {
                             mCalList.add(mKeyItemNum);
@@ -520,7 +519,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     } else {
                         if (mKeyItemNum == currentNum) {
                             mCalList.add(mKeyItemNum * 2);
-                            DemoApplication.SCORE += mKeyItemNum * 2;
+                            GameActivity.SCORE += mKeyItemNum * 2;
                             mKeyItemNum = -1;
                         } else {
                             mCalList.add(mKeyItemNum);
@@ -560,7 +559,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
                     } else {
                         if (mKeyItemNum == currentNum) {
                             mCalList.add(mKeyItemNum * 2);
-                            DemoApplication.SCORE += mKeyItemNum * 2;
+                            GameActivity.SCORE += mKeyItemNum * 2;
                             mKeyItemNum = -1;
                         } else {
                             mCalList.add(mKeyItemNum);

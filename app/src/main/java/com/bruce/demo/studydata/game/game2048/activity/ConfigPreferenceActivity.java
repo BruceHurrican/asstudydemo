@@ -33,7 +33,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
 
@@ -81,16 +80,16 @@ public class ConfigPreferenceActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_2048_activity_config_preference);
         ButterKnife.bind(this);
-        mBtnGameLines.setText("" + DemoApplication.mSp.getInt(DemoApplication.KEY_GAME_LINES, 4));
-        mBtnGoal.setText("" + DemoApplication.mSp.getInt(DemoApplication.KEY_GAME_GOAL, 2048));
+        mBtnGameLines.setText("" + GameActivity.mSp.getInt(GameActivity.KEY_GAME_LINES, 4));
+        mBtnGoal.setText("" + GameActivity.mSp.getInt(GameActivity.KEY_GAME_GOAL, 2048));
         mGameLinesList = new String[]{"4", "5", "6"};
         mGameGoalList = new String[]{"1024", "2048", "4096"};
     }
 
     private void saveConfig() {
-        SharedPreferences.Editor editor = DemoApplication.mSp.edit();
-        editor.putInt(DemoApplication.KEY_GAME_LINES, Integer.parseInt(mBtnGameLines.getText().toString()));
-        editor.putInt(DemoApplication.KEY_GAME_GOAL, Integer.parseInt(mBtnGoal.getText().toString()));
+        SharedPreferences.Editor editor = GameActivity.mSp.edit();
+        editor.putInt(GameActivity.KEY_GAME_LINES, Integer.parseInt(mBtnGameLines.getText().toString()));
+        editor.putInt(GameActivity.KEY_GAME_GOAL, Integer.parseInt(mBtnGoal.getText().toString()));
         editor.commit();
     }
 
