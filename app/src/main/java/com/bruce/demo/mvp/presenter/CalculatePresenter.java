@@ -40,10 +40,15 @@ public class CalculatePresenter implements ICalculate {
         calculateTwoNumbers = new CalculateTwoNumbers();
     }
 
-    public void initUser(int n1,int n2){
+    public void initUser(int n1, int n2) {
         calculateTwoNumbers.n1 = n1;
         calculateTwoNumbers.n2 = n2;
+        mathAdd(n1, n2);
+        mathSubtract(n1, n2);
+        mathMultiply(n1, n2);
+        mathDivide(n1, n2);
     }
+
     @Override
     public void mathAdd(int n1, int n2) {
         if (iResult != null) {

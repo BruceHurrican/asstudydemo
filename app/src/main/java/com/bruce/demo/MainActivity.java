@@ -48,6 +48,7 @@ import android.widget.RadioGroup;
 
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.facebook.stetho.StethoDemoActivity;
+import com.bruce.demo.mvp.view.MVPActivity;
 import com.bruce.demo.studydata.activities.media.CameraActivity;
 import com.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.bruce.demo.studydata.game.game2048.activity.GameActivity;
@@ -151,6 +152,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         addDemoContainer(CameraActivity.class, "调用系统相机相册获取相片");
         addDemoContainer(GameActivity.class, "2048游戏");
         addDemoContainer(StethoDemoActivity.class, "stetho demo");
+        addDemoContainer(MVPActivity.class, "mvp demo");
 
         alv_demo_list.setOnItemClickListener(this);
         LogUtils.i("加载列表完成");

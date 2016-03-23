@@ -25,26 +25,34 @@
 
 package com.bruce.demo.mvp.model;
 
+import junit.framework.TestCase;
+
 /**
- * 计算两个数字的运算
- * Created by hrk on 16-3-23.
+ * Created by BruceHurrican on 2016/3/23.
  */
-public class CalculateTwoNumbers {
-    public int n1, n2;
-
-    public int addResult() {
-        return n1 + n2;
+public class CalculateTwoNumbersTest extends TestCase {
+    CalculateTwoNumbers calculateTwoNumbers = new CalculateTwoNumbers();
+    public void testAddResult() throws Exception {
+        calculateTwoNumbers.n1 = 4;
+        calculateTwoNumbers.n2 = 8;
+        assertEquals(12,calculateTwoNumbers.addResult());
     }
 
-    public int subtractResult() {
-        return n1 - n2;
+    public void testSubtractResult() throws Exception {
+        calculateTwoNumbers.n1 = 4;
+        calculateTwoNumbers.n2 = 8;
+        assertEquals(-4,calculateTwoNumbers.subtractResult());
     }
 
-    public int multiplyResult() {
-        return n1 * n2;
+    public void testMultiplyResult() throws Exception {
+        calculateTwoNumbers.n1 = 4;
+        calculateTwoNumbers.n2 = 8;
+        assertEquals(32,calculateTwoNumbers.multiplyResult());
     }
 
-    public double divideResult() {
-        return n1 / n2;
+    public void testDivideResult() throws Exception {
+        calculateTwoNumbers.n1 = 14;
+        calculateTwoNumbers.n2 = 8;
+        assertEquals(1.0,calculateTwoNumbers.divideResult());
     }
 }

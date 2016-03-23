@@ -27,6 +27,7 @@ package com.bruce.demo.mvp.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ import butterknife.OnClick;
 /**
  * Created by BruceHurrican on 16-3-23.
  */
-public class ResultFragment extends BaseFragment implements IResult {
+public class MVPFragment extends BaseFragment {
     @Bind(R.id.et_number1)
     EditText etNumber1;
     @Bind(R.id.et_number2)
@@ -66,13 +67,13 @@ public class ResultFragment extends BaseFragment implements IResult {
 
     @Override
     public String getTAG() {
-        return ResultFragment.class.getSimpleName();
+        return MVPFragment.class.getSimpleName();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.mvp_fragment_result, container, false);
+        View view = inflater.inflate(R.layout.mvp_view_result, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -80,48 +81,56 @@ public class ResultFragment extends BaseFragment implements IResult {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        calculatePresenter = new CalculatePresenter(this);
+//        calculatePresenter = new CalculatePresenter(this); // 这种写法会造成内存泄漏
+//        calculatePresenter = new CalculatePresenter(new MyIResult(this));
+        calculatePresenter = new CalculatePresenter(new IResult() {
+            @Override
+            public void showAdd(int result) {
+                LogUtils.d("add: " + result);
+                showToastShort("add: " + result);
+                tvAdd.setText("add: " + result);
+            }
+
+            @Override
+            public void showSubtract(int result) {
+                LogUtils.d("subtract: " + result);
+                showToastShort("subtract: " + result);
+                tvSubtract.setText("subtract: " + result);
+            }
+
+            @Override
+            public void showMultiply(int result) {
+                LogUtils.d("multiply: " + result);
+                showToastShort("multiply: " + result);
+                tvMultiply.setText("multiply: " + result);
+            }
+
+            @Override
+            public void showDivide(double result) {
+                LogUtils.d("divide: " + result);
+                showToastShort("divide: " + result);
+                tvDivide.setText("divide: " + result);
+            }
+        });
     }
 
     @OnClick({R.id.btn_calculate})
-    void calculate(){
-        if (calculatePresenter != null){
-            calculatePresenter.initUser(Integer.valueOf(etNumber1.getText().toString().trim()),Integer.valueOf(etNumber2.getText().toString().trim()));
+    void calculate() {
+        if (TextUtils.isEmpty(etNumber1.getText().toString().trim()) || TextUtils.isEmpty(etNumber2.getText().toString().trim())) {
+            showToastShort("please input numbers");
+            return;
+        }
+        if (calculatePresenter != null) {
+            calculatePresenter.initUser(Integer.valueOf(etNumber1.getText().toString().trim()), Integer.valueOf(etNumber2.getText().toString().trim()));
         }
     }
 
     @Override
-    public void showAdd(int result) {
-        LogUtils.d("add: "+result);
-        showToastShort("add: " + result);
-        tvAdd.setText("add: "+result);
-    }
-
-    @Override
-    public void showSubtract(int result) {
-        LogUtils.d("subtract: "+result);
-        showToastShort("subtract: " + result);
-        tvSubtract.setText("subtract: "+result);
-    }
-
-    @Override
-    public void showMultiply(int result) {
-        LogUtils.d("multiply: "+result);
-        showToastShort("multiply: " + result);
-        tvMultiply.setText("multiply: "+result);
-    }
-
-    @Override
-    public void showDivide(double result) {
-        LogUtils.d("divide: "+result);
-        showToastShort("divide: " + result);
-        tvDivide.setText("divide: "+result);
-    }
-
-    @Override
     public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+        btnCalculate.setOnClickListener(null); // 用于解决内存泄漏
         calculatePresenter.clear();
+        calculatePresenter = null;
+        ButterKnife.unbind(this);
+        super.onDestroyView();
     }
 }

@@ -30,7 +30,10 @@ package com.bruce.demo.mvp.view;
  */
 public interface IResult {
     void showAdd(int result);
+
     void showSubtract(int result);
+
     void showMultiply(int result);
+
     void showDivide(double result);
 }

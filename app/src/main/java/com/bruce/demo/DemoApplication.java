@@ -106,8 +106,8 @@ public class DemoApplication extends Application {
                 @Override
                 public Iterable<ChromeDevtoolsDomain> get() {
                     return new Stetho.DefaultInspectorModulesBuilder(DemoApplication.this).runtimeRepl(new JsRuntimeReplFactoryBuilder(DemoApplication.this)
-                                    // Pass to JavaScript: var foo = "bar";
-                                    .addVariable("foo", "bar").build()).finish();
+                            // Pass to JavaScript: var foo = "bar";
+                            .addVariable("foo", "bar").build()).finish();
                 }
             }).build());
         }
