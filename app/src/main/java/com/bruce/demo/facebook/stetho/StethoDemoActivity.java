@@ -9,21 +9,37 @@
 
 package com.bruce.demo.facebook.stetho;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.bruce.demo.BuildConfig;
 import com.bruce.demo.R;
+import com.bruce.demo.base.BaseActivity;
+import com.bruce.demo.utils.LogUtils;
 
-public class StethoDemoActivity extends Activity {
+import java.io.IOException;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class StethoDemoActivity extends BaseActivity {
+    @Bind(R.id.settings_btn)
+    Button settingsBtn;
+    @Bind(R.id.apod_btn)
+    Button apodBtn;
+    @Bind(R.id.url_btn)
+    Button urlBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stetho_demo_activity);
+        ButterKnife.bind(this);
 
         // Demonstrate that it is removed from the release build...
         if (!isStethoPresent()) {
@@ -32,6 +48,40 @@ public class StethoDemoActivity extends Activity {
 
         findViewById(R.id.settings_btn).setOnClickListener(mMainButtonClicked);
         findViewById(R.id.apod_btn).setOnClickListener(mMainButtonClicked);
+    }
+
+    @OnClick({R.id.url_btn})
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.url_btn:
+                Networker.HttpRequest imageRequest = Networker.HttpRequest.newBuilder()
+                        .method(Networker.HttpMethod.GET)
+                        .url("http://www.baidu.com/")
+                        .build();
+                Networker.get().submit(imageRequest, new Networker.Callback() {
+                    @Override
+                    public void onResponse(Networker.HttpResponse result) {
+                        LogUtils.d("Got " + ": " + result.statusCode + ", " + result.body.length);
+                        if (result.statusCode == 200) {
+                            showToastShort(result.statusCode+"");
+//                            final Bitmap bitmap = BitmapFactory.decodeByteArray(result.body, 0, result.body.length);
+//                            StethoDemoActivity.this.runOnUiThread(new Runnable() {
+//
+//                                @Override
+//                                public void run() {
+//                                    holder.image.setImageDrawable(new BitmapDrawable(bitmap));
+//                                }
+//                            });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(IOException e) {
+                        // Let Stetho demonstrate the errors :)
+                    }
+                });
+                break;
+        }
     }
 
     private static boolean isStethoPresent() {
@@ -53,6 +103,17 @@ public class StethoDemoActivity extends Activity {
     protected void onPause() {
         super.onPause();
         getPrefs().unregisterOnSharedPreferenceChangeListener(mToastingPrefListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
+
+    @Override
+    public String getTAG() {
+        return StethoDemoActivity.class.getSimpleName();
     }
 
     private SharedPreferences getPrefs() {
