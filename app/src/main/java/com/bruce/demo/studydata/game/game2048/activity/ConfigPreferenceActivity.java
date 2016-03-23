@@ -101,11 +101,11 @@ public class ConfigPreferenceActivity extends BaseActivity {
                 mBuilder.setTitle("choose the lines of the game");
                 mBuilder.setItems(mGameLinesList, new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                mBtnGameLines.setText(mGameLinesList[which]);
-                            }
-                        });
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mBtnGameLines.setText(mGameLinesList[which]);
+                    }
+                });
                 mBuilder.create().show();
                 break;
             case R.id.btn_goal:
@@ -113,11 +113,11 @@ public class ConfigPreferenceActivity extends BaseActivity {
                 mBuilder.setTitle("choose the goal of the game");
                 mBuilder.setItems(mGameGoalList, new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                mBtnGoal.setText(mGameGoalList[which]);
-                            }
-                        });
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mBtnGoal.setText(mGameGoalList[which]);
+                    }
+                });
                 mBuilder.create().show();
                 break;
             case R.id.btn_back:

@@ -93,7 +93,7 @@ public class DemoApplication extends Application {
             refWatcher = initLeakCanary();
         }
 
-        if (Constants.IS_OPEN_STETHO){
+        if (Constants.IS_OPEN_STETHO) {
             // 查看 dumpapp 信息
 //            Stetho.initialize(Stetho.newInitializerBuilder(this).enableDumpapp(new DumperPluginsProvider() {
 //                @Override
@@ -102,19 +102,14 @@ public class DemoApplication extends Application {
 //                }
 //            }).enableWebKitInspector(new ExtInspectorModulesProvider(DemoApplication.this)).build());
             // 调用 JS
-            Stetho.initialize(Stetho.newInitializerBuilder(DemoApplication.this)
-                    .enableWebKitInspector(new InspectorModulesProvider() {
-                        @Override
-                        public Iterable<ChromeDevtoolsDomain> get() {
-                            return new Stetho.DefaultInspectorModulesBuilder(DemoApplication.this).runtimeRepl(
-                                    new JsRuntimeReplFactoryBuilder(DemoApplication.this)
-                                            // Pass to JavaScript: var foo = "bar";
-                                            .addVariable("foo", "bar")
-                                            .build()
-                            ).finish();
-                        }
-                    })
-                    .build());
+            Stetho.initialize(Stetho.newInitializerBuilder(DemoApplication.this).enableWebKitInspector(new InspectorModulesProvider() {
+                @Override
+                public Iterable<ChromeDevtoolsDomain> get() {
+                    return new Stetho.DefaultInspectorModulesBuilder(DemoApplication.this).runtimeRepl(new JsRuntimeReplFactoryBuilder(DemoApplication.this)
+                                    // Pass to JavaScript: var foo = "bar";
+                                    .addVariable("foo", "bar").build()).finish();
+                }
+            }).build());
         }
 
     }
@@ -170,40 +165,15 @@ public class DemoApplication extends Application {
 
         @Override
         public Iterable<ChromeDevtoolsDomain> get() {
-            return new Stetho.DefaultInspectorModulesBuilder(mContext)
-                    .provideDatabaseDriver(createContentProviderDatabaseDriver(mContext))
-                    .finish();
+            return new Stetho.DefaultInspectorModulesBuilder(mContext).provideDatabaseDriver(createContentProviderDatabaseDriver(mContext)).finish();
         }
 
         @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
         private ContentProviderDatabaseDriver createContentProviderDatabaseDriver(Context context) {
-            ContentProviderSchema calendarsSchema = new ContentProviderSchema.Builder()
-                    .table(new ContentProviderSchema.Table.Builder()
-                            .uri(CalendarContract.Calendars.CONTENT_URI)
-                            .projection(new String[] {
-                                    CalendarContract.Calendars._ID,
-                                    CalendarContract.Calendars.NAME,
-                                    CalendarContract.Calendars.ACCOUNT_NAME,
-                                    CalendarContract.Calendars.IS_PRIMARY,
-                            })
-                            .build())
-                    .build();
+            ContentProviderSchema calendarsSchema = new ContentProviderSchema.Builder().table(new ContentProviderSchema.Table.Builder().uri(CalendarContract.Calendars.CONTENT_URI).projection(new String[]{CalendarContract.Calendars._ID, CalendarContract.Calendars.NAME, CalendarContract.Calendars.ACCOUNT_NAME, CalendarContract.Calendars.IS_PRIMARY,}).build()).build();
 
             // sample events content provider we want to support
-            ContentProviderSchema eventsSchema = new ContentProviderSchema.Builder()
-                    .table(new ContentProviderSchema.Table.Builder()
-                            .uri(CalendarContract.Events.CONTENT_URI)
-                            .projection(new String[]{
-                                    CalendarContract.Events._ID,
-                                    CalendarContract.Events.TITLE,
-                                    CalendarContract.Events.DESCRIPTION,
-                                    CalendarContract.Events.ACCOUNT_NAME,
-                                    CalendarContract.Events.DTSTART,
-                                    CalendarContract.Events.DTEND,
-                                    CalendarContract.Events.CALENDAR_ID,
-                            })
-                            .build())
-                    .build();
+            ContentProviderSchema eventsSchema = new ContentProviderSchema.Builder().table(new ContentProviderSchema.Table.Builder().uri(CalendarContract.Events.CONTENT_URI).projection(new String[]{CalendarContract.Events._ID, CalendarContract.Events.TITLE, CalendarContract.Events.DESCRIPTION, CalendarContract.Events.ACCOUNT_NAME, CalendarContract.Events.DTSTART, CalendarContract.Events.DTEND, CalendarContract.Events.CALENDAR_ID,}).build()).build();
             return new ContentProviderDatabaseDriver(context, calendarsSchema, eventsSchema);
         }
     }

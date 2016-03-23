@@ -21,53 +21,47 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class HtmlScraper {
-  /**
-   * Scrapes an HTML page for &lt;img&gt; tags.
-   *
-   * @return Scraped plain text
-   */
-  public static String parseWithImageTags(
-      String htmlText,
-      @Nullable String originUrl,
-      List<String> outImageUrls) {
-    ExtractImageGetter imageGetter = new ExtractImageGetter(originUrl, outImageUrls);
-    String strippedText = Html.fromHtml(
-        htmlText,
-        imageGetter,
-        null /* tagHandler */)
-        .toString();
+    /**
+     * Scrapes an HTML page for &lt;img&gt; tags.
+     *
+     * @return Scraped plain text
+     */
+    public static String parseWithImageTags(String htmlText, @Nullable String originUrl, List<String> outImageUrls) {
+        ExtractImageGetter imageGetter = new ExtractImageGetter(originUrl, outImageUrls);
+        String strippedText = Html.fromHtml(htmlText, imageGetter, null /* tagHandler */).toString();
 
-    return strippedText.trim();
-  }
-
-  private static class ExtractImageGetter implements Html.ImageGetter {
-    @Nullable private final String mOriginUrl;
-    private final List<String> mSources;
-
-    public ExtractImageGetter(@Nullable String originUrl, List<String> outSources) {
-      mOriginUrl = originUrl;
-      mSources = outSources;
+        return strippedText.trim();
     }
 
-    @Override
-    public Drawable getDrawable(String source) {
-      if (mOriginUrl != null && TextUtils.isEmpty(Uri.parse(source).getScheme())) {
-        StringBuilder newSource = new StringBuilder();
-        newSource.append(mOriginUrl);
-        if (!mOriginUrl.endsWith("/") && !source.startsWith("/")) {
-          newSource.append("/");
+    private static class ExtractImageGetter implements Html.ImageGetter {
+        @Nullable
+        private final String mOriginUrl;
+        private final List<String> mSources;
+
+        public ExtractImageGetter(@Nullable String originUrl, List<String> outSources) {
+            mOriginUrl = originUrl;
+            mSources = outSources;
         }
-        newSource.append(source);
-        source = newSource.toString();
-      }
-      mSources.add(source);
 
-      // Dummy drawable.
-      return new ColorDrawable(Color.TRANSPARENT);
-    }
+        @Override
+        public Drawable getDrawable(String source) {
+            if (mOriginUrl != null && TextUtils.isEmpty(Uri.parse(source).getScheme())) {
+                StringBuilder newSource = new StringBuilder();
+                newSource.append(mOriginUrl);
+                if (!mOriginUrl.endsWith("/") && !source.startsWith("/")) {
+                    newSource.append("/");
+                }
+                newSource.append(source);
+                source = newSource.toString();
+            }
+            mSources.add(source);
 
-    public List<String> getSources() {
-      return mSources;
+            // Dummy drawable.
+            return new ColorDrawable(Color.TRANSPARENT);
+        }
+
+        public List<String> getSources() {
+            return mSources;
+        }
     }
-  }
 }

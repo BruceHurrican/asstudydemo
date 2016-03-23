@@ -6,8 +6,8 @@
 
         <CheckBoxPreference
             android:key="checkbox_preference"
-            android:title="Boolean setting"
             android:summary="et the value of this boolean property"
+            android:title="Boolean setting"
             />
 
     </PreferenceCategory>
@@ -15,12 +15,12 @@
     <PreferenceCategory android:title="Other Options">
 
         <ListPreference
-            android:key="list_preference"
-            android:title="List of choices"
-            android:summary="Choose from a set of values"
+            android:dialogTitle="Choices"
             android:entries="@array/pref_list_keys"
             android:entryValues="@array/pref_list_values"
-            android:dialogTitle="Choices"
+            android:key="list_preference"
+            android:summary="Choose from a set of values"
+            android:title="List of choices"
             />
 
     </PreferenceCategory>

@@ -13,15 +13,15 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 public interface APODContract {
-  String AUTHORITY = "com.facebook.stetho.sample.apod";
-  Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
+    String AUTHORITY = "com.facebook.stetho.sample.apod";
+    Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
-  String TABLE_NAME = "rss_items";
+    String TABLE_NAME = "rss_items";
 
-  interface Columns extends BaseColumns {
-    String TITLE = "title";
-    String DESCRIPTION_TEXT = "description_text";
-    String DESCRIPTION_IMAGE_URL = "description_image_url";
-    String LARGE_IMAGE_URL = "large_image_url";
-  }
+    interface Columns extends BaseColumns {
+        String TITLE = "title";
+        String DESCRIPTION_TEXT = "description_text";
+        String DESCRIPTION_IMAGE_URL = "description_image_url";
+        String LARGE_IMAGE_URL = "large_image_url";
+    }
 }

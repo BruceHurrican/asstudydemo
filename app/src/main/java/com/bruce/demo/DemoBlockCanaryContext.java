@@ -15,6 +15,7 @@ package com.bruce.demo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+
 import com.bruce.demo.utils.LogUtils;
 import com.github.moduth.blockcanary.BlockCanaryContext;
 
@@ -27,8 +28,8 @@ public class DemoBlockCanaryContext extends BlockCanaryContext {
     @Override
     public String getQualifier() {
         try {
-            PackageInfo info = DemoApplication.getAppContext().getPackageManager().getPackageInfo(DemoApplication.getAppContext().getPackageName(),0);
-            qualifier +=info.versionCode+"_"+info.versionName+"_Bruce";
+            PackageInfo info = DemoApplication.getAppContext().getPackageManager().getPackageInfo(DemoApplication.getAppContext().getPackageName(), 0);
+            qualifier += info.versionCode + "_" + info.versionName + "_Bruce";
         } catch (PackageManager.NameNotFoundException e) {
             LogUtils.e(e.toString());
         }

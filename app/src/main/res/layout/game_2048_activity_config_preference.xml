@@ -56,9 +56,9 @@
         android:layout_below="@+id/tv_gamelines"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:textColor="@android:color/black"
         android:background="@drawable/game_2048_white_btn"
         android:text="4"
+        android:textColor="@android:color/black"
         android:textSize="24sp"/>
 
     <TextView

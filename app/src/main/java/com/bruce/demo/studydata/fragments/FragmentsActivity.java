@@ -43,6 +43,7 @@ import android.widget.TextView;
 
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragmentActivity;
+import com.bruce.demo.mvp.view.ResultFragment;
 import com.bruce.demo.studydata.fragments.crash.CrashFragment;
 import com.bruce.demo.studydata.fragments.database.DBFragment;
 import com.bruce.demo.studydata.fragments.googlesample.api10.contact_manager.ContactManagerFragment;
@@ -127,6 +128,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         alv_fragment_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
         addFragment2Container("滑动效果练习");
+        addFragment2Container("MVP_demo");
         addFragment2Container("控件练习");
         addFragment2Container("数据库");
         addFragment2Container("文件储存");
@@ -175,6 +177,8 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
             targetFragment = new ContactManagerFragment();
         } else if (fragmentName.equals("谷歌模板-Blank")) {
             targetFragment = new BlankFragment();
+        } else if (fragmentName.equals("MVP_demo")){
+            targetFragment = new ResultFragment();
         }
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

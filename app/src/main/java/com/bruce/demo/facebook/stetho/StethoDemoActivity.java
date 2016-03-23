@@ -28,12 +28,39 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class StethoDemoActivity extends BaseActivity {
+    private final View.OnClickListener mMainButtonClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int id = v.getId();
+            if (id == R.id.settings_btn) {
+                StethoDemoSettingsActivity.show(StethoDemoActivity.this);
+            } else if (id == R.id.apod_btn) {
+                APODActivity.show(StethoDemoActivity.this);
+            }
+        }
+    };
+    private final SharedPreferences.OnSharedPreferenceChangeListener mToastingPrefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            Object value = sharedPreferences.getAll().get(key);
+            Toast.makeText(StethoDemoActivity.this, String.format("%s is now \\'%s\\'", key, value), Toast.LENGTH_SHORT).show();
+        }
+    };
     @Bind(R.id.settings_btn)
     Button settingsBtn;
     @Bind(R.id.apod_btn)
     Button apodBtn;
     @Bind(R.id.url_btn)
     Button urlBtn;
+
+    private static boolean isStethoPresent() {
+        try {
+            Class.forName("com.facebook.stetho.Stetho");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +78,16 @@ public class StethoDemoActivity extends BaseActivity {
     }
 
     @OnClick({R.id.url_btn})
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.url_btn:
-                Networker.HttpRequest imageRequest = Networker.HttpRequest.newBuilder()
-                        .method(Networker.HttpMethod.GET)
-                        .url("http://www.baidu.com/")
-                        .build();
+                Networker.HttpRequest imageRequest = Networker.HttpRequest.newBuilder().method(Networker.HttpMethod.GET).url("http://www.baidu.com/").build();
                 Networker.get().submit(imageRequest, new Networker.Callback() {
                     @Override
                     public void onResponse(Networker.HttpResponse result) {
                         LogUtils.d("Got " + ": " + result.statusCode + ", " + result.body.length);
                         if (result.statusCode == 200) {
-                            showToastShort(result.statusCode+"");
+                            showToastShort(result.statusCode + "");
 //                            final Bitmap bitmap = BitmapFactory.decodeByteArray(result.body, 0, result.body.length);
 //                            StethoDemoActivity.this.runOnUiThread(new Runnable() {
 //
@@ -81,15 +105,6 @@ public class StethoDemoActivity extends BaseActivity {
                     }
                 });
                 break;
-        }
-    }
-
-    private static boolean isStethoPresent() {
-        try {
-            Class.forName("com.facebook.stetho.Stetho");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
         }
     }
 
@@ -119,24 +134,4 @@ public class StethoDemoActivity extends BaseActivity {
     private SharedPreferences getPrefs() {
         return PreferenceManager.getDefaultSharedPreferences(this /* context */);
     }
-
-    private final View.OnClickListener mMainButtonClicked = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            int id = v.getId();
-            if (id == R.id.settings_btn) {
-                StethoDemoSettingsActivity.show(StethoDemoActivity.this);
-            } else if (id == R.id.apod_btn) {
-                APODActivity.show(StethoDemoActivity.this);
-            }
-        }
-    };
-
-    private final SharedPreferences.OnSharedPreferenceChangeListener mToastingPrefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            Object value = sharedPreferences.getAll().get(key);
-            Toast.makeText(StethoDemoActivity.this, String.format("%s is now \\'%s\\'", key, value), Toast.LENGTH_SHORT).show();
-        }
-    };
 }
