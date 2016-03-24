@@ -27,6 +27,7 @@ package com.bruce.demo.mvp.presenter;
 
 import com.bruce.demo.mvp.model.CalculateTwoNumbers;
 import com.bruce.demo.mvp.view.IResult;
+import com.bruce.demo.utils.LogUtils;
 
 /**
  * Created by BruceHurrican on 16-3-23.
@@ -43,35 +44,41 @@ public class CalculatePresenter implements ICalculate {
     public void initUser(int n1, int n2) {
         calculateTwoNumbers.n1 = n1;
         calculateTwoNumbers.n2 = n2;
-        mathAdd(n1, n2);
-        mathSubtract(n1, n2);
-        mathMultiply(n1, n2);
-        mathDivide(n1, n2);
+        mathAdd();
+        mathSubtract();
+        mathMultiply();
+        if (n2 != 0) {
+            mathDivide();
+        } else {
+            LogUtils.e("数据格式错误");
+            calculateTwoNumbers.n2 = 1;
+            mathDivide();
+        }
     }
 
     @Override
-    public void mathAdd(int n1, int n2) {
+    public void mathAdd() {
         if (iResult != null) {
             iResult.showAdd(calculateTwoNumbers.addResult());
         }
     }
 
     @Override
-    public void mathSubtract(int n1, int n2) {
+    public void mathSubtract() {
         if (iResult != null) {
             iResult.showSubtract(calculateTwoNumbers.subtractResult());
         }
     }
 
     @Override
-    public void mathMultiply(int n1, int n2) {
+    public void mathMultiply() {
         if (iResult != null) {
             iResult.showMultiply(calculateTwoNumbers.multiplyResult());
         }
     }
 
     @Override
-    public void mathDivide(int n1, int n2) {
+    public void mathDivide() {
         if (iResult != null) {
             iResult.showDivide(calculateTwoNumbers.divideResult());
         }

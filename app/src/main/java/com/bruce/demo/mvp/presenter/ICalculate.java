@@ -29,13 +29,13 @@ package com.bruce.demo.mvp.presenter;
  * Created by BruceHurrican on 16-3-23.
  */
 public interface ICalculate {
-    void mathAdd(int n1, int n2);
+    void mathAdd();
 
-    void mathSubtract(int n1, int n2);
+    void mathSubtract();
 
-    void mathMultiply(int n1, int n2);
+    void mathMultiply();
 
-    void mathDivide(int n1, int n2);
+    void mathDivide();
 
     void clear();
 }
