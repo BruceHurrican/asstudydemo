@@ -72,14 +72,14 @@ public class Networker {
         sExecutor.execute(new HttpRequestTask(request, callback));
     }
 
-    public static enum HttpMethod {
+    public enum HttpMethod {
         GET, POST
     }
 
     public interface Callback {
-        public void onResponse(HttpResponse result);
+        void onResponse(HttpResponse result);
 
-        public void onFailure(IOException e);
+        void onFailure(IOException e);
     }
 
     public static class HttpRequest {

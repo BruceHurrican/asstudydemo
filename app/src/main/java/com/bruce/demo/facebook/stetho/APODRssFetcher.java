@@ -157,7 +157,7 @@ public class APODRssFetcher {
          * @param imageUrls Image URLs that were scraped or null if the page could not be fetched or
          *                  parsed.
          */
-        public void onPageScraped(@Nullable List<String> imageUrls);
+        void onPageScraped(@Nullable List<String> imageUrls);
     }
 
     private static class PageScrapeNetworkCallback implements Networker.Callback {
