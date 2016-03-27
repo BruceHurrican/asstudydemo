@@ -233,7 +233,12 @@ public class QQActivity extends BaseActivity {
 //        if (null!=tencent) {
 //            tencent.shareToQQ(QQActivity.this, bundle, qqShareListener);
 //        }
-        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).qqShare(new QQLoginAndShare.QQListener() {
+        ShareData shareData = new ShareData();
+        shareData.targetUrl = "https://github.com/BruceHurrican";
+        shareData.title = "github";
+        shareData.content = "bruceGithub";
+        shareData.imgUrl = "http://img.ivsky.com/img/bizhi/img/201108/03/quarter_of_silence-005.jpg";
+        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).qqShare(shareData,new QQLoginAndShare.QQListener() {
             @Override
             public void onOperating(Object result) {
 
@@ -331,6 +336,7 @@ public class QQActivity extends BaseActivity {
         if (null != tencent) {
             tencent.releaseResource();
         }
+        QQLoginAndShare.getInstance().releaseTencent();
         super.onDestroy();
         ButterKnife.unbind(this);
     }

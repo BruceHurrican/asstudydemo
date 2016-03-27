@@ -23,33 +23,17 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com.bruce.demo.social;
+package com.bruce.demo.social.qq;
 
-import java.util.ArrayList;
+import junit.framework.TestCase;
 
 /**
- * 分享数据包括标题,url,图片等
  * Created by BruceHurrican on 2016/3/27.
  */
-public class ShareData {
-    /**
-     * 分享标题
-     */
-    public String title;
-    /**
-     * 分享内容,QQ要求字符数不能超过50
-     */
-    public String content;
-    /**
-     * 用户点击后跳转的URL
-     */
-    public String targetUrl;
-    /**
-     * 单个图片url,适用于QQ分享
-     */
-    public String imgUrl;
-    /**
-     * 图片url集合,适用于QQ空间分享,分享的图片在QQ空间上只显示imgList.get(0)的其余不显示
-     */
-    public ArrayList<String> imgList;
+public class QQLoginAndShareTest extends TestCase {
+
+    public void testGetInstance() throws Exception {
+        assertNotNull(QQLoginAndShare.getInstance());
+    }
+
 }

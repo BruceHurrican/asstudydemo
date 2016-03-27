@@ -90,16 +90,16 @@ public class QQLoginAndShare {
         return this;
     }
 
-    public QQLoginAndShare qqShare(QQListener qqShareListener) {
+    public QQLoginAndShare qqShare(ShareData shareData,QQListener qqShareListener) {
         Bundle bundle = new Bundle();
         //这条分享消息被好友点击后的跳转URL。
-        bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, "https://github.com/BruceHurrican");
+        bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, shareData.targetUrl);
         //分享的标题。注：PARAM_TITLE、PARAM_IMAGE_URL、PARAM_	SUMMARY不能全为空，最少必须有一个是有值的。
-        bundle.putString(QQShare.SHARE_TO_QQ_TITLE, "我在测试");
+        bundle.putString(QQShare.SHARE_TO_QQ_TITLE, shareData.title);
         //分享的图片URL
-        bundle.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg");
+        bundle.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, shareData.imgUrl);
         //分享的消息摘要，最长50个字
-        bundle.putString(QQShare.SHARE_TO_QQ_SUMMARY, "测试");
+        bundle.putString(QQShare.SHARE_TO_QQ_SUMMARY, shareData.content);
         if (null != tencent) {
             tencent.shareToQQ(context, bundle, qqShareListener);
         } else {
@@ -131,11 +131,17 @@ public class QQLoginAndShare {
     public void loginOut() {
         if (null != tencent) {
             tencent.logout(context);
-            tencent.releaseResource();
+            releaseTencent();
             Toast.makeText(context, "注销成功", Toast.LENGTH_SHORT).show();
         } else {
             LogUtils.e("tencent未初始化");
             Toast.makeText(context, "tencent未初始化", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void releaseTencent(){
+        if (null!= tencent) {
+            tencent.releaseResource();
         }
     }
 
