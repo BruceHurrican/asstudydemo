@@ -43,9 +43,16 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+
 import junit.framework.Assert;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -430,17 +437,14 @@ public class QQUtil {
         return null;
     }
 
-    public static final void showResultDialog(Context context, String msg,
-                                              String title) {
+    public static final void showResultDialog(Context context, String msg, String title) {
         if (msg == null) return;
         String rmsg = msg.replace(",", "\n");
         Log.d("QQUtil", rmsg);
-        new AlertDialog.Builder(context).setTitle(title).setMessage(rmsg)
-                .setNegativeButton("知道了", null).create().show();
+        new AlertDialog.Builder(context).setTitle(title).setMessage(rmsg).setNegativeButton("知道了", null).create().show();
     }
 
-    public static final void showProgressDialog(Context context, String title,
-                                                String message) {
+    public static final void showProgressDialog(Context context, String title, String message) {
         dismissDialog();
         if (TextUtils.isEmpty(title)) {
             title = "请稍候";
@@ -451,12 +455,8 @@ public class QQUtil {
         mProgressDialog = ProgressDialog.show(context, title, message);
     }
 
-    public static AlertDialog showConfirmCancelDialog(Context context,
-                                                      String title, String message,
-                                                      DialogInterface.OnClickListener posListener) {
-        AlertDialog dlg = new AlertDialog.Builder(context).setMessage(message)
-                .setPositiveButton("确认", posListener)
-                .setNegativeButton("取消", null).create();
+    public static AlertDialog showConfirmCancelDialog(Context context, String title, String message, DialogInterface.OnClickListener posListener) {
+        AlertDialog dlg = new AlertDialog.Builder(context).setMessage(message).setPositiveButton("确认", posListener).setNegativeButton("取消", null).create();
         dlg.setCanceledOnTouchOutside(false);
         dlg.show();
         return dlg;
@@ -476,8 +476,7 @@ public class QQUtil {
      * @param message
      * @param logLevel 填d, w, e分别代表debug, warn, error; 默认是debug
      */
-    public static final void toastMessage(final Activity activity,
-                                          final String message, String logLevel) {
+    public static final void toastMessage(final Activity activity, final String message, String logLevel) {
         if ("w".equals(logLevel)) {
             Log.w("sdkDemo", message);
         } else if ("e".equals(logLevel)) {
@@ -511,8 +510,7 @@ public class QQUtil {
      * @param message
      * @param logLevel 填d, w, e分别代表debug, warn, error; 默认是debug
      */
-    public static final void toastMessage(final Activity activity,
-                                          final String message) {
+    public static final void toastMessage(final Activity activity, final String message) {
         toastMessage(activity, message, null);
     }
 
@@ -529,8 +527,7 @@ public class QQUtil {
         Bitmap bitmap = null;
         try {
             URL myFileUrl = new URL(imageUri);
-            HttpURLConnection conn = (HttpURLConnection) myFileUrl
-                    .openConnection();
+            HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
             conn.setDoInput(true);
             conn.connect();
             InputStream is = conn.getInputStream();
@@ -575,8 +572,7 @@ public class QQUtil {
             else if (isDownloadsDocument(uri)) {
 
                 final String id = getDocumentId(uri);
-                final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),
-                        Long.valueOf(id));
+                final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
 
                 return getDataColumn(context, contentUri, null, null);
             }
@@ -605,8 +601,7 @@ public class QQUtil {
         else if ("content".equalsIgnoreCase(uri.getScheme())) {
 
             // Return the remote address
-            if (isGooglePhotosUri(uri))
-                return uri.getLastPathSegment();
+            if (isGooglePhotosUri(uri)) return uri.getLastPathSegment();
 
             return getDataColumn(context, uri, null, null);
         }
@@ -666,8 +661,7 @@ public class QQUtil {
                 return cursor.getString(index);
             }
         } finally {
-            if (cursor != null)
-                cursor.close();
+            if (cursor != null) cursor.close();
         }
         return null;
     }

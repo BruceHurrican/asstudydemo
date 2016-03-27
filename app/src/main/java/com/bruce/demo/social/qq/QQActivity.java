@@ -37,11 +37,10 @@ import android.widget.Button;
 
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
+import com.bruce.demo.social.ShareData;
 import com.bruce.demo.utils.LogUtils;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
-import com.tencent.connect.share.QQShare;
-import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -60,37 +59,21 @@ import butterknife.OnClick;
  * Created by BruceHurrican on 2016/3/27.
  */
 public class QQActivity extends BaseActivity {
+    public static final String QQ_APPID = "222222";// QQ提供测试ID
+    public static Tencent tencent;
+    private static String token;
+    private static String expires;
+    private static String openId;
     @Bind(R.id.btn_qq_login)
     Button btn_qq_login;
     @Bind(R.id.btn_qq_share)
     Button btn_qq_share;
     @Bind(R.id.btn_qq_login_out)
     Button btn_qq_login_out;
-
-    public static Tencent tencent;
-    private static String token;
-    private static String expires;
-    private static String openId;
     IUiListener loginListener, qqShareListener, qzoneListener;
-    public static final String QQ_APPID = "222222";// QQ提供测试ID
     @Bind(R.id.btn_qzone_share)
     Button btn_qzone_share;
-
-    @Override
-    public String getTAG() {
-        return QQActivity.class.getSimpleName();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.qq_activity);
-        ButterKnife.bind(this);
-        if (null == tencent) {
-            tencent = Tencent.createInstance(QQ_APPID, getApplicationContext());
-        }
-        initListener();
-    }
+    private UserInfo mInfo;
 
     public static void initOpenidAndToken(JSONObject jsonObject) {
         try {
@@ -107,12 +90,29 @@ public class QQActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public String getTAG() {
+        return QQActivity.class.getSimpleName();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.qq_activity);
+        ButterKnife.bind(this);
+        if (null == tencent) {
+//            tencent = Tencent.createInstance(QQ_APPID, getApplicationContext());
+        }
+        initListener();
+    }
+
     private void initListener() {
         loginListener = new BaseUiListener() {
             @Override
             protected void doComplete(JSONObject values) {
                 Log.d("SDKQQAgentPref", "AuthorSwitch_SDK:" + SystemClock.elapsedRealtime());
-                initOpenidAndToken(values);
+                showToastShort("登录成功~");
+//                initOpenidAndToken(values);
                 updateUserInfo();
             }
         };
@@ -177,66 +177,152 @@ public class QQActivity extends BaseActivity {
     }
 
     private void loginOut() {
-        if (null != tencent) {
-            tencent.logout(this);
-        }
+//        if (null != tencent) {
+//            tencent.logout(this);
+//        }
+        QQLoginAndShare.getInstance().loginOut();
     }
 
     private void login() {
-        if (null != tencent && !tencent.isSessionValid()) {
-            tencent.setAccessToken(token, expires);
-            tencent.setOpenId(openId);
-            String scope = "all"; // 应用需要获得哪些API的权限，由“，”分隔。 例如：SCOPE =“get_user_info,add_t”；所有权限用“all”
-            tencent.login(QQActivity.this, scope, loginListener);
-        }
+//        if (null != tencent && !tencent.isSessionValid()) {
+//            tencent.setAccessToken(token, expires);
+//            tencent.setOpenId(openId);
+//            String scope = "all"; // 应用需要获得哪些API的权限，由“，”分隔。 例如：SCOPE =“get_user_info,add_t”；所有权限用“all”
+//            tencent.login(QQActivity.this, scope, loginListener);
+//        }
+        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).login(new QQLoginAndShare.QQListener() {
+
+            @Override
+            public void onOperating(Object result) {
+
+            }
+
+            @Override
+            public void onSucceed(Object result) {
+                LogUtils.i("result->" + result.toString());
+                showToastShort("login succeed~");
+            }
+
+            @Override
+            public void onFailed(Object result) {
+                LogUtils.i("result->" + result.toString());
+                showToastShort("login failed~");
+            }
+
+            @Override
+            public void onCanceled() {
+                LogUtils.i("取消登录");
+                showToastShort("取消QQ授权登录");
+            }
+        });
     }
 
     /**
      * QQ分享
      */
     private void qqShare() {
-        Bundle bundle = new Bundle();
-        //这条分享消息被好友点击后的跳转URL。
-        bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, "http://breeze.joinlinking.com/page/product/index.jsp");
-        //分享的标题。注：PARAM_TITLE、PARAM_IMAGE_URL、PARAM_	SUMMARY不能全为空，最少必须有一个是有值的。
-        bundle.putString(QQShare.SHARE_TO_QQ_TITLE, "我在测试");
-        //分享的图片URL
-        bundle.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg");
-        //分享的消息摘要，最长50个字
-        bundle.putString(QQShare.SHARE_TO_QQ_SUMMARY, "测试");
-        tencent.shareToQQ(QQActivity.this, bundle, qqShareListener);
+//        Bundle bundle = new Bundle();
+//        //这条分享消息被好友点击后的跳转URL。
+//        bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, "https://github.com/BruceHurrican");
+//        //分享的标题。注：PARAM_TITLE、PARAM_IMAGE_URL、PARAM_	SUMMARY不能全为空，最少必须有一个是有值的。
+//        bundle.putString(QQShare.SHARE_TO_QQ_TITLE, "我在测试");
+//        //分享的图片URL
+//        bundle.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, "http://img3.cache.netease.com/photo/0005/2013-03-07/8PBKS8G400BV0005.jpg");
+//        //分享的消息摘要，最长50个字
+//        bundle.putString(QQShare.SHARE_TO_QQ_SUMMARY, "测试");
+//        if (null!=tencent) {
+//            tencent.shareToQQ(QQActivity.this, bundle, qqShareListener);
+//        }
+        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).qqShare(new QQLoginAndShare.QQListener() {
+            @Override
+            public void onOperating(Object result) {
+
+            }
+
+            @Override
+            public void onSucceed(Object result) {
+                LogUtils.i("result->" + result.toString());
+                showToastShort("qq分享成功");
+            }
+
+            @Override
+            public void onFailed(Object result) {
+                LogUtils.i("result->" + result.toString());
+                showToastShort("qq分享失败");
+            }
+
+            @Override
+            public void onCanceled() {
+                LogUtils.i("取消qq分享");
+                showToastShort("取消QQ分享");
+            }
+        });
     }
 
     /**
      * QQ空间分享
      */
     private void qzoneShare() {
-        Bundle bundle = new Bundle();
-        bundle.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
-        bundle.putString(QzoneShare.SHARE_TO_QQ_TITLE, "test title");
-        bundle.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, "test content");
-        bundle.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, "http://breeze.joinlinking.com/page/product/index.jsp");
-        ArrayList<String> imgList = new ArrayList<String>(1);
-        imgList.add("http://p2.so.qhimg.com/t01dba9a5ac5641a797.jpg");
-        bundle.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imgList);
-        tencent.shareToQzone(QQActivity.this, bundle, qzoneListener);
+//        Bundle bundle = new Bundle();
+//        bundle.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+//        bundle.putString(QzoneShare.SHARE_TO_QQ_TITLE, "test title");
+//        bundle.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, "test content");
+//        bundle.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, "https://github.com/BruceHurrican");
+//        ArrayList<String> imgList = new ArrayList<String>(1);
+//        imgList.add("http://p2.so.qhimg.com/t01dba9a5ac5641a797.jpg");
+//        bundle.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imgList);
+//        if (null!=tencent) {
+//            tencent.shareToQzone(QQActivity.this, bundle, qzoneListener);
+//        }
+        ShareData shareData = new ShareData();
+        shareData.title = "bruce";
+        shareData.content = "bruceDemo";
+        shareData.targetUrl = "http://www.qq.com/";
+        ArrayList<String> imgList = new ArrayList<>(5);
+        imgList.add("http://wenwen.soso.com/p/20090628/20090628172613-989009059.jpg");
+        shareData.imgList = imgList;
+        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).qzoneShare(shareData, new QQLoginAndShare.QQListener() {
+            @Override
+            public void onOperating(Object result) {
+
+            }
+
+            @Override
+            public void onSucceed(Object result) {
+                LogUtils.i("result->" + result.toString());
+                showToastShort("qq空间分享成功");
+            }
+
+            @Override
+            public void onFailed(Object result) {
+                LogUtils.i("result->" + result.toString());
+                showToastShort("qq空间分享失败");
+            }
+
+            @Override
+            public void onCanceled() {
+                LogUtils.i("取消qq空间分享");
+                showToastShort("取消QQ空间分享");
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         LogUtils.i("requestCode-> " + requestCode + "\nresultCode-> " + resultCode);
-        switch (requestCode) {
-            case Constants.REQUEST_LOGIN:
-            case Constants.REQUEST_APPBAR:
-                Tencent.onActivityResultData(requestCode, resultCode, data, loginListener);
-                break;
-            case Constants.REQUEST_QQ_SHARE:
-                Tencent.onActivityResultData(requestCode, resultCode, data, qqShareListener);
-                break;
-            case Constants.REQUEST_QZONE_SHARE:
-                Tencent.onActivityResultData(requestCode, resultCode, data, qzoneListener);
-                break;
-        }
+//        switch (requestCode) {
+//            case Constants.REQUEST_LOGIN:
+//            case Constants.REQUEST_APPBAR:
+//                Tencent.onActivityResultData(requestCode, resultCode, data, loginListener);
+//                break;
+//            case Constants.REQUEST_QQ_SHARE:
+//                Tencent.onActivityResultData(requestCode, resultCode, data, qqShareListener);
+//                break;
+//            case Constants.REQUEST_QZONE_SHARE:
+//                Tencent.onActivityResultData(requestCode, resultCode, data, qzoneListener);
+//                break;
+//        }
+        QQLoginAndShare.getInstance().QQCallBack(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -248,8 +334,6 @@ public class QQActivity extends BaseActivity {
         super.onDestroy();
         ButterKnife.unbind(this);
     }
-
-    private UserInfo mInfo;
 
     private void updateUserInfo() {
         if (tencent != null && tencent.isSessionValid()) {
