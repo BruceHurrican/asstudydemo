@@ -28,6 +28,7 @@ package com.bruce.demo.social.sina;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 /**

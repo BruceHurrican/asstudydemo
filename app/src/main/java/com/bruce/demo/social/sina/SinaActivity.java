@@ -50,11 +50,8 @@ import butterknife.OnClick;
  */
 public class SinaActivity extends BaseActivity {
     public static final String SINA_APPID = "2045436852";
-    public static final String SINA_REDIRECT_URL= "https://api.weibo.com/oauth2/default.html";
-    public static final String SINA_SCOPE =
-            "email,direct_messages_read,direct_messages_write,"
-                    + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
-                    + "follow_app_official_microblog," + "invitation_write";
+    public static final String SINA_REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
+    public static final String SINA_SCOPE = "email,direct_messages_read,direct_messages_write," + "friendships_groups_read,friendships_groups_write,statuses_to_me_read," + "follow_app_official_microblog," + "invitation_write";
     @Bind(R.id.btn_sina_login)
     Button btnSinaLogin;
     @Bind(R.id.btn_sina_share)
@@ -74,24 +71,24 @@ public class SinaActivity extends BaseActivity {
         setContentView(R.layout.sina_activity);
         ButterKnife.bind(this);
 
-        authInfo = new AuthInfo(SinaActivity.this,SINA_APPID,SINA_REDIRECT_URL,SINA_SCOPE);
+        authInfo = new AuthInfo(SinaActivity.this, SINA_APPID, SINA_REDIRECT_URL, SINA_SCOPE);
         ssoHandler = new SsoHandler(SinaActivity.this, authInfo);
 
-        IWeiboShareAPI weiboShareAPI = WeiboShareSDK.createWeiboAPI(SinaActivity.this,SINA_APPID);
+        IWeiboShareAPI weiboShareAPI = WeiboShareSDK.createWeiboAPI(SinaActivity.this, SINA_APPID);
         weiboShareAPI.registerApp();
     }
 
-    @OnClick({R.id.btn_sina_login,R.id.btn_sina_share})
-    public void onClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.btn_sina_login, R.id.btn_sina_share})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btn_sina_login:
                 ssoHandler.authorize(new WeiboAuthListener() {
                     @Override
                     public void onComplete(Bundle bundle) {
-                        LogUtils.i("bundle->"+bundle);
+                        LogUtils.i("bundle->" + bundle);
                         accessToken = Oauth2AccessToken.parseAccessToken(bundle);
-                        if (accessToken.isSessionValid()){
-                            AccessTokenKeeper.writeAccessToken(SinaActivity.this,accessToken);
+                        if (accessToken.isSessionValid()) {
+                            AccessTokenKeeper.writeAccessToken(SinaActivity.this, accessToken);
                         } else {
 
                         }
@@ -99,7 +96,7 @@ public class SinaActivity extends BaseActivity {
 
                     @Override
                     public void onWeiboException(WeiboException e) {
-                        LogUtils.e("授权失败->"+e.toString());
+                        LogUtils.e("授权失败->" + e.toString());
                     }
 
                     @Override
@@ -116,8 +113,8 @@ public class SinaActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (ssoHandler!=null){
-            ssoHandler.authorizeCallBack(requestCode,resultCode,data);
+        if (ssoHandler != null) {
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
     }
 

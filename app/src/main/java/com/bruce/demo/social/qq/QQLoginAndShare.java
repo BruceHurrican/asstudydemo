@@ -54,7 +54,9 @@ public class QQLoginAndShare {
     public static QQLoginAndShare getInstance() {
         if (null == instance) {
             synchronized (QQLoginAndShare.class) {
-                instance = new QQLoginAndShare();
+                if (null == instance) {
+                    instance = new QQLoginAndShare();
+                }
             }
         }
         return instance;
@@ -90,7 +92,7 @@ public class QQLoginAndShare {
         return this;
     }
 
-    public QQLoginAndShare qqShare(ShareData shareData,QQListener qqShareListener) {
+    public QQLoginAndShare qqShare(ShareData shareData, QQListener qqShareListener) {
         Bundle bundle = new Bundle();
         //这条分享消息被好友点击后的跳转URL。
         bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, shareData.targetUrl);
@@ -139,8 +141,8 @@ public class QQLoginAndShare {
         }
     }
 
-    public void releaseTencent(){
-        if (null!= tencent) {
+    public void releaseTencent() {
+        if (null != tencent) {
             tencent.releaseResource();
         }
     }

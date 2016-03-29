@@ -238,7 +238,7 @@ public class QQActivity extends BaseActivity {
         shareData.title = "github";
         shareData.content = "bruceGithub";
         shareData.imgUrl = "http://img.ivsky.com/img/bizhi/img/201108/03/quarter_of_silence-005.jpg";
-        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).qqShare(shareData,new QQLoginAndShare.QQListener() {
+        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).qqShare(shareData, new QQLoginAndShare.QQListener() {
             @Override
             public void onOperating(Object result) {
 
