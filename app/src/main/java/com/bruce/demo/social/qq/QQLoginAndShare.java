@@ -48,7 +48,7 @@ public class QQLoginAndShare {
     private Tencent tencent;
     private Activity context;
 
-    public QQLoginAndShare() {
+    private QQLoginAndShare() {
     }
 
     public static QQLoginAndShare getInstance() {
@@ -62,20 +62,18 @@ public class QQLoginAndShare {
         return instance;
     }
 
-    public QQLoginAndShare init(String QQAppID, Activity context) {
+    public void init(String QQAppID, Activity context) {
         if (null == tencent) {
             tencent = Tencent.createInstance(QQAppID, context.getApplicationContext());
         }
         this.context = context;
-        return this;
     }
 
-    public QQLoginAndShare login(QQListener loginListener) {
+    public void login(QQListener loginListener) {
         this.login(null, null, null, loginListener);
-        return this;
     }
 
-    public QQLoginAndShare login(String token, String expires, String openId, QQListener loginListener) {
+    public void login(String token, String expires, String openId, QQListener loginListener) {
         if (null != tencent) {
             if (!tencent.isSessionValid()) {
                 String scope = "all"; // 应用需要获得哪些API的权限，由“，”分隔。 例如：SCOPE =“get_user_info,add_t”；所有权限用“all”
@@ -89,10 +87,9 @@ public class QQLoginAndShare {
             LogUtils.e("tencent未初始化");
             Toast.makeText(context, "tencent未初始化", Toast.LENGTH_SHORT).show();
         }
-        return this;
     }
 
-    public QQLoginAndShare qqShare(ShareData shareData, QQListener qqShareListener) {
+    public void qqShare(ShareData shareData, QQListener qqShareListener) {
         Bundle bundle = new Bundle();
         //这条分享消息被好友点击后的跳转URL。
         bundle.putString(QQShare.SHARE_TO_QQ_TARGET_URL, shareData.targetUrl);
@@ -108,10 +105,9 @@ public class QQLoginAndShare {
             LogUtils.e("tencent未初始化");
             Toast.makeText(context, "tencent未初始化", Toast.LENGTH_SHORT).show();
         }
-        return this;
     }
 
-    public QQLoginAndShare qzoneShare(ShareData shareData, QQListener qzoneShareListener) {
+    public void qzoneShare(ShareData shareData, QQListener qzoneShareListener) {
         Bundle bundle = new Bundle();
         bundle.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
         bundle.putString(QzoneShare.SHARE_TO_QQ_TITLE, shareData.title);
@@ -127,7 +123,6 @@ public class QQLoginAndShare {
             LogUtils.e("tencent未初始化");
             Toast.makeText(context, "tencent未初始化", Toast.LENGTH_SHORT).show();
         }
-        return this;
     }
 
     public void loginOut() {

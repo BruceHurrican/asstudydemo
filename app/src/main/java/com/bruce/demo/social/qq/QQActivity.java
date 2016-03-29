@@ -190,7 +190,8 @@ public class QQActivity extends BaseActivity {
 //            String scope = "all"; // 应用需要获得哪些API的权限，由“，”分隔。 例如：SCOPE =“get_user_info,add_t”；所有权限用“all”
 //            tencent.login(QQActivity.this, scope, loginListener);
 //        }
-        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).login(new QQLoginAndShare.QQListener() {
+        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this);
+        QQLoginAndShare.getInstance().login(new QQLoginAndShare.QQListener() {
 
             @Override
             public void onOperating(Object result) {
@@ -238,7 +239,8 @@ public class QQActivity extends BaseActivity {
         shareData.title = "github";
         shareData.content = "bruceGithub";
         shareData.imgUrl = "http://img.ivsky.com/img/bizhi/img/201108/03/quarter_of_silence-005.jpg";
-        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).qqShare(shareData, new QQLoginAndShare.QQListener() {
+        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this);
+        QQLoginAndShare.getInstance().qqShare(shareData, new QQLoginAndShare.QQListener() {
             @Override
             public void onOperating(Object result) {
 
@@ -286,7 +288,8 @@ public class QQActivity extends BaseActivity {
         ArrayList<String> imgList = new ArrayList<>(5);
         imgList.add("http://wenwen.soso.com/p/20090628/20090628172613-989009059.jpg");
         shareData.imgList = imgList;
-        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this).qzoneShare(shareData, new QQLoginAndShare.QQListener() {
+        QQLoginAndShare.getInstance().init(QQ_APPID, QQActivity.this);
+        QQLoginAndShare.getInstance().qzoneShare(shareData, new QQLoginAndShare.QQListener() {
             @Override
             public void onOperating(Object result) {
 
