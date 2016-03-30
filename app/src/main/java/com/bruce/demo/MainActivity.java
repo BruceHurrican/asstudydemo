@@ -46,6 +46,7 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.TT;
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.facebook.stetho.StethoDemoActivity;
 import com.bruce.demo.mvp.view.MVPActivity;
@@ -93,6 +94,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     private List<String> demoNamesList;
     private Intent it;
     private NetWorkAvailableReceiver netWorkAvailableReceiver = new NetWorkAvailableReceiver();
+    TT tt = new TT();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,12 +115,15 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                         LogUtils.d("收藏按钮被点击");
                         break;
                     case R.id.btn_search:
+                        TT.show();
                         LogUtils.d("搜索按钮被点击");
                         break;
                     case R.id.btn_pocket:
+                        tt.showTxt(true, MainActivity.this);
                         LogUtils.d("钱包按钮被点击");
                         break;
                     case R.id.btn_mine:
+                        tt.showTxt(false, MainActivity.this);
                         LogUtils.d("我的按钮被点击");
                         break;
                 }
