@@ -142,7 +142,7 @@ public class DemoApplication extends Application {
     public void exitApp() {
         if (container == null || container.size() == 0) {
             LogUtils.i("activity容器已经清空");
-            android.os.Process.killProcess(android.os.Process.myPid());
+//            android.os.Process.killProcess(android.os.Process.myPid());
             return;
         }
         for (Activity activity : container) {
@@ -151,7 +151,7 @@ public class DemoApplication extends Application {
         }
 //        queues.stop();
 //        queues = null;
-        android.os.Process.killProcess(android.os.Process.myPid());
+//        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     // for stetho

@@ -46,7 +46,6 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.TT;
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.facebook.stetho.StethoDemoActivity;
 import com.bruce.demo.mvp.view.MVPActivity;
@@ -69,6 +68,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
+
+//import com.TT;
 
 /**
  * 主Activity
@@ -94,10 +95,11 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     private List<String> demoNamesList;
     private Intent it;
     private NetWorkAvailableReceiver netWorkAvailableReceiver = new NetWorkAvailableReceiver();
-    TT tt = new TT();
+//    TT tt = new TT();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -115,15 +117,15 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                         LogUtils.d("收藏按钮被点击");
                         break;
                     case R.id.btn_search:
-                        TT.show();
+//                        TT.show();
                         LogUtils.d("搜索按钮被点击");
                         break;
                     case R.id.btn_pocket:
-                        tt.showTxt(true, MainActivity.this);
+//                        tt.showTxt(true, MainActivity.this);
                         LogUtils.d("钱包按钮被点击");
                         break;
                     case R.id.btn_mine:
-                        tt.showTxt(false, MainActivity.this);
+//                        tt.showTxt(false, MainActivity.this);
                         LogUtils.d("我的按钮被点击");
                         break;
                 }
@@ -267,6 +269,19 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     @Override
     public void onLeftBtnClick() {
         LogUtils.d("左侧按钮被点击");
+        String channelName = PublicUtil.getChannelName(this);
+        LogUtils.i("channelName:" + channelName);
+        showToastShort("channelName:"+channelName);
+        if (channelName.equals("tt")||BuildConfig.DEBUG) {
+            try {
+                Class<?> performanceClass = Class.forName("android.support.v7.widget.RecyclerView");
+                LogUtils.i(performanceClass.getCanonicalName());
+//                Method method = performanceClass.getMethod("init", Application.class);
+//                method.invoke(performanceClass, MainActivity.this);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

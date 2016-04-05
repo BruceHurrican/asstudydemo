@@ -145,6 +145,9 @@
             android:configChanges="keyboardHidden|orientation"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
+        <meta-data
+            android:name="Demo_CHANNEL"
+            android:value="${Demo_CHANNEL_VALUE}"/>
     </application>
 
 </manifest>

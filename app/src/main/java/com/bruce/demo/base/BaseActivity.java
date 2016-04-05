@@ -35,6 +35,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.widget.Toast;
 
+import com.android.debug.hv.ViewServer;
 import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
 import com.bruce.demo.utils.LogUtils;
@@ -64,6 +65,7 @@ public abstract class BaseActivity extends Activity {
 //        TAG = getTAG();
         application = (DemoApplication) getApplication();
         application.addActivity(this);
+        ViewServer.get(this).addWindow(this);
     }
 
     @Override
@@ -72,6 +74,13 @@ public abstract class BaseActivity extends Activity {
         super.onDestroy();
         recycleUIHandler();
         recycleWorkerHandler();
+        ViewServer.get(this).removeWindow(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ViewServer.get(this).setFocusedWindow(this);
     }
 
     public abstract String getTAG();

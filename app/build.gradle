@@ -26,6 +26,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias '123456'
+            keyPassword '123456'
+            storeFile file('test.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
@@ -54,12 +62,22 @@ android {
             applicationId 'com.bruce.demo.bb'
             minSdkVersion 15
             targetSdkVersion 23
+            signingConfig signingConfigs.release
         }
         flavor1 {
             applicationId 'com.bruce.demo.aa'
             minSdkVersion 15
             targetSdkVersion 23
         }
+        tt {
+            applicationId 'com.bruce.demo.tt'
+            minSdkVersion 15
+            targetSdkVersion 23
+            signingConfig signingConfigs.release
+        }
+    }
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [Demo_CHANNEL_VALUE: name]
     }
 }
 
@@ -73,7 +91,8 @@ dependencies {
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1'
     compile 'com.android.support:palette-v7:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
+    ttCompile 'com.android.support:recyclerview-v7:23.1.1'
+    debugCompile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.android.support:cardview-v7:23.1.1'
     debugCompile 'com.github.moduth:blockcanary-ui:1.1.4'
     releaseCompile 'com.github.moduth:blockcanary-no-op:1.1.4'
@@ -81,4 +100,6 @@ dependencies {
     compile 'com.facebook.stetho:stetho-urlconnection:1.3.1'
     compile 'com.facebook.stetho:stetho-js-rhino:1.3.1'
     compile files('libs/open_sdk_r5509_lite.jar')
+    compile files('libs/weiboSDKCore_3.1.4.jar')
+    compile 'com.hanhuy.android:viewserver:1.0.3'
 }
