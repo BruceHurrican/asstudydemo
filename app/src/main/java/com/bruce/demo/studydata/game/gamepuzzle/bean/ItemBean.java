@@ -23,24 +23,55 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com;
+package com.bruce.demo.studydata.game.gamepuzzle.bean;
 
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
+import android.graphics.Bitmap;
 
 /**
- * Created by BruceHurrican on 2016/3/30.
+ * 拼图Item逻辑实体类：封装逻辑相关属性
+ *
+ * @author xys
  */
-public class TT {
-    public TT() {
-    }
-    public void showTxt(boolean isOK,Context context) {
-        Toast.makeText(context, "favor1", Toast.LENGTH_SHORT).show();
-        Log.i(TT.class.getSimpleName(), isOK ? "good" : "bad");
+public class ItemBean {
+
+    // Item的Id
+    private int mItemId;
+    // bitmap的Id
+    private int mBitmapId;
+    // mBitmap
+    private Bitmap mBitmap;
+
+    public ItemBean() {
     }
 
-    public static void show() {
-        Log.i("aa1", "aa1");
+    public ItemBean(int mItemId, int mBitmapId, Bitmap mBitmap) {
+        this.mItemId = mItemId;
+        this.mBitmapId = mBitmapId;
+        this.mBitmap = mBitmap;
     }
+
+    public int getItemId() {
+        return mItemId;
+    }
+
+    public void setItemId(int mItemId) {
+        this.mItemId = mItemId;
+    }
+
+    public int getBitmapId() {
+        return mBitmapId;
+    }
+
+    public void setBitmapId(int mBitmapId) {
+        this.mBitmapId = mBitmapId;
+    }
+
+    public Bitmap getBitmap() {
+        return mBitmap;
+    }
+
+    public void setBitmap(Bitmap mBitmap) {
+        this.mBitmap = mBitmap;
+    }
+
 }

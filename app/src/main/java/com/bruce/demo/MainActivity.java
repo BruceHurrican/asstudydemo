@@ -54,6 +54,7 @@ import com.bruce.demo.social.sina.SinaActivity;
 import com.bruce.demo.studydata.activities.media.CameraActivity;
 import com.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.bruce.demo.studydata.game.game2048.activity.GameActivity;
+import com.bruce.demo.studydata.game.gamepuzzle.PuzzleActivity;
 import com.bruce.demo.utils.DataCleanManager;
 import com.bruce.demo.utils.LogUtils;
 import com.bruce.demo.utils.PublicUtil;
@@ -164,6 +165,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         addDemoContainer(GameActivity.class, "2048游戏");
         addDemoContainer(StethoDemoActivity.class, "stetho demo");
         addDemoContainer(MVPActivity.class, "mvp demo");
+        addDemoContainer(PuzzleActivity.class, "拼图游戏");
 
         alv_demo_list.setOnItemClickListener(this);
         LogUtils.i("加载列表完成");

@@ -143,11 +143,21 @@
         <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <meta-data
             android:name="Demo_CHANNEL"
             android:value="${Demo_CHANNEL_VALUE}"/>
+
+        <!-- game puzzle-->
+        <activity
+            android:name=".studydata.game.gamepuzzle.PuzzleActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".studydata.game.gamepuzzle.PuzzleLoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

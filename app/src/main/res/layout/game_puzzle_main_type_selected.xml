@@ -24,14 +24,41 @@
   ~   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
   -->
 
-<resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="btn_pressed">#00bb9c</color>
-    <color name="btn_unpressed">#11cd6e</color>
-    <color name="bottombartxt_pressed">#00A1E7</color>
-    <color name="bottombartxt_unpressed">#C1C1C1</color>
-    <!-- used in game puzzle -->
-    <color name="game_puzzle_tv_clicked">#33444444</color>
-</resources>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@android:color/transparent"
+              android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_main_type_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="2x2"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText"/>
+
+    <TextView
+        android:id="@+id/tv_main_type_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="3x3"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText"/>
+
+    <TextView
+        android:id="@+id/tv_main_type_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="4x4"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText"/>
+
+</LinearLayout>

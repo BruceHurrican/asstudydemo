@@ -23,24 +23,44 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com;
+package com.bruce.demo.studydata.game.gamepuzzle.util;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
 
 /**
- * Created by BruceHurrican on 2016/3/30.
+ * 屏幕工具类：实现获取屏幕相关参数
+ *
+ * @author xys
  */
-public class TT {
-    public TT() {
-    }
-    public void showTxt(boolean isOK,Context context) {
-        Toast.makeText(context, "favor2", Toast.LENGTH_SHORT).show();
-        Log.i(TT.class.getSimpleName(), isOK ? "good2" : "bad2");
+public class ScreenUtil {
+
+    /**
+     * 获取屏幕相关参数
+     *
+     * @param context context
+     * @return DisplayMetrics 屏幕宽高
+     */
+    public static DisplayMetrics getScreenSize(Context context) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        display.getMetrics(metrics);
+        return metrics;
     }
 
-    public static void show() {
-        Log.i("aa2", "aa2");
+    /**
+     * 获取屏幕density
+     *
+     * @param context context
+     * @return density 屏幕density
+     */
+    public static float getDeviceDensity(Context context) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metrics);
+        return metrics.density;
     }
 }

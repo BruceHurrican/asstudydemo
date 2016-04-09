@@ -24,14 +24,31 @@
   ~   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
   -->
 
-<resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="btn_pressed">#00bb9c</color>
-    <color name="btn_unpressed">#11cd6e</color>
-    <color name="bottombartxt_pressed">#00A1E7</color>
-    <color name="bottombartxt_unpressed">#C1C1C1</color>
-    <!-- used in game puzzle -->
-    <color name="game_puzzle_tv_clicked">#33444444</color>
-</resources>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+
+            <!-- 填充的颜色 -->
+            <solid android:color="#33444444"/>
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:radius="5dip"/>
+
+            <!-- padding：Button里面的文字与Button边界的间隔 -->
+            <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+
+            <!-- 填充的颜色 -->
+            <solid android:color="#FFFFFF"/>
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:radius="5dip"/>
+
+            <!-- padding：Button里面的文字与Button边界的间隔 -->
+            <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp"/>
+        </shape>
+    </item>
+</selector>

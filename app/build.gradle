@@ -58,17 +58,6 @@ android {
         incremental true
     }
     productFlavors {
-        flavor2 {
-            applicationId 'com.bruce.demo.bb'
-            minSdkVersion 15
-            targetSdkVersion 23
-            signingConfig signingConfigs.release
-        }
-        flavor1 {
-            applicationId 'com.bruce.demo.aa'
-            minSdkVersion 15
-            targetSdkVersion 23
-        }
         tt {
             applicationId 'com.bruce.demo.tt'
             minSdkVersion 15
