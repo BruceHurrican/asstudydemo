@@ -25,6 +25,10 @@
 
 package com.bruce.demo.studydata.fragments.rotate3danimation;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -52,6 +56,8 @@ import butterknife.OnClick;
 public class Rotate3dFragment extends BaseFragment {
     @Bind(R.id.btn_3d)
     Button btn_3d;
+    @Bind(R.id.btn_card)
+    Button btn_card;
     @Bind(R.id.iv_3d)
     ImageView iv_3d;
     @Bind(R.id.rl_content)
@@ -133,23 +139,70 @@ public class Rotate3dFragment extends BaseFragment {
         });
     }
 
-    @OnClick(R.id.btn_3d)
-    public void onClick() {
-        centerX = rl_content.getWidth() / 2;
-        centerY = rl_content.getHeight() / 2;
-        if (null == openAnimation) {
-            initOpenAnim();
-            initCloseAnim();
+    boolean flag = true;
+
+    @OnClick({R.id.btn_3d, R.id.btn_card})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_3d:
+                centerX = rl_content.getWidth() / 2;
+                centerY = rl_content.getHeight() / 2;
+                if (null == openAnimation) {
+                    initOpenAnim();
+                    initCloseAnim();
+                }
+                if (openAnimation.hasStarted() && !openAnimation.hasEnded()) {
+                    return;
+                }
+                if (closeAnimation.hasStarted() && !closeAnimation.hasEnded()) {
+                    return;
+                }
+                rl_content.startAnimation(isOpen ? closeAnimation : openAnimation);
+                isOpen = !isOpen;
+                btn_3d.setText(isOpen ? "关闭" : "打开");
+                break;
+            case R.id.btn_card:
+                if (flag) {
+                    ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(iv_3d, "rotationY", 0, 180f);
+                    ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(iv_3d, "alpha", 1f, 0.2f);
+                    AnimatorSet set = new AnimatorSet();
+                    set.playTogether(objectAnimator1, objectAnimator2);
+                    set.setDuration(2000);
+                    set.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                            btn_card.setClickable(false);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            btn_card.setClickable(true);
+                        }
+                    });
+                    set.start();
+                    flag = false;
+                } else {
+                    ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(iv_3d, "rotationY", 180f, 0);
+                    ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(iv_3d, "alpha", 0.2f, 1f);
+                    AnimatorSet set = new AnimatorSet();
+                    set.playTogether(objectAnimator1, objectAnimator2);
+                    set.setDuration(2000);
+                    set.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+                            btn_card.setClickable(false);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            btn_card.setClickable(true);
+                        }
+                    });
+                    set.start();
+                    flag = true;
+                }
+                break;
         }
-        if (openAnimation.hasStarted() && !openAnimation.hasEnded()) {
-            return;
-        }
-        if (closeAnimation.hasStarted() && !closeAnimation.hasEnded()) {
-            return;
-        }
-        rl_content.startAnimation(isOpen ? closeAnimation : openAnimation);
-        isOpen = !isOpen;
-        btn_3d.setText(isOpen ? "关闭" : "打开");
     }
 
     @Override
