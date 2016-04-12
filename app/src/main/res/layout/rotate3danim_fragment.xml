@@ -38,6 +38,16 @@
         android:textColor="#fff"
         android:textSize="18sp"/>
 
+    <Button
+        android:id="@+id/btn_card"
+        style="@style/BaseButton"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/btn_3d"
+        android:background="@drawable/btn_round"
+        android:text="卡片翻转"
+        android:textColor="#fff"
+        android:textSize="18sp"/>
+
     <RelativeLayout
         android:id="@+id/rl_content"
         android:layout_width="match_parent"
