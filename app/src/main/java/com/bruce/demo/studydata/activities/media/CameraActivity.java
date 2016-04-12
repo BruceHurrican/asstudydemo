@@ -38,7 +38,7 @@ import android.widget.ImageView;
 
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

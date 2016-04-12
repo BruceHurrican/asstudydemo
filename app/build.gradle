@@ -75,7 +75,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-    compile files('libs/volley.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta1'
@@ -91,4 +90,5 @@ dependencies {
     compile files('libs/open_sdk_r5509_lite.jar')
     compile files('libs/weiboSDKCore_3.1.4.jar')
     compile 'com.hanhuy.android:viewserver:1.0.3'
+    compile project(':BruceUtils')
 }

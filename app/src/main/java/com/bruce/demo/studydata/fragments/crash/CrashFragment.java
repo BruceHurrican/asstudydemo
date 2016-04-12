@@ -37,8 +37,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bruce.demo.base.BaseFragment;
-import com.bruce.demo.utils.LogUtils;
-import com.bruce.demo.utils.PublicUtil;
+import com.bruceutils.utils.LogUtils;
+import com.bruceutils.utils.PublicUtil;
 
 import java.io.File;
 

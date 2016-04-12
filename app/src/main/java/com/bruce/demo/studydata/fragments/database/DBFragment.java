@@ -37,7 +37,7 @@ import android.widget.Button;
 
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

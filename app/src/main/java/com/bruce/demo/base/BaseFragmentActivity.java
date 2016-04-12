@@ -38,7 +38,7 @@ import android.widget.Toast;
 import com.android.debug.hv.ViewServer;
 import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 
 import java.lang.ref.WeakReference;
 

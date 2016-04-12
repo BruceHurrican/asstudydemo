@@ -54,8 +54,8 @@ import com.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
 import com.bruce.demo.studydata.fragments.sliding.SlidingFragment;
 import com.bruce.demo.studydata.fragments.webviewjs.JSWebviewFragment;
 import com.bruce.demo.studydata.fragments.widgetdemo.WidgetFragment;
-import com.bruce.demo.utils.LogUtils;
 import com.bruce.demo.widget.AnimListView;
+import com.bruceutils.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;

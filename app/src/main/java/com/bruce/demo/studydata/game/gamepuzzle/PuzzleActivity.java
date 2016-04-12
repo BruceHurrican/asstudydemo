@@ -51,7 +51,7 @@ import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.studydata.game.gamepuzzle.adapter.GridPicListAdapter;
 import com.bruce.demo.studydata.game.gamepuzzle.util.ScreenUtil;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 
 import java.io.File;
 import java.util.ArrayList;

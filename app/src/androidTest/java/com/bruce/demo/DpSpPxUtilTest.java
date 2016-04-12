@@ -27,8 +27,6 @@ package com.bruce.demo;
 
 import android.test.AndroidTestCase;
 
-import com.bruce.demo.utils.DpSpPxUtil;
-
 /**
  * Created by BruceHurrican on 2016/2/7.
  */

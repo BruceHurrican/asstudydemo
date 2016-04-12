@@ -47,7 +47,7 @@ import com.bruce.demo.studydata.game.gamepuzzle.bean.ItemBean;
 import com.bruce.demo.studydata.game.gamepuzzle.util.GameUtil;
 import com.bruce.demo.studydata.game.gamepuzzle.util.ImagesUtil;
 import com.bruce.demo.studydata.game.gamepuzzle.util.ScreenUtil;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 
 import java.io.File;
 import java.util.ArrayList;

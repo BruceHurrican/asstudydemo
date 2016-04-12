@@ -32,8 +32,7 @@ import android.content.Context;
 import android.os.Build;
 import android.provider.CalendarContract;
 
-import com.bruce.demo.utils.Constants;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 import com.facebook.stetho.InspectorModulesProvider;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.inspector.database.ContentProviderDatabaseDriver;

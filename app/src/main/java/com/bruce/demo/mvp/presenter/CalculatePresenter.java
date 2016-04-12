@@ -27,7 +27,7 @@ package com.bruce.demo.mvp.presenter;
 
 import com.bruce.demo.mvp.model.CalculateTwoNumbers;
 import com.bruce.demo.mvp.view.IResult;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 
 /**
  * Created by BruceHurrican on 16-3-23.

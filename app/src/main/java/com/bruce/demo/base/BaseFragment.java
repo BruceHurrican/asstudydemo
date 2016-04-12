@@ -35,10 +35,10 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
+import com.bruce.demo.Constants;
 import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
-import com.bruce.demo.utils.Constants;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 
 import java.lang.ref.WeakReference;
 

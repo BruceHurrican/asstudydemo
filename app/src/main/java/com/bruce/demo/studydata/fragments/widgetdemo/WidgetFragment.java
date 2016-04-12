@@ -51,9 +51,9 @@ import android.widget.RelativeLayout;
 import com.bruce.demo.MainActivity;
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
-import com.bruce.demo.utils.LogUtils;
 import com.bruce.demo.widget.ScratchCardView;
 import com.bruce.demo.widget.TitleBar2;
+import com.bruceutils.utils.LogUtils;
 
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;

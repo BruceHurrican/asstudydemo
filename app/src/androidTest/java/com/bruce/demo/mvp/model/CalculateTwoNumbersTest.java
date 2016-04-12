@@ -32,27 +32,28 @@ import junit.framework.TestCase;
  */
 public class CalculateTwoNumbersTest extends TestCase {
     CalculateTwoNumbers calculateTwoNumbers = new CalculateTwoNumbers();
+
     public void testAddResult() throws Exception {
         calculateTwoNumbers.n1 = 4;
         calculateTwoNumbers.n2 = 8;
-        assertEquals(12,calculateTwoNumbers.addResult());
+        assertEquals(12, calculateTwoNumbers.addResult());
     }
 
     public void testSubtractResult() throws Exception {
         calculateTwoNumbers.n1 = 4;
         calculateTwoNumbers.n2 = 8;
-        assertEquals(-4,calculateTwoNumbers.subtractResult());
+        assertEquals(-4, calculateTwoNumbers.subtractResult());
     }
 
     public void testMultiplyResult() throws Exception {
         calculateTwoNumbers.n1 = 4;
         calculateTwoNumbers.n2 = 8;
-        assertEquals(32,calculateTwoNumbers.multiplyResult());
+        assertEquals(32, calculateTwoNumbers.multiplyResult());
     }
 
     public void testDivideResult() throws Exception {
         calculateTwoNumbers.n1 = 14;
         calculateTwoNumbers.n2 = 8;
-        assertEquals(1.0,calculateTwoNumbers.divideResult());
+        assertEquals(1.0, calculateTwoNumbers.divideResult());
     }
 }

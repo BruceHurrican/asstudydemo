@@ -16,7 +16,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 import com.github.moduth.blockcanary.BlockCanaryContext;
 
 /**

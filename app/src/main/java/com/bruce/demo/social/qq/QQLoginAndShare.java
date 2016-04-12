@@ -31,7 +31,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.bruce.demo.social.ShareData;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 import com.tencent.connect.common.Constants;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;

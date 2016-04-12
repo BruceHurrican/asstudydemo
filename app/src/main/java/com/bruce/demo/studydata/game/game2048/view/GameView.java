@@ -350,7 +350,7 @@ public class GameView extends GridLayout implements View.OnTouchListener {
 
     /**
      * 判断是否结束
-     * <p>
+     * <p/>
      * 0:结束 1:正常 2:成功
      */
     private void checkCompleted() {

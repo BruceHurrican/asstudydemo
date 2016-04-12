@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.bruce.demo.BuildConfig;
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 
 import java.io.IOException;
 

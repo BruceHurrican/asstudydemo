@@ -14,8 +14,6 @@
 
 package bruce.com.myapplication;
 
-import com.bruce.demo.utils.PublicUtil;
-
 import org.junit.Test;
 
 import static org.junit.Assert.*;

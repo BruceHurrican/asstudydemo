@@ -29,7 +29,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
+
 
 /**
  * Created by BruceHurrican on 2016/1/18.

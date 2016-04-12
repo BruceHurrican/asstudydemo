@@ -32,7 +32,7 @@ import android.widget.Button;
 
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
 import com.sina.weibo.sdk.api.share.WeiboShareSDK;
 import com.sina.weibo.sdk.auth.AuthInfo;

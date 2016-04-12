@@ -38,7 +38,7 @@ import android.widget.TextView;
 
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
-import com.bruce.demo.utils.PublicUtil;
+import com.bruceutils.utils.PublicUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

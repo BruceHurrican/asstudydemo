@@ -38,7 +38,7 @@ import android.widget.Button;
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.social.ShareData;
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;

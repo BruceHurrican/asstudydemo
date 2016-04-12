@@ -30,7 +30,8 @@ import android.graphics.Matrix;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import com.bruce.demo.utils.LogUtils;
+import com.bruceutils.utils.LogUtils;
+
 
 /**
  * An animation that rotates the view on the Y axis between two specified angles.

@@ -55,11 +55,11 @@ import com.bruce.demo.studydata.activities.media.CameraActivity;
 import com.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.bruce.demo.studydata.game.game2048.activity.GameActivity;
 import com.bruce.demo.studydata.game.gamepuzzle.PuzzleActivity;
-import com.bruce.demo.utils.DataCleanManager;
-import com.bruce.demo.utils.LogUtils;
-import com.bruce.demo.utils.PublicUtil;
 import com.bruce.demo.widget.AnimListView;
 import com.bruce.demo.widget.TitleBar;
+import com.bruceutils.utils.DataCleanManager;
+import com.bruceutils.utils.LogUtils;
+import com.bruceutils.utils.PublicUtil;
 
 import java.io.File;
 import java.io.Serializable;
@@ -273,8 +273,8 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         LogUtils.d("左侧按钮被点击");
         String channelName = PublicUtil.getChannelName(this);
         LogUtils.i("channelName:" + channelName);
-        showToastShort("channelName:"+channelName);
-        if (channelName.equals("tt")||BuildConfig.DEBUG) {
+        showToastShort("channelName:" + channelName);
+        if (channelName.equals("tt") || BuildConfig.DEBUG) {
             try {
                 Class<?> performanceClass = Class.forName("android.support.v7.widget.RecyclerView");
                 LogUtils.i(performanceClass.getCanonicalName());
