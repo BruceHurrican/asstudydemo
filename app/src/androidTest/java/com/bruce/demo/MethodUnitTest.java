@@ -27,6 +27,8 @@ package com.bruce.demo;
 
 import android.test.AndroidTestCase;
 
+import com.bruceutils.utils.PublicUtil;
+
 /**
  * Created by BruceHurrican on 2016/1/31.
  */
