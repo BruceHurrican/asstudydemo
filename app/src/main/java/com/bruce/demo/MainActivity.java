@@ -48,6 +48,7 @@ import android.widget.RadioGroup;
 
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.facebook.stetho.StethoDemoActivity;
+import com.bruce.demo.floatwindow.FloatWindowActivity;
 import com.bruce.demo.mvp.view.MVPActivity;
 import com.bruce.demo.social.qq.QQActivity;
 import com.bruce.demo.social.sina.SinaActivity;
@@ -159,6 +160,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         it = new Intent();
 
         addDemoContainer(FragmentsActivity.class, "fragment 入口");
+        addDemoContainer(FloatWindowActivity.class, "悬浮窗");
         addDemoContainer(QQActivity.class, "QQ 登录分享 QQ空间分享");
         addDemoContainer(SinaActivity.class, "新浪微博 登录分享");
         addDemoContainer(CameraActivity.class, "调用系统相机相册获取相片");

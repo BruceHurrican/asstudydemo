@@ -49,6 +49,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <!-- @targetAPI 19 -->
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
+    <!-- float window -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <!-- ======================================华丽丽的分隔线===================================== -->
     <application
         android:name=".DemoApplication"
@@ -161,6 +163,12 @@
             android:name=".studydata.game.gamepuzzle.PuzzleLoginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+        <!-- 悬浮窗 -->
+        <activity
+            android:name=".floatwindow.FloatWindowActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <service android:name=".floatwindow.FWService"/>
     </application>
 
 </manifest>
