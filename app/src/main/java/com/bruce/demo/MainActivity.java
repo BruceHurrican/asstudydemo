@@ -48,10 +48,10 @@ import android.widget.RadioGroup;
 
 import com.bruce.demo.base.BaseActivity;
 import com.bruce.demo.facebook.stetho.StethoDemoActivity;
-import com.bruce.demo.floatwindow.FloatWindowActivity;
 import com.bruce.demo.mvp.view.MVPActivity;
 import com.bruce.demo.social.qq.QQActivity;
 import com.bruce.demo.social.sina.SinaActivity;
+import com.bruce.demo.studydata.activities.floatwindow.FloatWindowActivity;
 import com.bruce.demo.studydata.activities.media.CameraActivity;
 import com.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.bruce.demo.studydata.game.game2048.activity.GameActivity;

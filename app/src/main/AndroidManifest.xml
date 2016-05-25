@@ -165,10 +165,14 @@
             android:screenOrientation="portrait"/>
         <!-- 悬浮窗 -->
         <activity
-            android:name=".floatwindow.FloatWindowActivity"
+            android:name=".studydata.activities.floatwindow.FloatWindowActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
-        <service android:name=".floatwindow.FWService"/>
+
+        <service
+            android:name=".studydata.activities.floatwindow.FWService"
+            android:process=":floatwindow"/>
+        <service android:name=".studydata.activities.floatwindow.TmpService"/>
     </application>
 
 </manifest>

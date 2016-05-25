@@ -23,7 +23,7 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com.bruce.demo.floatwindow;
+package com.bruce.demo.studydata.activities.floatwindow;
 
 import android.content.Context;
 import android.graphics.PixelFormat;

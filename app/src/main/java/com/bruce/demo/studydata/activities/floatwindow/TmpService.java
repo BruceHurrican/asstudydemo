@@ -23,23 +23,27 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com.bruce.demo.floatwindow;
+package com.bruce.demo.studydata.activities.floatwindow;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
-import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
- * Created by BruceHurrican on 2016/5/24.
+ * 进程保活服务,确保 {@link FWService} 在主进程被 kill 掉后, 仍存活.
+ * <p>
+ * A service keep FWService's{@link FWService} process alive.
+ * </p>
+ * ps:无论此 TmpService 所在进程和 FWService 进程是否相同,都可以起到保活的作用。
+ * <p>
+ * It's the same result whatever the TmpService's process is the same
+ * with FWService's process or not.
+ * </p>
+ * Created by BruceHurrican on 2016/5/25.
  */
-public class FWService extends Service {
-    private Handler handler = new Handler();
-    private Timer timer;
+public class TmpService extends Service {
 
     @Nullable
     @Override
@@ -49,34 +53,14 @@ public class FWService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (timer == null) {
-            timer = new Timer();
-            timer.scheduleAtFixedRate(new RefreshTask(), 0, 500);
-        }
+        startForeground(0x201, new Notification());
+        stopSelf();
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
+        stopForeground(true);
         super.onDestroy();
-        if (null != timer) {
-            timer.cancel();
-            timer = null;
-        }
-    }
-
-    private class RefreshTask extends TimerTask {
-
-        @Override
-        public void run() {
-            if (!FWmanager.isWindowShowing()) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        FWmanager.createSmallWindow(getApplicationContext());
-                    }
-                });
-            }
-        }
     }
 }
