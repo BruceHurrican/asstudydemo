@@ -25,12 +25,18 @@
 
 package com.bruce.demo.studydata.activities.floatwindow;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bruce.demo.base.BaseActivity;
 
@@ -52,27 +58,47 @@ public class FloatWindowActivity extends BaseActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startService(new Intent(FloatWindowActivity.this, FWService.class));
-            }
-        });
-
-        Button btn2 = new Button(this);
-        btn2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        btn2.setText("关闭悬浮窗");
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopService(new Intent(FloatWindowActivity.this, FWService.class));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Toast.makeText(FloatWindowActivity.this, "aa", Toast.LENGTH_SHORT).show();
+                    Log.i("aa2", "->" + Settings.canDrawOverlays(FloatWindowActivity.this));
+                    if (!Settings.canDrawOverlays(FloatWindowActivity.this)) {
+                        requestAlertWindowPermission();
+                    } else {
+                        startService(new Intent(FloatWindowActivity.this, FWService.class));
+                    }
+                } else {
+                    startService(new Intent(FloatWindowActivity.this, FWService.class));
+                }
             }
         });
 
         linearLayout.addView(btn1);
-        linearLayout.addView(btn2);
         setContentView(linearLayout);
     }
 
     @Override
     public String getTAG() {
         return null;
+    }
+
+    private static final int REQUEST_CODE = 1;
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void requestAlertWindowPermission() {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+        intent.setData(Uri.parse("package:" + getPackageName()));
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (Settings.canDrawOverlays(this)) {
+                Log.i("KK2", "onActivityResult granted");
+                startService(new Intent(FloatWindowActivity.this, FWService.class));
+            }
+        }
     }
 }
