@@ -58,7 +58,15 @@ public class DYIKeyBoardFragment extends BaseFragment {
         RelativeLayout.LayoutParams wvParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         wvParams.addRule(RelativeLayout.BELOW, button.getId());
         webView.setLayoutParams(wvParams);
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
         relativeLayout.addView(webView);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -74,10 +82,11 @@ public class DYIKeyBoardFragment extends BaseFragment {
                 LogUtils.i("editText 焦点发生改变,当前是否获取焦点？" + hasFocus);
                 if (hasFocus) {
                     // 此处可以定义弹出自定义键盘,原生或者web版本的都可以
-                    webView.setVisibility(View.VISIBLE);
+//                    webView.setVisibility(View.VISIBLE);
                     webView.loadUrl("https://github.com/brucehurrican");
                 } else {
-                    webView.setVisibility(View.GONE);
+//                    webView.setVisibility(View.GONE);
+                    webView.loadUrl("http://www.jianshu.com/");
                 }
             }
         });

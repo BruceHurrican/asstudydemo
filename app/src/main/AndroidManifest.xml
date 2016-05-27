@@ -49,6 +49,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <!-- @targetAPI 19 -->
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- float window -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <!-- ======================================华丽丽的分隔线===================================== -->
