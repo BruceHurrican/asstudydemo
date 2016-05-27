@@ -53,6 +53,7 @@ import com.bruce.demo.studydata.fragments.meituananimation.MTFragment;
 import com.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
 import com.bruce.demo.studydata.fragments.sliding.SlidingFragment;
 import com.bruce.demo.studydata.fragments.webviewjs.JSWebviewFragment;
+import com.bruce.demo.studydata.fragments.widgetdemo.DYIKeyBoardFragment;
 import com.bruce.demo.studydata.fragments.widgetdemo.WidgetFragment;
 import com.bruce.demo.widget.AnimListView;
 import com.bruceutils.utils.LogUtils;
@@ -130,6 +131,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         addFragment2Container("滑动效果练习");
         addFragment2Container("MVP_demo");
         addFragment2Container("控件练习");
+        addFragment2Container("自定义键盘");
         addFragment2Container("数据库");
         addFragment2Container("文件储存");
         addFragment2Container("webview js 交互");
@@ -179,6 +181,8 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
             targetFragment = new BlankFragment();
         } else if (fragmentName.equals("MVP_demo")) {
             targetFragment = new MVPFragment();
+        } else if (fragmentName.equals("自定义键盘")) {
+            targetFragment = new DYIKeyBoardFragment();
         }
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
