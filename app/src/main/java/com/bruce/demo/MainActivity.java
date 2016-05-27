@@ -52,6 +52,7 @@ import com.bruce.demo.mvp.view.MVPActivity;
 import com.bruce.demo.social.qq.QQActivity;
 import com.bruce.demo.social.sina.SinaActivity;
 import com.bruce.demo.studydata.activities.floatwindow.FloatWindowActivity;
+import com.bruce.demo.studydata.activities.ipc.IPCActivity;
 import com.bruce.demo.studydata.activities.media.CameraActivity;
 import com.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.bruce.demo.studydata.game.game2048.activity.GameActivity;
@@ -160,6 +161,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         it = new Intent();
 
         addDemoContainer(FragmentsActivity.class, "fragment 入口");
+        addDemoContainer(IPCActivity.class, "ipc 入口");
         addDemoContainer(FloatWindowActivity.class, "悬浮窗");
         addDemoContainer(QQActivity.class, "QQ 登录分享 QQ空间分享");
         addDemoContainer(SinaActivity.class, "新浪微博 登录分享");

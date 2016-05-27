@@ -173,6 +173,14 @@
             android:name=".studydata.activities.floatwindow.FWService"
             android:process=":floatwindow"/>
         <service android:name=".studydata.activities.floatwindow.TmpService"/>
+        <!-- ipc -->
+        <activity
+            android:name=".studydata.activities.ipc.IPCActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <service
+            android:name=".studydata.activities.ipc.MyIPCService"
+            android:process=":ipc"/>
     </application>
 
 </manifest>
