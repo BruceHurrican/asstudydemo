@@ -182,6 +182,7 @@
         <service
             android:name=".studydata.activities.ipc.MyIPCService"
             android:process=":ipc"/>
+        <service android:name=".studydata.fragments.intentservice.MyIntentService"/>
     </application>
 
 </manifest>

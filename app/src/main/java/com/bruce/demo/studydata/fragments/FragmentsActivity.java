@@ -48,6 +48,7 @@ import com.bruce.demo.studydata.fragments.crash.CrashFragment;
 import com.bruce.demo.studydata.fragments.database.DBFragment;
 import com.bruce.demo.studydata.fragments.googlesample.api10.contact_manager.ContactManagerFragment;
 import com.bruce.demo.studydata.fragments.googlesample.templates.BlankFragment;
+import com.bruce.demo.studydata.fragments.intentservice.ISFragment;
 import com.bruce.demo.studydata.fragments.io.IOFragment;
 import com.bruce.demo.studydata.fragments.meituananimation.MTFragment;
 import com.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
@@ -129,6 +130,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         alv_fragment_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
         addFragment2Container("滑动效果练习");
+        addFragment2Container("IntentService");
         addFragment2Container("MVP_demo");
         addFragment2Container("控件练习");
         addFragment2Container("自定义键盘");
@@ -183,6 +185,8 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
             targetFragment = new MVPFragment();
         } else if (fragmentName.equals("自定义键盘")) {
             targetFragment = new DYIKeyBoardFragment();
+        } else if (fragmentName.equals("IntentService")){
+            targetFragment = new ISFragment();
         }
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
