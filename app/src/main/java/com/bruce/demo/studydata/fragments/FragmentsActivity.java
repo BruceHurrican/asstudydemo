@@ -55,6 +55,7 @@ import com.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
 import com.bruce.demo.studydata.fragments.sliding.SlidingFragment;
 import com.bruce.demo.studydata.fragments.webviewjs.JSWebviewFragment;
 import com.bruce.demo.studydata.fragments.widgetdemo.DYIKeyBoardFragment;
+import com.bruce.demo.studydata.fragments.widgetdemo.SystemAPIFragment;
 import com.bruce.demo.studydata.fragments.widgetdemo.WidgetFragment;
 import com.bruce.demo.widget.AnimListView;
 import com.bruceutils.utils.LogUtils;
@@ -130,6 +131,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         alv_fragment_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
         addFragment2Container("滑动效果练习");
+        addFragment2Container("系统API");
         addFragment2Container("IntentService");
         addFragment2Container("MVP_demo");
         addFragment2Container("控件练习");
@@ -185,8 +187,10 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
             targetFragment = new MVPFragment();
         } else if (fragmentName.equals("自定义键盘")) {
             targetFragment = new DYIKeyBoardFragment();
-        } else if (fragmentName.equals("IntentService")){
+        } else if (fragmentName.equals("IntentService")) {
             targetFragment = new ISFragment();
+        } else if (fragmentName.equals("系统API")) {
+            targetFragment = new SystemAPIFragment();
         }
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
