@@ -37,6 +37,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.bruce.demo.base.BaseFragment;
+import com.bruceutils.utils.logdetails.LogDetails;
 
 /**
  * 调用系统 API
@@ -58,6 +59,8 @@ public class SystemAPIFragment extends BaseFragment {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        LogDetails.getLogConfig().configTagPrefix("系统APIdemo").configShowBorders(true);
+        LogDetails.d("初始化界面");
         final WifiManager wifiManager = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
         Button btn1 = new Button(getActivity());
         btn1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -66,6 +69,7 @@ public class SystemAPIFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 wifiManager.setWifiEnabled(true);
+                LogDetails.tag("开启 wifi").i("wifi 开启");
             }
         });
 
@@ -76,6 +80,7 @@ public class SystemAPIFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 wifiManager.setWifiEnabled(false);
+                LogDetails.tag("关闭 wifi").i("wifi 关闭");
             }
         });
 
