@@ -62,6 +62,7 @@ import com.bruce.demo.widget.TitleBar;
 import com.bruceutils.utils.DataCleanManager;
 import com.bruceutils.utils.LogUtils;
 import com.bruceutils.utils.PublicUtil;
+import com.bruceutils.utils.logdetails.LogDetails;
 
 import java.io.File;
 import java.io.Serializable;
@@ -173,6 +174,8 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 
         alv_demo_list.setOnItemClickListener(this);
         LogUtils.i("加载列表完成");
+        LogDetails.getLogConfig().configShowBorders(true);
+        LogDetails.i("当前线程: "+Thread.currentThread().getName());
     }
 
     /**

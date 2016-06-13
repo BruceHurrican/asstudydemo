@@ -25,8 +25,13 @@
 
 package com.bruce.demo.studydata.fragments.widgetdemo;
 
+import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -36,6 +41,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
 import com.bruceutils.utils.logdetails.LogDetails;
 
@@ -44,6 +50,8 @@ import com.bruceutils.utils.logdetails.LogDetails;
  * Created by hrk on 16/6/2.
  */
 public class SystemAPIFragment extends BaseFragment {
+    private NotificationManager notificationManager;
+
     @Override
     public String getTAG() {
         return null;
@@ -84,10 +92,53 @@ public class SystemAPIFragment extends BaseFragment {
             }
         });
 
+        Button btn3 = new Button(getActivity());
+        btn3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        btn3.setText("开启常驻状态栏");
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNotification();
+                LogDetails.tag("常驻状态栏").i("开启");
+            }
+        });
+
+        Button btn4 = new Button(getActivity());
+        btn4.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        btn4.setText("关闭常驻状态栏");
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeNotiofication();
+                LogDetails.tag("常驻状态栏").i("关闭");
+            }
+        });
+
         linearLayout.addView(btn1);
         linearLayout.addView(btn2);
+        linearLayout.addView(btn3);
+        linearLayout.addView(btn4);
         view.addView(linearLayout);
 
         return view;
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private void showNotification() {
+        notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification.Builder builder = new Notification.Builder(getActivity());
+        builder.setSmallIcon(R.mipmap.icon_demo);
+        builder.setAutoCancel(false);
+        builder.setContentText("aa1");
+        builder.setContentInfo("aa2");
+        builder.setContentTitle("aa3");
+        builder.setSubText("aa4");
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.icon_workdemo));
+        builder.setOngoing(true);
+        notificationManager.notify(11, builder.build());
+    }
+
+    private void closeNotiofication() {
+        notificationManager.cancel(11);
     }
 }

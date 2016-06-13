@@ -73,6 +73,8 @@ public class FWBigView extends LinearLayout {
                 FWmanager.removeSmallWindow(context);
                 Intent intent = new Intent(getContext(), FWService.class);
                 context.stopService(intent);
+//                SharedPreferencesUtil.saveString(context,"kk1","aa1");
+//                Toast.makeText(context, "kk1", Toast.LENGTH_SHORT).show();
             }
         });
         btn_back.setOnClickListener(new OnClickListener() {
@@ -81,6 +83,8 @@ public class FWBigView extends LinearLayout {
                 // 点击返回的时候，移除大悬浮窗，创建小悬浮窗
                 FWmanager.removeBigWindow(context);
                 FWmanager.createSmallWindow(context);
+//                LogDetails.i(SharedPreferencesUtil.getString(context,"kk1","212"));
+//                Toast.makeText(context, SharedPreferencesUtil.getString(context, "kk1", "212"), Toast.LENGTH_SHORT).show();
             }
         });
         view.setOnTouchListener(new OnTouchListener() {
