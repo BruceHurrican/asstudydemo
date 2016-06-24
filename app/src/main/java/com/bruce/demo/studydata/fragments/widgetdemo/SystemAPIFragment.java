@@ -1,26 +1,26 @@
 /*
  * BruceHurrican
- *    Copyright (c) 2016.
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
+ * Copyright (c) 2016.
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
  *
- *    This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
- *    And where any person can download and use, but not for commercial purposes.
- *    Author does not assume the resulting corresponding disputes.
- *    If you have good suggestions for the code, you can contact BurrceHurrican@foxmail.com
- *    本文件为Bruce's个人学习android的demo, 其中所用到的代码来源于互联网，仅作为学习交流使用。
- *    任和何人可以下载并使用, 但是不能用于商业用途。
- *    作者不承担由此带来的相应纠纷。
- *    如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
+ *   This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
+ *   And where any person can download and use, but not for commercial purposes.
+ *   Author does not assume the resulting corresponding disputes.
+ *   If you have good suggestions for the code, you can contact BurrceHurrican@foxmail.com
+ *   本文件为Bruce's个人学习android的demo, 其中所用到的代码来源于互联网，仅作为学习交流使用。
+ *   任和何人可以下载并使用, 但是不能用于商业用途。
+ *   作者不承担由此带来的相应纠纷。
+ *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
 package com.bruce.demo.studydata.fragments.widgetdemo;
@@ -28,11 +28,15 @@ package com.bruce.demo.studydata.fragments.widgetdemo;
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +47,8 @@ import android.widget.ScrollView;
 
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
+import com.bruce.demo.keeplive.KeepLiveBindService;
+import com.bruce.demo.keeplive.KeepLiveService;
 import com.bruceutils.utils.logdetails.LogDetails;
 
 /**
@@ -80,6 +86,7 @@ public class SystemAPIFragment extends BaseFragment {
                 LogDetails.tag("开启 wifi").i("wifi 开启");
             }
         });
+        linearLayout.addView(btn1);
 
         Button btn2 = new Button(getActivity());
         btn2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -91,6 +98,7 @@ public class SystemAPIFragment extends BaseFragment {
                 LogDetails.tag("关闭 wifi").i("wifi 关闭");
             }
         });
+        linearLayout.addView(btn2);
 
         Button btn3 = new Button(getActivity());
         btn3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -102,6 +110,7 @@ public class SystemAPIFragment extends BaseFragment {
                 LogDetails.tag("常驻状态栏").i("开启");
             }
         });
+        linearLayout.addView(btn3);
 
         Button btn4 = new Button(getActivity());
         btn4.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -113,11 +122,57 @@ public class SystemAPIFragment extends BaseFragment {
                 LogDetails.tag("常驻状态栏").i("关闭");
             }
         });
-
-        linearLayout.addView(btn1);
-        linearLayout.addView(btn2);
-        linearLayout.addView(btn3);
         linearLayout.addView(btn4);
+
+        final Intent intent = new Intent(getActivity(), KeepLiveBindService.class);
+        final ServiceConnection serviceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                // 待处理业务逻辑
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        };
+        Button btn5 = new Button(getActivity());
+        btn5.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        btn5.setText("开启进程保活服务");
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogDetails.tag("进程保活服务").i("开启");
+                getActivity().startService(intent);
+            }
+        });
+        linearLayout.addView(btn5);
+
+        Button btn6 = new Button(getActivity());
+        btn6.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        btn6.setText("绑定进程保活服务");
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogDetails.tag("进程保活服务").i("绑定");
+                getActivity().bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+            }
+        });
+        linearLayout.addView(btn6);
+
+        Button btn7 = new Button(getActivity());
+        btn7.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        btn7.setText("关闭进程保活服务");
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogDetails.tag("进程保活服务").i("关闭");
+                getActivity().stopService(intent);
+                getActivity().stopService(new Intent(getActivity(), KeepLiveService.class));
+            }
+        });
+        linearLayout.addView(btn7);
+
         view.addView(linearLayout);
 
         return view;

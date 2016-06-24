@@ -184,6 +184,9 @@
             android:name=".studydata.activities.ipc.MyIPCService"
             android:process=":ipc"/>
         <service android:name=".studydata.fragments.intentservice.MyIntentService"/>
+        <!-- 保活进程服务 -->
+        <service android:name=".keeplive.KeepLiveService" android:process=":keeplive"/>
+        <service android:name=".keeplive.KeepLiveBindService" android:process=":keeplive"/>
     </application>
 
 </manifest>
