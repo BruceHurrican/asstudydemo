@@ -187,6 +187,8 @@
         <!-- 保活进程服务 -->
         <service android:name=".keeplive.KeepLiveService" android:process=":keeplive"/>
         <service android:name=".keeplive.KeepLiveBindService" android:process=":keeplive"/>
+        <!-- 多渠道打包 -->
+        <activity android:name=".LibActiviy" android:launchMode="singleTop"/>
     </application>
 
 </manifest>

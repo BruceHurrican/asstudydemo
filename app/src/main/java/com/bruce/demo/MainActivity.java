@@ -130,6 +130,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                         break;
                     case R.id.btn_mine:
 //                        tt.showTxt(false, MainActivity.this);
+                        startActivity(new Intent(MainActivity.this, LibActiviy.class));
                         LogUtils.d("我的按钮被点击");
                         break;
                 }
@@ -175,7 +176,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         alv_demo_list.setOnItemClickListener(this);
         LogUtils.i("加载列表完成");
         LogDetails.getLogConfig().configShowBorders(true);
-        LogDetails.i("当前线程: "+Thread.currentThread().getName());
+        LogDetails.i("当前线程: " + Thread.currentThread().getName());
     }
 
     /**
