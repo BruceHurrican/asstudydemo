@@ -67,6 +67,7 @@ public class LibActiviy extends BaseActivity {
             case R.id.btn1:
                 showToastShort("red lib btn1");
                 LogDetails.i("red lib btn1");
+                LogDetails.i(RedMethod.calculate(12, 89));
                 break;
             case R.id.btn2:
                 showToastShort("red lib btn2");

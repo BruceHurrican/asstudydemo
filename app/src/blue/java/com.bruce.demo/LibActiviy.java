@@ -30,6 +30,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.bruce.demo.base.BaseActivity;
+import com.bruceutils.utils.PublicUtil;
 import com.bruceutils.utils.logdetails.LogDetails;
 
 import butterknife.Bind;
@@ -67,6 +68,7 @@ public class LibActiviy extends BaseActivity {
             case R.id.btn1:
                 showToastShort("blue lib btn1");
                 LogDetails.i("blue lib btn1");
+                LogDetails.i(PublicUtil.getPhoneInfo(LibActiviy.this));
                 break;
             case R.id.btn2:
                 showToastShort("blue lib btn2");
