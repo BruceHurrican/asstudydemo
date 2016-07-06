@@ -64,7 +64,11 @@ import com.bruceutils.utils.LogUtils;
 import com.bruceutils.utils.PublicUtil;
 import com.bruceutils.utils.logdetails.LogDetails;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +131,11 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                     case R.id.btn_pocket:
 //                        tt.showTxt(true, MainActivity.this);
                         LogUtils.d("钱包按钮被点击");
+                        try {
+                           sdfile2datadata(MainActivity.this);
+                        } catch (IOException e) {
+                            LogDetails.e(e.toString());
+                        }
                         break;
                     case R.id.btn_mine:
 //                        tt.showTxt(false, MainActivity.this);
@@ -292,6 +301,46 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void sdfile2datadata(Context context) throws IOException {
+        // 读取sdcard文件
+        File sourceFile = Environment.getExternalStorageDirectory(); // 文件所在sd卡路径
+        File fleDir = new File(sourceFile,"1a.txt"); // 源文件名称
+        FileInputStream fis = new FileInputStream(fleDir);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] array = new byte[1024];
+        int len = -1;
+        while ((len= fis.read(array))!=-1){
+            bos.write(array,0,len);
+        }
+        bos.close();
+        fis.close();
+        LogDetails.i(fleDir.getAbsolutePath());
+        LogDetails.i(bos.toString());
+
+        // 将读取到的信息写入新文件
+        File targetFile = context.getDir("dex",Context.MODE_PRIVATE); // 新文件所在路径 data/data/包名/app_dex
+        File tarFileDir = new File(targetFile,"1c.txt"); // 新文件名称
+        FileOutputStream fos = new FileOutputStream(tarFileDir);
+        fos.write(bos.toByteArray());
+        fos.close();
+        LogDetails.i(tarFileDir.getAbsolutePath());
+
+//        File sourceFile2 = Environment.getExternalStorageDirectory();
+        // 验证复制新文件是否写入成功
+        File fleDir2 = new File(targetFile,"1c.txt");
+        FileInputStream fis2 = new FileInputStream(fleDir2);
+        ByteArrayOutputStream bos2 = new ByteArrayOutputStream();
+        byte[] array2 = new byte[1024];
+        int len2 = -1;
+        while ((len2= fis2.read(array2))!=-1){
+            bos2.write(array2,0,len2);
+        }
+        bos2.close();
+        fis2.close();
+        LogDetails.i(fleDir2.getAbsolutePath());
+        LogDetails.i(bos2.toString());
     }
 
     @Override
