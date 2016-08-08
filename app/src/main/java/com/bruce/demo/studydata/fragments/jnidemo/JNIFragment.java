@@ -23,67 +23,48 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com.bruce.demo;
+package com.bruce.demo.studydata.fragments.jnidemo;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
-import com.bruce.demo.base.BaseActivity;
+import com.bruce.demo.base.BaseFragment;
 import com.bruceutils.utils.logdetails.LogDetails;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 /**
- * 多渠道打包dmeo
- * Created by BruceHurrican on 16/6/24.
+ * Jni 示例
+ * Created by BruceHurrican on 16/8/8.
  */
-public class LibActiviy extends BaseActivity {
-    @Bind(R.id.btn1)
-    Button btn1;
-    @Bind(R.id.btn2)
-    Button btn2;
-    @Bind(R.id.btn3)
-    Button btn3;
-
+public class JNIFragment extends BaseFragment {
     @Override
     public String getTAG() {
-        return LibActiviy.class.getSimpleName();
+        return JNIFragment.class.getSimpleName();
     }
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.lib_activity);
-        ButterKnife.bind(this);
-        LogDetails.getLogConfig().configTagPrefix("RED").configShowBorders(true);
-    }
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn1:
-                showToastShort("red lib btn1");
-                LogDetails.i("red lib btn1");
-                LogDetails.i(RedMethod.calculate(12, 89));
-                break;
-            case R.id.btn2:
-                showToastShort("red lib btn2");
-                LogDetails.i("red lib btn2");
-                RedMethod.gsonformat();
-                break;
-            case R.id.btn3:
-                showToastShort("red lib btn3");
-                LogDetails.i("red lib btn3");
-                break;
-        }
-    }
+        Button button = new Button(getActivity());
+        button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        button.setText("32+44=?");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogDetails.i(JNICalc.calc(32,44));
+                showToastShort(JNICalc.calc(32,44)+"");
+            }
+        });
+        linearLayout.addView(button);
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
+        return linearLayout;
     }
 }

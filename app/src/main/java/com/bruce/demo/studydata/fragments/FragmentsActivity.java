@@ -50,6 +50,7 @@ import com.bruce.demo.studydata.fragments.googlesample.api10.contact_manager.Con
 import com.bruce.demo.studydata.fragments.googlesample.templates.BlankFragment;
 import com.bruce.demo.studydata.fragments.intentservice.ISFragment;
 import com.bruce.demo.studydata.fragments.io.IOFragment;
+import com.bruce.demo.studydata.fragments.jnidemo.JNIFragment;
 import com.bruce.demo.studydata.fragments.meituananimation.MTFragment;
 import com.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
 import com.bruce.demo.studydata.fragments.sliding.SlidingFragment;
@@ -131,6 +132,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         alv_fragment_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
         addFragment2Container("滑动效果练习");
+        addFragment2Container("JNI练习");
         addFragment2Container("系统API");
         addFragment2Container("IntentService");
         addFragment2Container("MVP_demo");
@@ -191,6 +193,8 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
             targetFragment = new ISFragment();
         } else if (fragmentName.equals("系统API")) {
             targetFragment = new SystemAPIFragment();
+        } else if (fragmentName.equals("JNI练习")) {
+            targetFragment = new JNIFragment();
         }
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

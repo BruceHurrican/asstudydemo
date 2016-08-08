@@ -8,6 +8,6 @@ interface MyServiceAIDL {
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.
      */
-    void showTxt(String txt);
+    oneway void showTxt(String txt);
     int calculate(int a,int b);
 }

@@ -23,21 +23,14 @@
  *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
-package com.bruce.demo;
-
-import com.bruceutils.utils.logdetails.LogDetails;
-import com.google.gson.Gson;
+package com.bruce.demo.studydata.fragments.jnidemo;
 
 /**
- * Created by BruceHurrican on 16/6/29.
+ * Created by BruceHurrican on 16/8/8.
  */
-public class RedMethod {
-    public static int calculate(int a, int b){
-        return a+b;
-    }
-
-    public static void gsonformat(){
-        LogDetails.i("sss");
-        Gson gson = new Gson();
+public class JNICalc {
+    public static native int calc(int a,int b);
+    static {
+        System.loadLibrary("jniDemo");
     }
 }
