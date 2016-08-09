@@ -56,10 +56,12 @@ android {
         blue {
             applicationIdSuffix '.blue'
             versionNameSuffix 'blue'
+            debuggable true
         }
         red {
             applicationIdSuffix '.red'
             versionNameSuffix 'red'
+            debuggable true
         }
     }
     sourceSets {
