@@ -38,7 +38,9 @@ import android.widget.Toast;
 import com.android.debug.hv.ViewServer;
 import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
+import com.bruce.demo.studydata.activities.floatwindow.FWmanager;
 import com.bruceutils.utils.LogUtils;
+import com.bruceutils.utils.logdetails.LogDetails;
 
 import java.lang.ref.WeakReference;
 
@@ -75,6 +77,17 @@ public abstract class BaseActivity extends Activity {
         recycleUIHandler();
         recycleWorkerHandler();
         ViewServer.get(this).removeWindow(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            FWmanager.removeBigWindow(this);
+            FWmanager.createSmallWindow(this);
+        } catch (Exception e) {
+            LogDetails.e(e.toString());
+        }
     }
 
     @Override
