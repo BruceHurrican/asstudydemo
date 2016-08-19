@@ -26,15 +26,20 @@
 package com.bruce.demo.studydata.activities.floatwindow;
 
 import android.content.Context;
+import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bruce.demo.R;
+import com.bruceutils.utils.LogUtils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * Created by BruceHurrican on 2016/5/24.
@@ -102,6 +107,9 @@ public class FWSmallView extends LinearLayout {
         View view = findViewById(R.id.ll_container);
         viewWidth = view.getLayoutParams().width;
         viewHeight = view.getLayoutParams().height;
+        if (null == toast) {
+            toast = new Toast(context.getApplicationContext());
+        }
     }
 
     @Override
@@ -127,6 +135,7 @@ public class FWSmallView extends LinearLayout {
                 if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
                     openBigWindow();
                 }
+                LogUtils.i("isShow->"+FWmanager.isWindowShowing());
                 break;
             default:
                 break;
@@ -178,5 +187,80 @@ public class FWSmallView extends LinearLayout {
             }
         }
         return statusBarHeight;
+    }
+
+    private boolean isShow = false;
+    public void show(){
+        if (isShow) {
+            return;
+        }
+//        TextView tv = (TextView) findViewById(R.id.percent);
+//        tv.setText("悬浮窗");
+        toast.setView(this);
+        initTN();
+        try {
+            show.invoke(mTN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        isShow = true;
+    }
+
+    public void hide(){
+        if(!isShow) {
+            return;
+        }
+        post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    hide.invoke(mTN);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                isShow = false;
+            }
+        });
+    }
+
+    private Toast toast;
+    private Object mTN; // Toast 内部类 TN
+    private Method show; // Toast show() 方法
+    private Method hide; // Toast hide() 方法
+    private void initTN() {
+        int screenWidth = windowManager.getDefaultDisplay().getWidth();
+        int screenHeight = windowManager.getDefaultDisplay().getHeight();
+        try {
+            Field tnField = toast.getClass().getDeclaredField("mTN");
+            tnField.setAccessible(true);
+            mTN = tnField.get(toast);
+            show = mTN.getClass().getMethod("show");
+            hide = mTN.getClass().getMethod("hide");
+
+            Field tnParamsField = mTN.getClass().getDeclaredField("mParams");
+            tnParamsField.setAccessible(true);
+            if (null == mParams) {
+                mParams = (WindowManager.LayoutParams) tnParamsField.get(mTN);
+                mParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                /**设置动画*/
+                mParams.windowAnimations = android.R.anim.fade_in;
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT){
+                    mParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+                }
+                mParams.x = screenWidth;
+                mParams.y = screenHeight / 2;
+            }
+
+            /**调用tn.show()之前一定要先设置mNextView*/
+            Field tnNextViewField = mTN.getClass().getDeclaredField("mNextView");
+            tnNextViewField.setAccessible(true);
+            tnNextViewField.set(mTN, toast.getView());
+
+//            windowManager = (WindowManager)getContext().getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        toast.setGravity(Gravity.LEFT | Gravity.TOP,mParams.x ,mParams.y);
     }
 }

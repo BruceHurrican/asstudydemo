@@ -36,7 +36,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.bruce.demo.base.BaseActivity;
 
@@ -58,17 +57,18 @@ public class FloatWindowActivity extends BaseActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Toast.makeText(FloatWindowActivity.this, "aa", Toast.LENGTH_SHORT).show();
-                    Log.i("aa2", "->" + Settings.canDrawOverlays(FloatWindowActivity.this));
-                    if (!Settings.canDrawOverlays(FloatWindowActivity.this)) {
-                        requestAlertWindowPermission();
-                    } else {
-                        startService(new Intent(FloatWindowActivity.this, FWService.class));
-                    }
-                } else {
-                    startService(new Intent(FloatWindowActivity.this, FWService.class));
-                }
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    Toast.makeText(FloatWindowActivity.this, "aa", Toast.LENGTH_SHORT).show();
+//                    Log.i("aa2", "->" + Settings.canDrawOverlays(FloatWindowActivity.this));
+//                    if (!Settings.canDrawOverlays(FloatWindowActivity.this)) {
+//                        requestAlertWindowPermission();
+//                    } else {
+//                        startService(new Intent(FloatWindowActivity.this, FWService.class));
+//                    }
+//                } else {
+//                    startService(new Intent(FloatWindowActivity.this, FWService.class));
+//                }
+                FWmanager.createSmallWindow(FloatWindowActivity.this);
             }
         });
 

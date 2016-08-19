@@ -69,10 +69,15 @@ public class FWmanager {
      * @param context 必须为应用程序的Context.
      */
     public static void createSmallWindow(Context context) {
+//        showSmall1(context);
+        showSmall2(context);
+    }
+
+    private static void showSmall1(Context context) {
         WindowManager windowManager = getWindowManager(context);
         int screenWidth = windowManager.getDefaultDisplay().getWidth();
         int screenHeight = windowManager.getDefaultDisplay().getHeight();
-        if (smallWindow == null) {
+        if (null == smallWindow) {
             smallWindow = new FWSmallView(context);
             if (smallWindowParams == null) {
                 smallWindowParams = new WindowManager.LayoutParams();
@@ -90,6 +95,13 @@ public class FWmanager {
         }
     }
 
+    private static void showSmall2(Context context) {
+        if (smallWindow == null) {
+            smallWindow = new FWSmallView(context);
+        }
+        smallWindow.show();
+    }
+
     /**
      * 将小悬浮窗从屏幕上移除。
      *
@@ -97,9 +109,10 @@ public class FWmanager {
      */
     public static void removeSmallWindow(Context context) {
         if (smallWindow != null) {
-            WindowManager windowManager = getWindowManager(context);
-            windowManager.removeView(smallWindow);
-            smallWindow = null;
+//            WindowManager windowManager = getWindowManager(context); // 对应 showSmall1()
+//            windowManager.removeView(smallWindow); // 对应 showSmall1()
+//            smallWindow = null; // 对应 showSmall1()
+            smallWindow.hide(); // 对应 showSmall2()
         }
     }
 
@@ -109,6 +122,30 @@ public class FWmanager {
      * @param context 必须为应用程序的Context.
      */
     public static void createBigWindow(final Context context) {
+//        showBig1(context);
+        showBig2(context);
+    }
+
+    private static void showBig2(final Context context) {
+        if (bigWindow == null){
+            bigWindow = new FWBigView(context);
+        }
+//        bigWindow.setFocusable(true);
+//        bigWindow.setFocusableInTouchMode(true);
+//        bigWindow.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                LogUtils.i(event.getAction() + "");
+//                removeBigWindow(context);
+//                createSmallWindow(context);
+//                return true;
+//            }
+//        });
+        bigWindow.registerHomeRec();
+        bigWindow.show();
+    }
+
+    private static void showBig1(final Context context) {
         WindowManager windowManager = getWindowManager(context);
         int screenWidth = windowManager.getDefaultDisplay().getWidth();
         int screenHeight = windowManager.getDefaultDisplay().getHeight();
@@ -130,7 +167,7 @@ public class FWmanager {
             bigWindow.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    LogUtils.i(event.getAction() + "");
+                    LogUtils.i("kk32-"+event.getAction() + "");
                     removeBigWindow(context);
                     createSmallWindow(context);
                     return true;
@@ -147,9 +184,10 @@ public class FWmanager {
      */
     public static void removeBigWindow(Context context) {
         if (bigWindow != null) {
-            WindowManager windowManager = getWindowManager(context);
-            windowManager.removeView(bigWindow);
-            bigWindow = null;
+//            WindowManager windowManager = getWindowManager(context); // 对应 showBig1();
+//            windowManager.removeView(bigWindow); // 对应 showBig1();
+//            bigWindow = null; // 对应 showBig1()
+            bigWindow.hide(); // 对应 showBig2()
         }
     }
 
@@ -160,7 +198,7 @@ public class FWmanager {
      * @return 有悬浮窗显示在桌面上返回true，没有的话返回false。
      */
     public static boolean isWindowShowing() {
-        return smallWindow != null || bigWindow != null;
+        return (smallWindow != null && smallWindow.getVisibility() == View.VISIBLE) || (bigWindow != null && bigWindow.getVisibility() == View.VISIBLE);
     }
 
     /**
