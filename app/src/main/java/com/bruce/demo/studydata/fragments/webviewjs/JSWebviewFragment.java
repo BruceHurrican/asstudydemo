@@ -40,6 +40,7 @@ import android.webkit.WebView;
 
 import com.bruce.demo.base.BaseFragment;
 import com.bruceutils.utils.LogUtils;
+import com.bruceutils.utils.logdetails.LogDetails;
 
 /**
  * webview JS 交互
@@ -91,6 +92,13 @@ public class JSWebviewFragment extends BaseFragment {
                 builder.create();
                 builder.show();
                 return true;
+            }
+
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+                LogDetails.i("当前网页标题为: " + title);
+                showToastShort("当前网页标题为: " + title);
             }
         }); // 允许弹出 alert
 
