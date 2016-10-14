@@ -38,12 +38,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.Html;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.bruce.demo.R;
 import com.bruce.demo.base.BaseFragment;
@@ -65,7 +72,7 @@ public class SystemAPIFragment extends BaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         ScrollView view = new ScrollView(getActivity());
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -173,8 +180,43 @@ public class SystemAPIFragment extends BaseFragment {
         });
         linearLayout.addView(btn7);
 
-        view.addView(linearLayout);
+        TextView tv1 = new TextView(getActivity());
+        tv1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        String txt = "<font color='black'>1、有某蜡烛图喼帽电焊机</font><font color='red'>军火早班恒易风情万种</font><font color='black'>中，祝" +
+                "有实力！2、有些人貂皮大衣</font><font color='red'>写数学只属于你</font><font color='black'>，铁炉堡四面楚歌。</font>";
+        tv1.setText(Html.fromHtml(txt));
+        linearLayout.addView(tv1);
 
+
+        final EditText et = new EditText(getActivity());
+        et.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        et.setHint("haha");
+        et.setInputType(InputType.TYPE_CLASS_NUMBER);
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                LogDetails.i(s);
+                if (count == 1 && !TextUtils.isEmpty(et.getText()) && et.getText().toString().trim().length() == 1) {
+                    et.setText("-"+s);
+                    et.setSelection(et.getText().toString().length());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                LogDetails.d(s);
+                LogDetails.d("et txt: " + et.getText().toString().trim());
+            }
+        });
+
+        linearLayout.addView(et);
+
+        view.addView(linearLayout);
         return view;
     }
 
