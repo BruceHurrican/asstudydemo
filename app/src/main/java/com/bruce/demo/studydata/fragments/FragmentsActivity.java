@@ -55,6 +55,7 @@ import com.bruce.demo.studydata.fragments.meituananimation.MTFragment;
 import com.bruce.demo.studydata.fragments.rotate3danimation.Rotate3dFragment;
 import com.bruce.demo.studydata.fragments.sliding.SlidingFragment;
 import com.bruce.demo.studydata.fragments.webviewjs.JSWebviewFragment;
+import com.bruce.demo.studydata.fragments.widgetdemo.AnimationFragment;
 import com.bruce.demo.studydata.fragments.widgetdemo.DYIKeyBoardFragment;
 import com.bruce.demo.studydata.fragments.widgetdemo.SystemAPIFragment;
 import com.bruce.demo.studydata.fragments.widgetdemo.WidgetFragment;
@@ -131,6 +132,7 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
         fragmentNamesList = new ArrayList<>(5);
         alv_fragment_list.setAdapter(new ArrayAdapter<>(this, R.layout.main_item, fragmentNamesList));
 
+        addFragment2Container("动画");
         addFragment2Container("滑动效果练习");
         addFragment2Container("JNI练习");
         addFragment2Container("系统API");
@@ -195,6 +197,8 @@ public class FragmentsActivity extends BaseFragmentActivity implements AdapterVi
             targetFragment = new SystemAPIFragment();
         } else if (fragmentName.equals("JNI练习")) {
             targetFragment = new JNIFragment();
+        } else if (fragmentName.equals("动画")) {
+            targetFragment = new AnimationFragment();
         }
         // setCustomAnimations 要写在 addToBackStack，replace 方法前面，否则没有效果
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
