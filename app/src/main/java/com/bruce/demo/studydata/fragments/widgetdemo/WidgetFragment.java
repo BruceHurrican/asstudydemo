@@ -47,6 +47,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.RemoteViews;
 
 import com.bruce.demo.MainActivity;
 import com.bruce.demo.R;
@@ -180,6 +181,8 @@ public class WidgetFragment extends BaseFragment {
                 Uri soundUri = Uri.fromFile(file);
                 builder.setSound(soundUri); // 设置通知到来时的声音
                 builder.setLights(Color.GREEN, 1000, 1000);
+                RemoteViews remoteViews = new RemoteViews(getActivity().getPackageName(), R.layout.view_kk_notification);
+                builder.setContent(remoteViews);
                 Notification notification = builder.build();
                 notification.flags = Notification.FLAG_SHOW_LIGHTS;
                 manager.notify(NOTIFICATION_ID, notification);
