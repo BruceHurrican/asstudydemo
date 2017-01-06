@@ -1,26 +1,26 @@
 /*
  * BruceHurrican
  * Copyright (c) 2016.
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *    http://www.apache.org/licenses/LICENSE-2.0
  *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  *
  *    This document is Bruce's individual learning the android demo, wherein the use of the code from the Internet, only to use as a learning exchanges.
- *   And where any person can download and use, but not for commercial purposes.
- *   Author does not assume the resulting corresponding disputes.
- *   If you have good suggestions for the code, you can contact BurrceHurrican@foxmail.com
- *   本文件为Bruce's个人学习android的demo, 其中所用到的代码来源于互联网，仅作为学习交流使用。
- *   任和何人可以下载并使用, 但是不能用于商业用途。
- *   作者不承担由此带来的相应纠纷。
- *   如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
+ *    And where any person can download and use, but not for commercial purposes.
+ *    Author does not assume the resulting corresponding disputes.
+ *    If you have good suggestions for the code, you can contact BurrceHurrican@foxmail.com
+ *    本文件为Bruce's个人学习android的作品, 其中所用到的代码来源于互联网，仅作为学习交流使用。
+ *    任和何人可以下载并使用, 但是不能用于商业用途。
+ *    作者不承担由此带来的相应纠纷。
+ *    如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
  */
 
 package com.bruce.demo;
@@ -105,6 +105,47 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     private NetWorkAvailableReceiver netWorkAvailableReceiver = new NetWorkAvailableReceiver();
 //    TT tt = new TT();
 
+    public static void sdfile2datadata(Context context) throws IOException {
+        // 读取sdcard文件
+        File sourceFile = Environment.getExternalStorageDirectory(); // 文件所在sd卡路径
+        File fleDir = new File(sourceFile, "1a.txt"); // 源文件名称
+        FileInputStream fis = new FileInputStream(fleDir);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] array = new byte[1024];
+        int len = -1;
+        while ((len = fis.read(array)) != -1) {
+            bos.write(array, 0, len);
+        }
+        bos.close();
+        fis.close();
+        LogDetails.i(fleDir.getAbsolutePath());
+        LogDetails.i(bos.toString());
+
+        // 将读取到的信息写入新文件
+        File targetFile = context.getDir("dex", Context.MODE_PRIVATE); // 新文件所在路径
+        // data/data/包名/app_dex
+        File tarFileDir = new File(targetFile, "1c.txt"); // 新文件名称
+        FileOutputStream fos = new FileOutputStream(tarFileDir);
+        fos.write(bos.toByteArray());
+        fos.close();
+        LogDetails.i(tarFileDir.getAbsolutePath());
+
+//        File sourceFile2 = Environment.getExternalStorageDirectory();
+        // 验证复制新文件是否写入成功
+        File fleDir2 = new File(targetFile, "1c.txt");
+        FileInputStream fis2 = new FileInputStream(fleDir2);
+        ByteArrayOutputStream bos2 = new ByteArrayOutputStream();
+        byte[] array2 = new byte[1024];
+        int len2 = -1;
+        while ((len2 = fis2.read(array2)) != -1) {
+            bos2.write(array2, 0, len2);
+        }
+        bos2.close();
+        fis2.close();
+        LogDetails.i(fleDir2.getAbsolutePath());
+        LogDetails.i(bos2.toString());
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
@@ -139,7 +180,7 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                         break;
                     case R.id.btn_mine:
 //                        tt.showTxt(false, MainActivity.this);
-                        startActivity(new Intent(MainActivity.this, LibActiviy.class));
+//                        startActivity(new Intent(MainActivity.this, LibActiviy.class));
                         LogUtils.d("我的按钮被点击");
                         break;
                 }
@@ -148,16 +189,16 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     }
 
     @Override
-    public String getTAG() {
-        return "MainActivity -- >";
-    }
-
-    @Override
     protected void onDestroy() {
         unregisterReceiver(netWorkAvailableReceiver);
         ButterKnife.unbind(this);
         super.onDestroy();
 //        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    @Override
+    public String getTAG() {
+        return "MainActivity -- >";
     }
 
     /**
@@ -221,26 +262,6 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         return true;
     }
 
-    @OnCheckedChanged({R.id.btn_favourite, R.id.btn_search, R.id.btn_pocket, R.id.btn_mine})
-    public void bottomBarBtnTxtPressed(CompoundButton buttonView, boolean isChecked) {
-        LogUtils.d("buttonView:" + buttonView + "\nisChecked:" + isChecked);
-        switch (buttonView.getId()) {
-            case R.id.btn_favourite:
-                btn_favourite.setTextColor(getResources().getColor(isChecked ? R.color.bottombartxt_pressed : R.color.bottombartxt_unpressed));
-                break;
-            case R.id.btn_search:
-                btn_search.setTextColor(getResources().getColor(isChecked ? R.color.bottombartxt_pressed : R.color.bottombartxt_unpressed));
-                break;
-            case R.id.btn_pocket:
-                btn_pocket.setTextColor(getResources().getColor(isChecked ? R.color.bottombartxt_pressed : R.color.bottombartxt_unpressed));
-                break;
-            case R.id.btn_mine:
-                btn_mine.setTextColor(getResources().getColor(isChecked ? R.color.bottombartxt_pressed : R.color.bottombartxt_unpressed));
-                break;
-        }
-
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -285,6 +306,30 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
         return true;
     }
 
+    @OnCheckedChanged({R.id.btn_favourite, R.id.btn_search, R.id.btn_pocket, R.id.btn_mine})
+    public void bottomBarBtnTxtPressed(CompoundButton buttonView, boolean isChecked) {
+        LogUtils.d("buttonView:" + buttonView + "\nisChecked:" + isChecked);
+        switch (buttonView.getId()) {
+            case R.id.btn_favourite:
+                btn_favourite.setTextColor(getResources().getColor(isChecked ? R.color
+                        .bottombartxt_pressed : R.color.bottombartxt_unpressed));
+                break;
+            case R.id.btn_search:
+                btn_search.setTextColor(getResources().getColor(isChecked ? R.color
+                        .bottombartxt_pressed : R.color.bottombartxt_unpressed));
+                break;
+            case R.id.btn_pocket:
+                btn_pocket.setTextColor(getResources().getColor(isChecked ? R.color
+                        .bottombartxt_pressed : R.color.bottombartxt_unpressed));
+                break;
+            case R.id.btn_mine:
+                btn_mine.setTextColor(getResources().getColor(isChecked ? R.color
+                        .bottombartxt_pressed : R.color.bottombartxt_unpressed));
+                break;
+        }
+
+    }
+
     @Override
     public void onLeftBtnClick() {
         LogUtils.d("左侧按钮被点击");
@@ -301,46 +346,6 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                 e.printStackTrace();
             }
         }
-    }
-
-    public static void sdfile2datadata(Context context) throws IOException {
-        // 读取sdcard文件
-        File sourceFile = Environment.getExternalStorageDirectory(); // 文件所在sd卡路径
-        File fleDir = new File(sourceFile,"1a.txt"); // 源文件名称
-        FileInputStream fis = new FileInputStream(fleDir);
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] array = new byte[1024];
-        int len = -1;
-        while ((len= fis.read(array))!=-1){
-            bos.write(array,0,len);
-        }
-        bos.close();
-        fis.close();
-        LogDetails.i(fleDir.getAbsolutePath());
-        LogDetails.i(bos.toString());
-
-        // 将读取到的信息写入新文件
-        File targetFile = context.getDir("dex",Context.MODE_PRIVATE); // 新文件所在路径 data/data/包名/app_dex
-        File tarFileDir = new File(targetFile,"1c.txt"); // 新文件名称
-        FileOutputStream fos = new FileOutputStream(tarFileDir);
-        fos.write(bos.toByteArray());
-        fos.close();
-        LogDetails.i(tarFileDir.getAbsolutePath());
-
-//        File sourceFile2 = Environment.getExternalStorageDirectory();
-        // 验证复制新文件是否写入成功
-        File fleDir2 = new File(targetFile,"1c.txt");
-        FileInputStream fis2 = new FileInputStream(fleDir2);
-        ByteArrayOutputStream bos2 = new ByteArrayOutputStream();
-        byte[] array2 = new byte[1024];
-        int len2 = -1;
-        while ((len2= fis2.read(array2))!=-1){
-            bos2.write(array2,0,len2);
-        }
-        bos2.close();
-        fis2.close();
-        LogDetails.i(fleDir2.getAbsolutePath());
-        LogDetails.i(bos2.toString());
     }
 
     @Override
