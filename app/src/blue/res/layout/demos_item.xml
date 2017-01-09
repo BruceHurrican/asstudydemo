@@ -24,46 +24,29 @@
   ~    如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
   -->
 
-<RadioGroup
-    android:id="@+id/bottomBar"
+<android.support.v7.widget.CardView
+    android:id="@+id/cv"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:background="#F7F7F7"
-    android:orientation="horizontal"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
-    tools:showIn="@layout/activity_main">
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:elevation="10dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="#ffe7e5dc"
+    app:cardCornerRadius="10dp">
 
-    <RadioButton
-        android:id="@+id/btn_favourite"
-        style="@style/BottomBarBtn"
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:checked="true"
-        android:drawableTop="@drawable/bg_favourite"
-        android:text="收藏"
-        android:textColor="@color/bottombartxt_pressed"/>
-
-    <RadioButton
-        android:id="@+id/btn_search"
-        style="@style/BottomBarBtn"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/bg_search"
-        android:text="蓝色"/>
-
-    <RadioButton
-        android:id="@+id/btn_pocket"
-        style="@style/BottomBarBtn"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/bg_pocket"
-        android:text="钱包"/>
-
-    <RadioButton
-        android:id="@+id/btn_mine"
-        style="@style/BottomBarBtn"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/bg_mine"
-        android:text="我的"/>
-</RadioGroup>
+        android:gravity="left"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText"
+        tools:text="应用名称"/>
+</android.support.v7.widget.CardView>

@@ -25,43 +25,38 @@
 
 package com.bruce.demo;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.bruce.demo.net.RetrofitDemo;
-import com.bruceutils.utils.logdetails.LogDetails;
+import com.bruceutils.base.BaseFragment;
 
 /**
- * blue 模块入口控制
- * Created by BruceHurrican on 17/1/5.
+ * Created by BruceHurrican on 17/1/9.
  */
 
-public class BlueManager {
-    private static BlueManager instance;
+public class BlueFragment extends BaseFragment {
 
-    private BlueManager() {
-    }
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
+            Bundle savedInstanceState) {
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams
+                .MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-    public static BlueManager getInstance() {
-        return Holder.INSTANCE;
-    }
+        TextView tv1 = new TextView(getActivity());
+        tv1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        tv1.setText("Blue module");
+        tv1.setTextColor(getResources().getColor(android.R.color.holo_blue_dark));
 
-    public void init() {
-        LogDetails.getLogConfig().configTagPrefix("BLUE").configShowBorders(true);
-        LogDetails.d("blue module init success");
-    }
-
-    public void showRetrofit() {
-        RetrofitDemo demo = new RetrofitDemo();
-        demo.doRetrofit();
-        demo.doRx();
-    }
-
-    public void accessBlueActivity(Activity activity) {
-        activity.startActivity(new Intent(activity, BlueActivity.class));
-    }
-
-    private static class Holder {
-        private static BlueManager INSTANCE = new BlueManager();
+        linearLayout.addView(tv1);
+        return linearLayout;
     }
 }

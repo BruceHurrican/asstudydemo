@@ -70,6 +70,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -168,6 +170,17 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
                     case R.id.btn_search:
 //                        TT.show();
                         LogUtils.d("搜索按钮被点击");
+                        try {
+                            accessBlueModule();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (NoSuchMethodException e) {
+                            e.printStackTrace();
+                        } catch (InvocationTargetException e) {
+                            e.printStackTrace();
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case R.id.btn_pocket:
 //                        tt.showTxt(true, MainActivity.this);
@@ -199,6 +212,19 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     @Override
     public String getTAG() {
         return "MainActivity -- >";
+    }
+
+    private void accessBlueModule() throws ClassNotFoundException, NoSuchMethodException,
+            InvocationTargetException, IllegalAccessException {
+        Class<?> blueClass = Class.forName("com.bruce.demo.BlueManager");
+        LogDetails.d(blueClass.getMethods());
+        Method instanceMethod = blueClass.getMethod("getInstance");
+        instanceMethod.invoke(null);
+        Method initMethod = blueClass.getDeclaredMethod("init");
+        initMethod.invoke(instanceMethod.invoke(null));
+        Method accessBlueActivity = blueClass.getDeclaredMethod("accessBlueActivity", Activity
+                .class);
+        accessBlueActivity.invoke(instanceMethod.invoke(null), this);
     }
 
     /**

@@ -24,46 +24,30 @@
   ~    如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
   -->
 
-<RadioGroup
-    android:id="@+id/bottomBar"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:background="#F7F7F7"
-    android:orientation="horizontal"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
-    tools:showIn="@layout/activity_main">
-
-    <RadioButton
-        android:id="@+id/btn_favourite"
-        style="@style/BottomBarBtn"
-        android:layout_weight="1"
-        android:checked="true"
-        android:drawableTop="@drawable/bg_favourite"
-        android:text="收藏"
-        android:textColor="@color/bottombartxt_pressed"/>
-
-    <RadioButton
-        android:id="@+id/btn_search"
-        style="@style/BottomBarBtn"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/bg_search"
-        android:text="蓝色"/>
-
-    <RadioButton
-        android:id="@+id/btn_pocket"
-        style="@style/BottomBarBtn"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/bg_pocket"
-        android:text="钱包"/>
-
-    <RadioButton
-        android:id="@+id/btn_mine"
-        style="@style/BottomBarBtn"
-        android:layout_weight="1"
-        android:drawableTop="@drawable/bg_mine"
-        android:text="我的"/>
-</RadioGroup>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <!-- 设置填充颜色 -->
+            <solid android:color="#A5D8F5"/>
+            <corners android:radius="10dp"/>
+            <!-- 设置 Button 里面的文字与 Button边界的间隔 -->
+            <padding
+                android:bottom="5dp"
+                android:left="5dp"
+                android:right="5dp"
+                android:top="5dp"/>
+        </shape>
+    </item>
+    <item android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary"/>
+            <corners android:radius="10dp"/>
+            <!-- 设置 Button 里面的文字与 Button边界的间隔 -->
+            <padding
+                android:bottom="5dp"
+                android:left="5dp"
+                android:right="5dp"
+                android:top="5dp"/>
+        </shape>
+    </item>
+</selector>
