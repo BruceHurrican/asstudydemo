@@ -210,6 +210,14 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (alv_demo_list.getVisibility() == View.VISIBLE) {
+            btn_favourite.setChecked(true);
+        }
+    }
+
+    @Override
     public String getTAG() {
         return "MainActivity -- >";
     }

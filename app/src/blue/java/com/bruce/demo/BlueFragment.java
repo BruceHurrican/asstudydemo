@@ -26,14 +26,17 @@
 package com.bruce.demo;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bruceutils.base.BaseFragment;
+import com.bruceutils.utils.logdetails.LogDetails;
 
 /**
  * Created by BruceHurrican on 17/1/9.
@@ -49,6 +52,7 @@ public class BlueFragment extends BaseFragment {
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams
                 .MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setBackgroundColor(getResources().getColor(android.R.color.black));
 
         TextView tv1 = new TextView(getActivity());
         tv1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -57,6 +61,46 @@ public class BlueFragment extends BaseFragment {
         tv1.setTextColor(getResources().getColor(android.R.color.holo_blue_dark));
 
         linearLayout.addView(tv1);
+
+        Button btn1 = new Button(getActivity());
+        btn1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        btn1.setText("获取当前屏幕亮度和模式");
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showScreenModeandValue();
+            }
+        });
+
+        linearLayout.addView(btn1);
+
         return linearLayout;
+    }
+
+    private void showScreenModeandValue() {
+        // 获取屏幕亮度设置模式
+        try {
+            int screenMode = Settings.System.getInt(getActivity().getContentResolver(), Settings
+                    .System.SCREEN_BRIGHTNESS_MODE);
+            LogDetails.d("当前设备屏幕亮度模式为: " + screenMode);
+            switch (screenMode) {
+                case Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC:
+                    LogDetails.d("当前设备屏幕亮度模式为自动调节屏幕亮度");
+                    break;
+                case Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL:
+                    LogDetails.d("当前设备屏幕亮度模式为手动调节屏幕亮度");
+                    break;
+            }
+
+            // 获取屏幕亮度值
+            int screenValue = Settings.System.getInt(getActivity().getContentResolver(), Settings
+                    .System.SCREEN_BRIGHTNESS, -1);
+            LogDetails.d("当前设备亮度值为: " + screenValue);
+            showToastShort(String.format("屏亮模式为 %s,值为 %d", screenMode == 1 ? "自动调节" : "手动调节",
+                    screenValue));
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
