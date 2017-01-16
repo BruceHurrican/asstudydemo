@@ -57,6 +57,7 @@ import com.bruce.demo.studydata.activities.media.CameraActivity;
 import com.bruce.demo.studydata.fragments.FragmentsActivity;
 import com.bruce.demo.studydata.game.game2048.activity.GameActivity;
 import com.bruce.demo.studydata.game.gamepuzzle.PuzzleActivity;
+import com.bruce.demo.utils.KKReflect;
 import com.bruce.demo.widget.AnimListView;
 import com.bruce.demo.widget.TitleBar;
 import com.bruceutils.utils.DataCleanManager;
@@ -71,7 +72,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -224,15 +224,23 @@ public class MainActivity extends BaseActivity implements AdapterView.OnItemClic
 
     private void accessBlueModule() throws ClassNotFoundException, NoSuchMethodException,
             InvocationTargetException, IllegalAccessException {
-        Class<?> blueClass = Class.forName("com.bruce.demo.BlueManager");
-        LogDetails.d(blueClass.getMethods());
-        Method instanceMethod = blueClass.getMethod("getInstance");
-        instanceMethod.invoke(null);
-        Method initMethod = blueClass.getDeclaredMethod("init");
-        initMethod.invoke(instanceMethod.invoke(null));
-        Method accessBlueActivity = blueClass.getDeclaredMethod("accessBlueActivity", Activity
-                .class);
-        accessBlueActivity.invoke(instanceMethod.invoke(null), this);
+        // 反射工具类方法访问
+        KKReflect reflect = KKReflect.on("com.bruce.demo.BlueManager");
+        LogDetails.d(reflect.get());
+        LogDetails.d(reflect.getClass());
+        LogDetails.d(reflect.getClass().getMethods());
+        LogDetails.d(reflect.fields().containsKey("instance"));
+        reflect.call("getInstance", null).call("init", null).call("accessBlueActivity", this);
+        // 传统反射方法访问
+//        Class<?> blueClass = Class.forName("com.bruce.demo.BlueManager");
+//        LogDetails.d(blueClass.getMethods());
+//        Method instanceMethod = blueClass.getMethod("getInstance");
+//        instanceMethod.invoke(null);
+//        Method initMethod = blueClass.getDeclaredMethod("init");
+//        initMethod.invoke(instanceMethod.invoke(null));
+//        Method accessBlueActivity = blueClass.getDeclaredMethod("accessBlueActivity", Activity
+//                .class);
+//        accessBlueActivity.invoke(instanceMethod.invoke(null), this);
     }
 
     /**
