@@ -25,6 +25,7 @@
 
 package com.bruce.demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -35,6 +36,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bruce.demo.demon.KDemonService;
+import com.bruce.demo.demon.KService;
 import com.bruceutils.base.BaseFragment;
 import com.bruceutils.utils.logdetails.LogDetails;
 
@@ -74,6 +77,20 @@ public class BlueFragment extends BaseFragment {
         });
 
         linearLayout.addView(btn1);
+
+        Button btn2 = new Button(getActivity());
+        btn2.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        btn2.setText("开启新进程");
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startService(new Intent(getActivity(), KService.class));
+                getActivity().startService(new Intent(getActivity(), KDemonService.class));
+            }
+        });
+
+        linearLayout.addView(btn2);
 
         return linearLayout;
     }

@@ -33,6 +33,13 @@
             android:name=".BlueActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+
+        <service
+            android:name=".demon.KService"
+            android:process=":kks"/>
+        <service
+            android:name=".demon.KDemonService"
+            android:process=":kks"/>
     </application>
 
 </manifest>
