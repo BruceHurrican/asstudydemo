@@ -39,6 +39,8 @@ import android.widget.TextView;
 import com.bruce.demo.demon.KDemonService;
 import com.bruce.demo.demon.KService;
 import com.bruceutils.base.BaseFragment;
+import com.bruceutils.utils.PublicUtil;
+import com.bruceutils.utils.StorageUtil;
 import com.bruceutils.utils.logdetails.LogDetails;
 
 /**
@@ -91,6 +93,21 @@ public class BlueFragment extends BaseFragment {
         });
 
         linearLayout.addView(btn2);
+
+        Button btn3 = new Button(getActivity());
+        btn3.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        btn3.setText("ping ip: 14.215.177.38"); // ping baidu ip
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PublicUtil.pingIpAddress("14.215.177.38");
+                LogDetails.i("获取SDCARD剩余存储空间" + StorageUtil.getAvailableExternalMemorySize
+                        (getActivity()));
+            }
+        });
+
+        linearLayout.addView(btn3);
 
         return linearLayout;
     }
