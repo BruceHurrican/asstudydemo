@@ -38,6 +38,7 @@ import android.widget.TextView;
 
 import com.bruce.demo.demon.KDemonService;
 import com.bruce.demo.demon.KService;
+import com.bruce.demo.keeplive.OnepxReceiver;
 import com.bruceutils.base.BaseFragment;
 import com.bruceutils.utils.PublicUtil;
 import com.bruceutils.utils.StorageUtil;
@@ -109,6 +110,19 @@ public class BlueFragment extends BaseFragment {
 
         linearLayout.addView(btn3);
 
+        Button btn4 = new Button(getActivity());
+        btn4.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams
+                .WRAP_CONTENT));
+        btn4.setText("启动1像素保活");
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OnepxReceiver.register1pxReceiver(getActivity());
+            }
+        });
+
+        linearLayout.addView(btn4);
+
         return linearLayout;
     }
 
@@ -136,5 +150,11 @@ public class BlueFragment extends BaseFragment {
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        OnepxReceiver.unregister1pxReceiver(getActivity());
     }
 }

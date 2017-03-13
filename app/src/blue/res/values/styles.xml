@@ -24,27 +24,18 @@
   ~    如果对本代码有好的建议，可以联系BurrceHurrican@foxmail.com
   -->
 
-<manifest
-    package="com.bruce.demo"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application>
-        <activity
-            android:name=".BlueActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-
-        <activity
-            android:name=".keeplive.OnepxActivity"
-            android:launchMode="singleInstance"
-            android:theme="@style/ActivityChangeAnimation"/>
-
-        <service
-            android:name=".demon.KService"
-            android:process=":kks"/>
-        <service
-            android:name=".demon.KDemonService"
-            android:process=":kks"/>
-    </application>
-
-</manifest>
+<resources>
+    <!-- 1像素保活主题 -->
+    <style name="OnepxStyle">
+        <!-- 避免 OnepxActivity 启动时的闪屏 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowNoDisplay">false</item>
+    </style>
+</resources>
