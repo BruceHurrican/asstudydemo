@@ -45,6 +45,8 @@ import com.bruce.demo.base.BaseActivity;
  * Created by BruceHurrican on 2016/5/24.
  */
 public class FloatWindowActivity extends BaseActivity {
+    private static final int REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +71,10 @@ public class FloatWindowActivity extends BaseActivity {
 //                    startService(new Intent(FloatWindowActivity.this, FWService.class));
 //                }
                 FWmanager.createSmallWindow(FloatWindowActivity.this);
+                // 自定义 toast
+//                Toast toast = new Toast(FloatWindowActivity.this);
+//                toast.setView(LayoutInflater.from(FloatWindowActivity.this).inflate(R.layout.fw_view_small, null));
+//                toast.show();
             }
         });
 
@@ -80,8 +86,6 @@ public class FloatWindowActivity extends BaseActivity {
     public String getTAG() {
         return null;
     }
-
-    private static final int REQUEST_CODE = 1;
 
     @TargetApi(Build.VERSION_CODES.M)
     private void requestAlertWindowPermission() {

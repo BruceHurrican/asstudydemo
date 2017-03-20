@@ -135,7 +135,9 @@ public class FWSmallView extends LinearLayout {
                 break;
             case MotionEvent.ACTION_UP:
                 // 如果手指离开屏幕时，xDownInScreen和xInScreen相等，且yDownInScreen和yInScreen相等，则视为触发了单击事件。
-                if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
+                if ((xDownInScreen == xInScreen) && (yDownInScreen == yInScreen)) {
+                    openBigWindow();
+                } else if (Math.abs(xDownInScreen - xInScreen) <= 10 && Math.abs(yDownInScreen - yInScreen) <= 10) {
                     openBigWindow();
                 }
                 LogUtils.i("isShow->"+FWmanager.isWindowShowing());
@@ -221,7 +223,10 @@ public class FWSmallView extends LinearLayout {
                         break;
                     case MotionEvent.ACTION_UP:
                         // 如果手指离开屏幕时，xDownInScreen和xInScreen相等，且yDownInScreen和yInScreen相等，则视为触发了单击事件。
-                        if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
+                        if ((xDownInScreen == xInScreen) && (yDownInScreen == yInScreen)) {
+                            openBigWindow();
+                        } else if (Math.abs(xDownInScreen - xInScreen) <= 10 && Math.abs(yDownInScreen - yInScreen)
+                                <= 10) {
                             openBigWindow();
                         }
                         LogUtils.i("isShow->" + FWmanager.isWindowShowing());
