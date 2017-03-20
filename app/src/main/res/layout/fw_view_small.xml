@@ -26,7 +26,7 @@
 
 <LinearLayout android:id="@+id/ll_container"
               xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="60dp"
+              android:layout_width="100dp"
               android:layout_height="25dp"
               android:background="#000000"
               android:orientation="vertical">
@@ -36,6 +36,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:text="ssaa"
+        android:text="我是悬浮窗"
         android:textColor="#ffffff"/>
 </LinearLayout>

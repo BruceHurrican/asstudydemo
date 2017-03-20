@@ -64,7 +64,13 @@ public class FWBigView extends LinearLayout {
      */
     private HomeWatcherReceiver homeWatcherReceiver;
     private Context mContext;
-
+    private boolean isShow = false;
+    private Toast toast;
+    private Object mTN; // Toast 内部类 TN
+    private Method show; // Toast show() 方法
+    private Method hide; // Toast hide() 方法
+    private WindowManager.LayoutParams mParams;
+    private WindowManager windowManager;
     public FWBigView(final Context context) {
         super(context);
         this.mContext = context;
@@ -83,6 +89,7 @@ public class FWBigView extends LinearLayout {
                 FWmanager.removeSmallWindow(context);
                 Intent intent = new Intent(getContext(), FWService.class);
                 context.stopService(intent);
+                context.unregisterReceiver(homeWatcherReceiver);
 //                SharedPreferencesUtil.saveString(context,"kk1","aa1");
 //                Toast.makeText(context, "kk1", Toast.LENGTH_SHORT).show();
             }
@@ -120,6 +127,79 @@ public class FWBigView extends LinearLayout {
 
     public void registerHomeRec(){
         mContext.registerReceiver(homeWatcherReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+    }
+
+    public void show(){
+        if (isShow) {
+            return;
+        }
+        toast.setView(this);
+        initTN();
+        try {
+            show.invoke(mTN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        isShow = true;
+    }
+
+    public void hide(){
+        if(!isShow) {
+            return;
+        }
+        post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    hide.invoke(mTN);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                isShow = false;
+            }
+        });
+    }
+
+    private void initTN() {
+        windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        int screenWidth = windowManager.getDefaultDisplay().getWidth();
+        int screenHeight = windowManager.getDefaultDisplay().getHeight();
+        try {
+            Field tnField = toast.getClass().getDeclaredField("mTN");
+            tnField.setAccessible(true);
+            mTN = tnField.get(toast);
+            show = mTN.getClass().getMethod("show");
+            hide = mTN.getClass().getMethod("hide");
+
+            Field tnParamsField = mTN.getClass().getDeclaredField("mParams");
+            tnParamsField.setAccessible(true);
+
+            if (null == mParams) {
+                mParams = (WindowManager.LayoutParams) tnParamsField.get(mTN);
+//                mParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+//                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                /**设置动画*/
+                mParams.windowAnimations = android.R.anim.fade_in;
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT){
+                    mParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+                }
+                mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                mParams.format = PixelFormat.RGBA_8888;
+                mParams.gravity = Gravity.LEFT | Gravity.TOP;
+                mParams.x = screenWidth / 2 - viewWidth / 2;
+                mParams.y = screenHeight / 2 - viewHeight / 2;
+                mParams.width = viewWidth;
+                mParams.height = viewHeight;
+            }
+            /**调用tn.show()之前一定要先设置mNextView*/
+            Field tnNextViewField = mTN.getClass().getDeclaredField("mNextView");
+            tnNextViewField.setAccessible(true);
+            tnNextViewField.set(mTN, toast.getView());
+//            windowManager = (WindowManager)getContext().getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        toast.setGravity(mParams.gravity, mParams.x ,mParams.y);
     }
 
     private class HomeWatcherReceiver extends BroadcastReceiver {
@@ -161,85 +241,5 @@ public class FWBigView extends LinearLayout {
             context.unregisterReceiver(homeWatcherReceiver);
         }
 
-    }
-
-    private boolean isShow = false;
-    public void show(){
-        if (isShow) {
-            return;
-        }
-        toast.setView(this);
-        initTN();
-        try {
-            show.invoke(mTN);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        isShow = true;
-    }
-
-    public void hide(){
-        if(!isShow) {
-            return;
-        }
-        post(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    hide.invoke(mTN);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                isShow = false;
-            }
-        });
-    }
-
-    private Toast toast;
-    private Object mTN; // Toast 内部类 TN
-    private Method show; // Toast show() 方法
-    private Method hide; // Toast hide() 方法
-    private WindowManager.LayoutParams mParams;
-    private WindowManager windowManager;
-    private void initTN() {
-        windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        int screenWidth = windowManager.getDefaultDisplay().getWidth();
-        int screenHeight = windowManager.getDefaultDisplay().getHeight();
-        try {
-            Field tnField = toast.getClass().getDeclaredField("mTN");
-            tnField.setAccessible(true);
-            mTN = tnField.get(toast);
-            show = mTN.getClass().getMethod("show");
-            hide = mTN.getClass().getMethod("hide");
-
-            Field tnParamsField = mTN.getClass().getDeclaredField("mParams");
-            tnParamsField.setAccessible(true);
-
-            if (null == mParams) {
-                mParams = (WindowManager.LayoutParams) tnParamsField.get(mTN);
-//                mParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-//                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-                /**设置动画*/
-                mParams.windowAnimations = android.R.anim.fade_in;
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT){
-                    mParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-                }
-                mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-                mParams.format = PixelFormat.RGBA_8888;
-                mParams.gravity = Gravity.LEFT | Gravity.TOP;
-                mParams.x = screenWidth / 2 - viewWidth / 2;
-                mParams.y = screenHeight / 2 - viewHeight / 2;
-                mParams.width = viewWidth;
-                mParams.height = viewHeight;
-            }
-            /**调用tn.show()之前一定要先设置mNextView*/
-            Field tnNextViewField = mTN.getClass().getDeclaredField("mNextView");
-            tnNextViewField.setAccessible(true);
-            tnNextViewField.set(mTN, toast.getView());
-//            windowManager = (WindowManager)getContext().getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        toast.setGravity(mParams.gravity, mParams.x ,mParams.y);
     }
 }

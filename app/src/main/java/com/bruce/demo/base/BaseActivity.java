@@ -38,9 +38,7 @@ import android.widget.Toast;
 import com.android.debug.hv.ViewServer;
 import com.bruce.demo.DemoApplication;
 import com.bruce.demo.R;
-import com.bruce.demo.studydata.activities.floatwindow.FWmanager;
 import com.bruceutils.utils.LogUtils;
-import com.bruceutils.utils.logdetails.LogDetails;
 
 import java.lang.ref.WeakReference;
 
@@ -71,6 +69,12 @@ public abstract class BaseActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        ViewServer.get(this).setFocusedWindow(this);
+    }
+
+    @Override
     protected void onDestroy() {
         application.delActivity(this);
         super.onDestroy();
@@ -82,18 +86,12 @@ public abstract class BaseActivity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        try {
-            FWmanager.removeBigWindow(this);
-            FWmanager.createSmallWindow(this);
-        } catch (Exception e) {
-            LogDetails.e(e.toString());
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        ViewServer.get(this).setFocusedWindow(this);
+//        try {
+//            FWmanager.removeBigWindow(this);
+//            FWmanager.createSmallWindow(this);
+//        } catch (Exception e) {
+//            LogDetails.e(e.toString());
+//        }
     }
 
     public abstract String getTAG();
